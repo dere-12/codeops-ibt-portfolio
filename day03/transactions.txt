@@ -1,0 +1,7 @@
+Abel, 400
+Dawit, 600
+Abel, 200
+John, 800
+Kebede, 300
+Girma, 500
+Dawit, 1000

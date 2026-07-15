@@ -1,0 +1,6 @@
+Transaction Summary Report
+Dawit, 1600
+John, 800
+Abel, 600
+Girma, 500
+Kebede, 300
