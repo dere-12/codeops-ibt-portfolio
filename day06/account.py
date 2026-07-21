@@ -103,8 +103,6 @@ class AccountFactory:
         else:
             return None
 
-# print("\n__________________day06_____________________________\n")
-
 saving_account1 = AccountFactory.create("savings", "Belay", "01", 200, 0.07)
 current_account1 = AccountFactory.create("Current", "Dawit", "02", 500, 300)
 
@@ -131,42 +129,3 @@ print("\n.........................\n")
 
 saving_account1.statement()
 current_account1.statement()
-
-
-# print("\n__________________day05_____________________________\n")
-
-# saving_account1 = SavingsAccount("John", "0008", 100, 0.05)
-# saving_account1.deposit(30)
-# saving_account1.withdraw(60)
-# saving_account1.add_interest()
-# print(saving_account1.balance)
-
-# print("\n.........................\n")
-
-# current_account1 = CurrentAccount("Desta", "00012", 3000, 500)
-# print(current_account1.balance)
-# current_account1.withdraw(3400)
-# print(current_account1.balance)
-
-# print("\n..........................\n")
-
-# accounts = [
-#     SavingsAccount("Hawi", "02", 2000, 0.05), CurrentAccount("Temesgen", "03", 2500, 300)
-# ]
-
-# for account in accounts:
-#     account.statement()
-
-# print("\n__________________day04_____________________________\n")
-
-# account1 = Account("Dawit", "0001", 5000)
-# account2 = Account("Liya", "0002", 3000)
-
-# account1.deposit(1000)
-# account1.withdraw(2000)
-
-# account2.deposit(-500)
-# account2.withdraw(4000)
-
-# print(account1.balance)
-# print(account2.balance)
