@@ -94,14 +94,14 @@ for account in accounts:
 
 print("\n_______________________________________________\n")
 
-account1 = Account("Dawit", "0001", 5000)
-account2 = Account("Liya", "0002", 3000)
+# account1 = Account("Dawit", "0001", 5000)
+# account2 = Account("Liya", "0002", 3000)
 
-account1.deposit(1000)
-account1.withdraw(2000)
+# account1.deposit(1000)
+# account1.withdraw(2000)
 
-account2.deposit(-500)
-account2.withdraw(4000)
+# account2.deposit(-500)
+# account2.withdraw(4000)
 
-print(account1.balance)
-print(account2.balance)
+# print(account1.balance)
+# print(account2.balance)
