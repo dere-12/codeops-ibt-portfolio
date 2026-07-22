@@ -174,6 +174,9 @@ registry.add(current_account1)
 registry.add(current_account2)
 
 registry.top_by_balance(4)
+
+print("\n\t.........................\n")
+
 registry.find_by_number("-1")
 
 
