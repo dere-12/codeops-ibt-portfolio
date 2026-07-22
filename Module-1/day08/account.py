@@ -150,11 +150,26 @@ class AccountRegistry:
     def find_by_number(self, acc_num):
         sorted_acc_numbers = sorted(self.accounts.keys())
         index_of_target = self.binary_search(sorted_acc_numbers, acc_num)
+
+        if index_of_target == -1:
+            return None
+        
         acc_number = sorted_acc_numbers[index_of_target]
-        return self.accounts[acc_number].statement()
+        return self.accounts[acc_number]
+    
+    def total_transactions(self, acc_num):
+        account = self.find_by_number(acc_num)
+            
+        if account is None:
+            return 0
 
+        def count_transaction(history):
+            if len(history) == 0:
+                return 0
+            return 1 + count_transaction(history[1:])
+        
+        return count_transaction(account.history)
 
-print(".........................day08................")
 
 saving_account1 = AccountFactory.create("savings", "Belay", "10004", 200, 0.07)
 saving_account2 = AccountFactory.create("savings", "Abel", "10002", 300, 0.07)
@@ -177,23 +192,16 @@ registry.top_by_balance(4)
 
 print("\n\t.........................\n")
 
-registry.find_by_number("-1")
+account = registry.find_by_number("10003")
+if account:
+    account.statement()
+else:
+    print("Account Not Found.")
 
+print("\n\t.........................\n")
 
-# registry.find("10005").statement()
+current_account1.deposit(100)
+current_account1.withdraw(1500)
+current_account1.withdraw(800)
 
-# print("\n\t.........................\n")
-
-# registry.list_all()
-
-# print("\n\t.........................\n")
-
-# current_account1.deposit(100)
-# current_account1.withdraw(1500)
-# current_account1.withdraw(800)
-
-# print(current_account1.history)
-
-# current_account1.undo_last()
-
-# print(current_account1.history)
+print(f"\n{registry.total_transactions("10005")}")
