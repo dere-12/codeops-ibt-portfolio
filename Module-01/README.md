@@ -82,13 +82,13 @@ Beginning on **Day 04**, a banking system was developed and enhanced throughout 
 
 # Skills Practiced
 
-## Python Fundamentals
+- Python Fundamentals
 
-## Object-Oriented Programming
+- Object-Oriented Programming
 
-## Software Design
+- Software Design
 
-## Data Structures Algorithms
+- Data Structures Algorithms
 
 ---
 
