@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Habesha Eatery serves authentic Ethiopian food. Reserve a table and explore our menu."
+    />
+
+    <title>Habesha Eatery | Ethiopian Restaurant</title>
+  </head>
+  <body>
+    <main>
+      <section id="hero">
+        <h1>Welcome to Habesha Eatery</h1>
+
+        <img
+          src="./images/ethiopian-traditional-food.jpg"
+          alt="Traditional Ethiopian dishes served on an injera platter"
+          loading="lazy"
+          width="700"
+        />
+      </section>
+
+      <section id="form">
+        <h2>Reservation Form</h2>
+        <form action="">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" placeholder="Abel Tesfaye" />
+          <br />
+          <br />
+
+          <label for="phone">Phone Number:</label>
+          <input type="tel" pattern="09[0-9]{8}" id="phone" required />
+          <br />
+          <br />
+
+          <label for="guest">Guests</label>
+          <input type="number" min="1" max="20" value="1" />
+          <br />
+          <br />
+
+          <label for="date">Date:</label>
+          <input type="date" id="date" />
+          <br />
+          <br />
+
+          <button>Reserve</button>
+        </form>
+      </section>
+
+      <section id="menu">
+        <h2>Our Menu</h2>
+
+        <table>
+          <caption>
+            Habesha Eatery Menu
+          </caption>
+
+          <tr>
+            <th scope="col">Food</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price (ETB)</th>
+          </tr>
+
+          <tr>
+            <td>Doro Wat</td>
+            <td>Main Course</td>
+            <td>450</td>
+          </tr>
+
+          <tr>
+            <td>Tibs</td>
+            <td>Main Course</td>
+            <td>500</td>
+          </tr>
+
+          <tr>
+            <td>Shiro</td>
+            <td>Vegetarian</td>
+            <td>300</td>
+          </tr>
+
+          <tr>
+            <td>Firfir</td>
+            <td>Breakfast</td>
+            <td>250</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="location">
+        <h2>Find Us</h2>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.4742894696437!2d38.79973227478053!3d9.020424891040557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8569db926e83%3A0x383f4f35fac333ea!2smegenagna%20taxi%20station!5e0!3m2!1sen!2set!4v1785744924796!5m2!1sen!2set"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          title="Map showing the location of Habesha Eatery"
+        ></iframe>
+      </section>
+    </main>
+  </body>
+</html>
