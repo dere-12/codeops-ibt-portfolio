@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color:  #0a0637;
+    --font-color: #0a0637;
+    --hover-color:  hsl(200, 20%, 15%);
+    --black-color: #000000;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.menu-card {
+    border: 1px solid var(--black-color);
+    display: inline-block;
+    margin-top: 24px;
+}
+
+table {
+    color: #eae8e8;
+    background-color: var(--bg-color);
+}
+
+table caption {
+    padding-bottom: 12px;
+    background-color:  var(--black-color);
+}
+
+.price::before {
+    content: "ETB ";
+}
+
+table  th {
+    padding-right: 80px;
+}
+
+table tr:hover {
+    background-color: var(--hover-color);
+}
