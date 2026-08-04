@@ -1,4 +1,4 @@
-* {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -12,7 +12,6 @@
 body {
     font-family: "Roboto", sans-serif;
     line-height: 1.5;
-    font-size: 1rem;
 }
 
 .menu-card {
@@ -39,6 +38,11 @@ table  th {
     padding-right: 80px;
 }
 
-table tr:hover {
+.table-title ~ tr {
+    font-weight: 300;
+}
+
+.table-title ~ tr:hover {
     background-color: var(--hover-color);
+    font-weight: 500;
 }
