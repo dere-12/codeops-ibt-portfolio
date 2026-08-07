@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Habesha Eatery serves authentic Ethiopian cuisine in Bole, Addis Ababa."
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Habesha Eatery</title>
+  </head>
+
+  <body>
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+      <nav
+        class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4"
+      >
+        <h1 class="text-2xl font-bold text-amber-800">Habesha Eatery</h1>
+
+        <ul class="flex flex-wrap gap-6 font-medium">
+          <li>
+            <a href="#about" class="hover:text-amber-700 transition-colors"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="#menu" class="hover:text-amber-700 transition-colors"
+              >Menu</a
+            >
+          </li>
+          <li>
+            <a
+              href="#reservation"
+              class="hover:text-amber-700 transition-colors"
+              >Reservation</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="hover:text-amber-700 transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section
+        class="min-h-[80vh] flex items-center justify-center bg-amber-50 px-6 text-center"
+      >
+        <div class="max-w-3xl">
+          <h2
+            class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-amber-900 mb-6"
+          >
+            Welcome to Habesha Eatery
+          </h2>
+
+          <p class="text-lg text-gray-700 mb-8">
+            Experience the rich flavors of Ethiopia with traditional dishes
+            prepared from fresh local ingredients in the heart of Addis Ababa.
+          </p>
+
+          <a
+            href="#reservation"
+            class="inline-block bg-amber-800 text-white px-8 py-3 rounded-lg hover:bg-amber-900 transition-colors"
+            >Reserve a Table</a
+          >
+        </div>
+      </section>
+
+      <section
+        id="about"
+        class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-center"
+      >
+        <img
+          src="./Images/ethiopian-traditional-food.jpg"
+          alt="Traditional Ethiopian food served at Habesha Eatery"
+          class="rounded-xl shadow-lg"
+        />
+
+        <div>
+          <h2 class="text-3xl font-bold text-amber-900 mb-4">Our Story</h2>
+          <p class="text-gray-700 leading-8">
+            Habesha Eatery brings authentic Ethiopian flavors to Addis Ababa.
+            Every meal is prepared using fresh local ingredients and traditional
+            recipes passed down through generations.
+          </p>
+        </div>
+      </section>
+
+      <section id="menu" class="max-w-6xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center text-amber-900 mb-10">
+          Our Menu
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <article
+            class="bg-white rounded-xl shadow p-6 hover:-translate-y-2 hover:shadow-xl transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Doro Wat</h3>
+
+            <p class="text-gray-600 mb-4">Traditional spicy chicken stew.</p>
+
+            <span class="font-bold text-amber-700"> ETB 450 </span>
+          </article>
+
+          <article
+            class="bg-white rounded-xl shadow p-6 hover:-translate-y-2 hover:shadow-xl transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Kitfo</h3>
+
+            <p class="text-gray-600 mb-4">
+              Fresh minced beef with Ethiopian spices.
+            </p>
+
+            <span class="font-bold text-amber-700"> ETB 520 </span>
+          </article>
+
+          <article
+            class="bg-white rounded-xl shadow p-6 hover:-translate-y-2 hover:shadow-xl transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Tibs</h3>
+
+            <p class="text-gray-600 mb-4">
+              Grilled beef served with vegetables.
+            </p>
+
+            <span class="font-bold text-amber-700"> ETB 480 </span>
+          </article>
+        </div>
+      </section>
+
+      <section id="reservation" class="max-w-3xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center text-amber-900 mb-8">
+          Reserve a Table
+        </h2>
+
+        <form class="space-y-6">
+          <div>
+            <label for="name" class="block mb-2 font-medium"> Full Name </label>
+
+            <input
+              type="text"
+              id="name"
+              required
+              class="w-full border rounded-lg p-3"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block mb-2 font-medium"> Email </label>
+
+            <input
+              type="email"
+              id="email"
+              required
+              class="w-full border rounded-lg p-3"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block mb-2 font-medium"> Phone </label>
+
+            <input
+              type="tel"
+              pattern="09[0-9]{8}"
+              required
+              class="w-full border rounded-lg p-3"
+            />
+          </div>
+
+          <div>
+            <label for="guests" class="block mb-2 font-medium"> Guests </label>
+
+            <input
+              type="number"
+              min="1"
+              max="20"
+              value="1"
+              class="w-full border rounded-lg p-3"
+            />
+          </div>
+
+          <div>
+            <label for="date" class="block mb-2 font-medium">
+              Reservation Date
+            </label>
+
+            <input type="date" required class="w-full border rounded-lg p-3" />
+          </div>
+
+          <button
+            class="bg-amber-800 text-white px-8 py-3 rounded-lg hover:bg-amber-900 transition"
+          >
+            Reserve
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer
+      id="contact"
+      class="flex flex-col items-center md:flex-row justify-between bg-amber-900 text-white mt-20 py-6 px-6"
+    >
+      <div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63054.73327321673!2d38.790844947567656!3d8.979432716340092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b9b33a3569139%3A0xb505349b8c87fdd2!2sBole%2C%20Addis%20Ababa!5e0!3m2!1sen!2set!4v1786088670928!5m2!1sen!2set"
+          class="w-[400px] md:w-[600px] max-w-full h-[350px] md:h-[400px] max-w-full rounded-xl"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-6 py-10 text-center space-y-3">
+        <h3 class="text-2xl font-bold">Habesha Eatery</h3>
+
+        <p>📍 Bole, Addis Ababa</p>
+        <p>☎ +251 911 123 456</p>
+        <p>🕘 Mon - Sun | 9:00 AM - 10:00 PM</p>
+      </div>
+    </footer>
+  </body>
+</html>
