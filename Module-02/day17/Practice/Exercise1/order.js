@@ -5,31 +5,34 @@
  * Use rest parameters to accept any number of prices [2, 3].
  */
 const subtotal = (...prices) => {
-  // Use prices.reduce here [3]
+  return prices.reduce((sum, p) => sum + p, 0);
 };
 
 /**
  * TODO: Write discountBy(rate) as a factory returning an arrow function.
  * This is a Higher-Order Function (HOF) that creates a closure over the rate [2, 3].
  */
+
 const discountBy = (rate) => {
-  // Return an arrow function that applies the discount [3]
+  return (n) => n * (1 - rate);
 };
 
 /**
  * TODO: Add withVat as a small pure helper.
  * It should add 15% VAT to a given amount [2, 3].
  */
+
 const withVat = (n) => {
-  // Logic: n * 1.15 [3]
+  return n * 1.15;
 };
 
 /**
  * TODO: Add toETB as a small pure helper.
  * It should format a number to 2 decimal places followed by " ETB" [2, 3].
  */
+
 const toETB = (n) => {
-  // Logic: Use n.toFixed(2) [3]
+  return `${n.toFixed(2)} ETB`;
 };
 
 /**
@@ -37,15 +40,17 @@ const toETB = (n) => {
  * This function uses a closure to maintain the state of orderNo across calls [4, 5].
  * Inside, it should pre-build a 10% member discount function using discountBy(0.10) [5].
  */
+
 function makeReceiptMaker() {
-  let orderNo = 0; // Private state [4]
+  let orderNo = 0;
   const memberOff = discountBy(0.1);
 
   return function (...items) {
-    // 1. Increment orderNo [5]
-    // 2. Calculate subtotal of items [5]
-      // 3. Compose: apply discount, then VAT [5]
-    // 4. Format and return receipt string (e.g., "#1: 538.20 ETB") [5]
+    orderNo++;
+    const gross = subtotal(...items);
+    const net = withVat(memberOff(gross));
+
+    return `#${orderNo}: ${toETB(net)}`;
   };
 }
 
