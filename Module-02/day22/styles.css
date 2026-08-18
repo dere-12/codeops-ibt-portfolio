@@ -330,3 +330,55 @@ body {
 .footer-links a:hover {
   color: var(--text-dark);
 }
+
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 960px;
+    padding: 40px 32px;
+  }
+
+  .logo-title {
+    font-size: 1.75rem;
+  }
+
+  .desktop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-top: 12px;
+  }
+
+  .form-card {
+    padding: 28px;
+  }
+
+  .result-card {
+    text-align: left;
+    margin: 28px 0 0 0;
+    padding: 0 4px;
+  }
+
+  .result-sub {
+    font-size: 1rem;
+  }
+
+  .result-main {
+    font-size: 2rem;
+  }
+
+  .app-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .copyright {
+    margin-bottom: 0;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
