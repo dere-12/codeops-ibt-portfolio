@@ -4,6 +4,7 @@ const state = {
   watchlist: [],
   amount: 100,
   currency: "USD",
+  theme: "light",
 };
 
 const API = "https://open.er-api.com/v6/latest/ETB";
@@ -14,6 +15,7 @@ const form = document.querySelector("#convert-form");
 const amount = document.querySelector("#amount");
 const result = document.querySelector("#result");
 const watchUl = document.querySelector("#watchlist");
+const themeToggleBtn = document.querySelector("#theme-toggle");
 
 async function loadRates() {
   statusEl.textContent = "Loading rates…";
@@ -47,8 +49,26 @@ function render() {
     select.value = state.currency;
   }
 
+  applyTheme();
   renderWatchlist();
 }
+
+function applyTheme() {
+  if (state.theme === "dark") {
+    document.body.classList.add("dark-theme");
+  } else {
+    document.body.classList.remove("dark-theme");
+  }
+}
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", () => {
+    state.theme = state.theme === "light" ? "dark" : "light";
+    applyTheme();
+    save();
+  });
+}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -124,6 +144,7 @@ function save() {
     JSON.stringify({
       watchlist: state.watchlist,
       currency: state.currency,
+      theme: state.theme,
     }),
   );
 }
@@ -143,6 +164,7 @@ function load() {
 
 async function init() {
   load();
+  applyTheme();
   await loadRates();
   render();
 }
