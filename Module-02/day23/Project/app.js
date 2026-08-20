@@ -1,6 +1,6 @@
 const state = {
     dishes: [],
-    cart: JSON.parse(localStorage.getItem('addis_eats_cart')) || [],
+    cart: [],
     search: "",
     category: "All"
 }
@@ -8,6 +8,10 @@ const state = {
 const menuContainer = document.getElementById('menu');
 const searchInput = document.getElementById('search');
 const categoryNav = document.getElementById('category-filters');
+const cartItemsContainer = document.getElementById('cart-items'); 
+const cartTotalElement = document.getElementById('cart-total'); 
+const cartBadgeElement = document.getElementById('cart-badge');
+const checkOutElement = document.getElementById("checkout-btn")
 
 async function fetchMenu() {
   try {
@@ -30,8 +34,7 @@ function render() {
 
   if (filteredDishes.length === 0) {
     menuContainer.innerHTML = `<p class="text-gray-500 col-span-full text-center py-8">No dishes found matching your criteria.</p>`;
-    return;
-  }
+  } else {
 
   menuContainer.innerHTML = filteredDishes.map(dish => `
     <article class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
@@ -50,14 +53,94 @@ function render() {
       </div>
 
       <div class="p-4 pt-0">
-        <button
+        <button onclick="addToCart(${dish.id})"
           class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-2 rounded-lg font-medium transition cursor-pointer">
           Add to Cart
         </button>
       </div>
     </article>
   `).join('');
+  }
+
+  renderCart()
 }
+
+function addToCart(dishId) {
+  const existingItem = state.cart.find(item => item.id === dishId);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    const dish = state.dishes.find(d => d.id === dishId);
+    if (dish) {
+      state.cart.push({ ...dish, quantity: 1 });
+    }
+  }
+
+  saveCart();
+  render();
+}
+
+function removeFromCart(dishId) {
+  state.cart = state.cart.filter(item => item.id !== dishId);
+  saveCart();
+  render();
+}
+
+function updateQuantity(dishId, change) { 
+  const item = state.cart.find(item => item.id === dishId); 
+  if (!item) return; 
+  
+  item.quantity += change; 
+  if (item.quantity <= 0) { 
+    removeFromCart(dishId); 
+    return; 
+  } 
+  
+  saveCart(); 
+  render(); 
+} 
+
+function saveCart() {
+  localStorage.setItem('addis_eats_cart', JSON.stringify(state.cart));
+}
+
+function loadCart() {
+    const loadedCart = localStorage.getItem('addis_eats_cart')
+
+    if (loadedCart) {
+        state.cart = JSON.parse(loadedCart)
+    }
+}
+
+function renderCart() { 
+  if (state.cart.length === 0) { 
+    cartItemsContainer.innerHTML = `<p class="text-gray-400 text-sm text-center py-4">Your cart is empty.</p>`; 
+    cartTotalElement.textContent = '0 ETB'; 
+    cartBadgeElement.textContent = '0'; 
+    return; 
+  }
+
+  cartItemsContainer.innerHTML = state.cart.map(item => ` 
+    <div class="flex items-center justify-between border-b border-gray-100 pb-2"> 
+      <div> 
+        <p class="font-semibold text-sm text-gray-800">${item.name}</p> 
+        <p class="text-xs text-gray-500">${item.price} ETB</p> 
+      </div> 
+      <div class="flex items-center gap-2"> 
+        <button onclick="updateQuantity(${item.id}, -1)" class="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded font-bold text-sm cursor-pointer">-</button> 
+        <span class="text-sm font-semibold">${item.quantity}</span> 
+        <button onclick="updateQuantity(${item.id}, 1)" class="px-2 py-0.5 bg-gray-100 hover:bg-gray-200 rounded font-bold text-sm cursor-pointer">+</button> 
+        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 text-sm ml-1 cursor-pointer" aria-label="Remove item">🗑️</button> 
+      </div> 
+    </div> 
+  `).join(''); 
+
+  const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0); 
+  const totalItems = state.cart.reduce((sum, item) => sum + item.quantity, 0); 
+
+  cartTotalElement.textContent = `${total} ETB`; 
+  cartBadgeElement.textContent = totalItems; 
+} 
 
 searchInput.addEventListener('input', (e) => {
   state.search = e.target.value.trim();
@@ -77,4 +160,24 @@ categoryNav.addEventListener('click', (e) => {
   render();
 });
 
-document.addEventListener("DOMContentLoaded", fetchMenu)
+checkOutElement.addEventListener("click", () => {
+  if (state.cart.length === 0) {
+    alert("Your cart is empty! Add some dishes before checking out.");
+    return;
+  }
+
+  const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  alert(`Thank you for your order! Your total is ${total} ETB. Your food from Addis Eats is on its way!`);
+
+  state.cart = [];
+  saveCart();
+  render();
+})
+
+async function init() {
+    loadCart()
+    await fetchMenu()
+}
+
+init()
