@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Doro Wat",
+    "category": "Main",
+    "price": 240,
+    "spicy": true,
+    "image": "Images/doro-wat.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Shiro",
+    "category": "Vegetarian",
+    "price": 120,
+    "spicy": false,
+    "image": "Images/shiro-wat.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Kitfo",
+    "category": "Main",
+    "price": 320,
+    "spicy": true,
+    "image": "Images/beyaynet.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Tibs",
+    "category": "Main",
+    "price": 280,
+    "spicy": true,
+    "image": "Images/tibs.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Injera Firfir",
+    "category": "Breakfast",
+    "price": 100,
+    "spicy": true,
+    "image": "Images/injera-firfir.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Beyaynetu",
+    "category": "Vegetarian",
+    "price": 150,
+    "spicy": false,
+    "image": "Images/beyaynetu.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Misir Wat",
+    "category": "Vegetarian",
+    "price": 110,
+    "spicy": true,
+    "image": "Images/misir-wat.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Gomen",
+    "category": "Vegetarian",
+    "price": 90,
+    "spicy": false,
+    "image": "Images/gomen.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Atkilt Wat",
+    "category": "Vegetarian",
+    "price": 100,
+    "spicy": false,
+    "image": "Images/atkilt-wot.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Derek Tibs",
+    "category": "Main",
+    "price": 310,
+    "spicy": true,
+    "image": "Images/derek-tibs.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Key Wat",
+    "category": "Main",
+    "price": 220,
+    "spicy": true,
+    "image": "Images/key-wat.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Alicha Wat",
+    "category": "Main",
+    "price": 210,
+    "spicy": false,
+    "image": "Images/alicha-wat.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Bozena Shiro",
+    "category": "Main",
+    "price": 180,
+    "spicy": true,
+    "image": "Images/bozena-shiro.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Ayibe",
+    "category": "Side",
+    "price": 70,
+    "spicy": false,
+    "image": "Images/ayibe.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Kocho",
+    "category": "Side",
+    "price": 60,
+    "spicy": false,
+    "image": "Images/kocho.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Enkulal Firfir",
+    "category": "Breakfast",
+    "price": 110,
+    "spicy": true,
+    "image": "Images/enkulal-firfir.jpg"
+  },
+  {
+    "id": 17,
+    "name": "Fuul",
+    "category": "Breakfast",
+    "price": 90,
+    "spicy": true,
+    "image": "Images/fuul.jpg"
+  },
+  {
+    "id": 18,
+    "name": "Genfo",
+    "category": "Breakfast",
+    "price": 130,
+    "spicy": true,
+    "image": "Images/genfo.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Chechebsa",
+    "category": "Breakfast",
+    "price": 120,
+    "spicy": true,
+    "image": "Images/chechebsa.jpg"
+  },
+  {
+    "id": 20,
+    "name": "Kik Alicha",
+    "category": "Vegetarian",
+    "price": 100,
+    "spicy": false,
+    "image": "Images/kik-alicha.jpg"
+  }
+]
