@@ -21,7 +21,7 @@
     "category": "Main",
     "price": 320,
     "spicy": true,
-    "image": "Images/beyaynet.jpg"
+    "image": "Images/kitfo.jpg"
   },
   {
     "id": 4,
@@ -45,7 +45,7 @@
     "category": "Vegetarian",
     "price": 150,
     "spicy": false,
-    "image": "Images/beyaynetu.jpg"
+    "image": "Images/beyaynet.jpg"
   },
   {
     "id": 7,
@@ -69,7 +69,7 @@
     "category": "Vegetarian",
     "price": 100,
     "spicy": false,
-    "image": "Images/atkilt-wot.jpg"
+    "image": "Images/atkilt-wat.jpg"
   },
   {
     "id": 10,
@@ -124,7 +124,7 @@
     "name": "Enkulal Firfir",
     "category": "Breakfast",
     "price": 110,
-    "spicy": true,
+    "spicy": false,
     "image": "Images/enkulal-firfir.jpg"
   },
   {

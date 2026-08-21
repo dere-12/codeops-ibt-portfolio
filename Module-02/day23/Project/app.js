@@ -206,4 +206,4 @@ async function init() {
     await fetchMenu()
 }
 
-// init() 
+init() 
