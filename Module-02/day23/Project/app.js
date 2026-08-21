@@ -11,7 +11,9 @@ const categoryNav = document.getElementById('category-filters');
 const cartItemsContainer = document.getElementById('cart-items'); 
 const cartTotalElement = document.getElementById('cart-total'); 
 const cartBadgeElement = document.getElementById('cart-badge');
-const checkOutElement = document.getElementById("checkout-btn")
+const checkoutForm = document.getElementById('checkout-form'); 
+const formErrorElement = document.getElementById('form-error');
+const PHONE_REGEX = /^(?:\+251|0)9\d{8}$/;
 
 async function fetchMenu() {
   try {
@@ -142,6 +144,26 @@ function renderCart() {
   cartBadgeElement.textContent = totalItems; 
 } 
 
+function validateOrderData({ name, phone }) { 
+  if (!name.trim()) return "Please enter your name."; 
+
+  if (!PHONE_REGEX.test(phone.trim())) return "Enter a valid Ethiopian phone number (09xxxxxxxx or +2519xxxxxxxx)."; 
+
+  if (state.cart.length === 0) return "Your cart is empty. Add dishes before ordering."; 
+
+  return "";
+} 
+
+function placeOrder(orderData) {
+   const totalETB = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  state.cart = []; 
+  saveCart(); 
+  render(); 
+
+  alert(`Order Placed Successfully!\n\nThank you, ${orderData.name}.\nTotal: ${totalETB} ETB \nDelivering to: ${orderData.area} \nWe will contact you via TeleBirr at ${orderData.phone}.`); 
+}
+
 searchInput.addEventListener('input', (e) => {
   state.search = e.target.value.trim();
   render();
@@ -160,24 +182,28 @@ categoryNav.addEventListener('click', (e) => {
   render();
 });
 
-checkOutElement.addEventListener("click", () => {
-  if (state.cart.length === 0) {
-    alert("Your cart is empty! Add some dishes before checking out.");
-    return;
-  }
 
-  const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+checkoutForm.addEventListener('submit', (e) => { 
+  e.preventDefault(); 
 
-  alert(`Thank you for your order! Your total is ${total} ETB. Your food from Addis Eats is on its way!`);
+  const data = { 
+    name: document.getElementById('name').value, 
+    phone: document.getElementById('phone').value, 
+    area: document.getElementById('area').value 
+  }; 
 
-  state.cart = [];
-  saveCart();
-  render();
-})
+  const errorMessage = validateOrderData(data); 
+  formErrorElement.textContent = errorMessage;  
+
+  if (errorMessage) return; 
+
+  placeOrder(data); 
+  checkoutForm.reset();
+});
 
 async function init() {
     loadCart()
     await fetchMenu()
 }
 
-init()
+// init() 
