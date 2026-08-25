@@ -41,8 +41,10 @@ Each module contains:
 | Module | Status | Topics |
 |---------|--------|--------|
 | Module 01 | ✅ Completed | Python Fundamentals, OOP, Design Patterns, Data Structures & Algorithms |
-| Module 02 | 🚧 In Progress | Frontend Development |
+| Module 02 | ✅ Completed | Frontend Development - HTML, CSS & JavaScript |
+| Module 03 | 🚧 In Progress | Frontend Development - React & Next.js |
 | ... 
+
 ---
 
 ## Modules
@@ -67,7 +69,28 @@ Topics include:
 ---
 
 ### 🌐 Module 02
-Frontend Development *(In Progress)*
+Frontend Development Fundamentals - HTML, CSS & JavaScript
+
+Topics include:
+
+- How the Web Works & HTML Foundations        
+- HTML — Forms, Tables, Media & Accessibility 
+- CSS Foundations                             
+- CSS Layout — Flexbox & Grid                 
+- Responsive Design, Animation & Frameworks   
+- JavaScript Foundations                      
+- Functions, Closures & Higher-Order Functions
+- Arrays, Objects & Modern JavaScript         
+- The DOM & Events                            
+- Asynchronous JavaScript & APIs              
+- Storage, Forms & Regular Expressions        
+
+👉 See **Module-02/README.md** for detailed information.
+
+---
+
+### 🌐 Module 03
+Frontend Development - React and Next.js *(In Progress)*
 
 ---
 
