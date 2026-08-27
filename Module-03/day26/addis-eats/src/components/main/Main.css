@@ -1,0 +1,9 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 1rem;
+    margin: 4px 0;
+    padding: 4rem 1rem;
+    background-color: green;
+    color: white;
+}
