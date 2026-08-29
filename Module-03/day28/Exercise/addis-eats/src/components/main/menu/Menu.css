@@ -1,0 +1,15 @@
+.dishes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: green;
+  color: #fff;
+}
+
+.cat-container {
+  grid-column: 1 / 5;
+  display: flex;
+  justify-content: space-between;
+}
