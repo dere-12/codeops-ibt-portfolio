@@ -1,0 +1,18 @@
+.cardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle h3 {
+  font-size: 15px;
+}
+
+.cardTitle span {
+  font-size: 12px;
+}
+
+.price {
+  margin-top: 8px;
+  font-family: monospace;
+}
