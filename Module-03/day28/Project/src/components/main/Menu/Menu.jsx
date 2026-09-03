@@ -1,0 +1,209 @@
+import { useState } from "react";
+import styles from "./menu.module.css";
+import Dish from "../Dish/Dish";
+import CategoryBar from "../CategoryBar/CategoryBar";
+import OrderForm from "../OrderForm/OrderForm";
+
+const menu = [
+  {
+    id: 1,
+    name: "Doro Wat",
+    category: "Main",
+    price: 240,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 2,
+    name: "Shiro",
+    category: "Vegetarian",
+    price: 120,
+    spicy: false,
+    image: "#",
+  },
+  {
+    id: 3,
+    name: "Kitfo",
+    category: "Main",
+    price: 320,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 4,
+    name: "Tibs",
+    category: "Main",
+    price: 280,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 5,
+    name: "Injera Firfir",
+    category: "Breakfast",
+    price: 100,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 6,
+    name: "Beyaynetu",
+    category: "Vegetarian",
+    price: 150,
+    spicy: false,
+    image: "#",
+  },
+  {
+    id: 7,
+    name: "Misir Wat",
+    category: "Vegetarian",
+    price: 110,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 8,
+    name: "Gomen",
+    category: "Vegetarian",
+    price: 90,
+    spicy: false,
+    image: "#",
+  },
+  {
+    id: 9,
+    name: "Atkilt Wot",
+    category: "Vegetarian",
+    price: 100,
+    spicy: false,
+    image: "#",
+  },
+  {
+    id: 10,
+    name: "Derek Tibs",
+    category: "Main",
+    price: 310,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 11,
+    name: "Key Wat",
+    category: "Main",
+    price: 220,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 12,
+    name: "Alicha Wat",
+    category: "Main",
+    price: 210,
+    spicy: false,
+    image: "#",
+  },
+  {
+    id: 13,
+    name: "Bozena Shiro",
+    category: "Main",
+    price: 180,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 14,
+    name: "Ayibe",
+    category: "Side",
+    price: 70,
+    spicy: false,
+    image: "#",
+  },
+  {
+    id: 15,
+    name: "Kocho",
+    category: "Side",
+    price: 60,
+    spicy: false,
+    image: "#",
+  },
+  {
+    id: 16,
+    name: "Enkulal Firfir",
+    category: "Breakfast",
+    price: 110,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 17,
+    name: "Fuul",
+    category: "Breakfast",
+    price: 90,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 18,
+    name: "Genfo",
+    category: "Breakfast",
+    price: 130,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 19,
+    name: "Chechebsa",
+    category: "Breakfast",
+    price: 120,
+    spicy: true,
+    image: "#",
+  },
+  {
+    id: 20,
+    name: "Kik Alicha",
+    category: "Vegetarian",
+    price: 100,
+    spicy: false,
+    image: "#",
+  },
+];
+
+function Menu() {
+  const [category, setCategory] = useState("All");
+  const [total, setTotal] = useState(0);
+
+  const filteredMenu = menu.filter((dish) => {
+    return category === "All" || category === dish.category;
+  });
+
+  if (filteredMenu.length === 0) {
+    return <p>No dishes found in {category} category.</p>;
+  }
+
+  return (
+    <div className={styles.mainContainer}>
+      <section className={styles.dishContainer}>
+        <div className={styles.categoryBtns}>
+          <CategoryBar selected={category} onSelect={setCategory} />
+        </div>
+        <div className={styles.total}>
+          <p>Total: {total} ETB.</p>
+        </div>
+        {filteredMenu.map((dish) => {
+          return (
+            <Dish
+              key={dish.id}
+              dish={{ ...dish }}
+              onAddToOrder={setTotal}
+              total={total}
+            />
+          );
+        })}
+      </section>
+      <section className={styles.formContainer}>
+        <OrderForm total={total} />
+      </section>
+    </div>
+  );
+}
+
+export default Menu;

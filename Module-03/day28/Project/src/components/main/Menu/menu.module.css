@@ -1,0 +1,27 @@
+.mainContainer {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  padding: 1rem 1.8rem 1rem 3rem;
+}
+
+.dishContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 6px;
+  gap: 6px;
+}
+
+.categoryBtns {
+  grid-column: 1 / 5;
+}
+
+.total {
+  grid-column: 1 / 5;
+  margin: 10px 0;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.formContainer {
+  padding: 4rem 6px 0 8px;
+}
