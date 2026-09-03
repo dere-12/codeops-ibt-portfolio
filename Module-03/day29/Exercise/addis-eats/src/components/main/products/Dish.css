@@ -1,0 +1,30 @@
+.dish {
+    width: 250px;
+    height: 200px;
+    background-color: #242f2b;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.img-cont {
+    width: 100%;
+    height: 35%;
+    background-color: #193447;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.img-cont img[alt] {
+    font-size: 13px;
+}
+
+.dish p {
+    margin-bottom: 12px;
+}
+
+.spicy {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    font-size: 12px;
+}
