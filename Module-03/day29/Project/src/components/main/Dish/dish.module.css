@@ -1,0 +1,33 @@
+.cardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle h3 {
+  font-size: 15px;
+}
+
+.cardTitle span {
+  font-size: 12px;
+}
+
+.addToOrder button {
+  background-color: #e4e3e3;
+  border: none;
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 6px 8px;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.addToOrder button:hover {
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.price {
+  margin-top: 8px;
+  font-family: monospace;
+}
