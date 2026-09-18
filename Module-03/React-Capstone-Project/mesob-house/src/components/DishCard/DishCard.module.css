@@ -1,0 +1,7 @@
+.imagePlaceholder {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000000;
+}
