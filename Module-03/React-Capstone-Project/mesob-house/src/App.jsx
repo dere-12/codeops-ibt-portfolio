@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TodaysSpecials from "./pages/TodaysSpecials";
+import DishDetail from "./pages/DishDetail";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import MainLayout from "./layouts/MainLayout";
 
@@ -15,6 +16,7 @@ function App() {
             path="/account"
             element={<PlaceholderPage title="Account" />}
           />
+          <Route path="/dish/:slug" element={<DishDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
