@@ -1,0 +1,134 @@
+.footer {
+  display: none;
+  background: #17503b;
+  color: #ffffff;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 2rem;
+  width: min(100% - 4rem, 1200px);
+  margin: 0 auto;
+  padding: 3rem 0 2.5rem;
+}
+
+.brand {
+  max-width: 330px;
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.logo span {
+  margin-top: 0.18rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.06rem;
+  color: #efbf58;
+}
+
+.description {
+  margin-top: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.62rem;
+  line-height: 1.6;
+}
+
+.socials {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.socials a {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.socials svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.column h2 {
+  margin-bottom: 0.45rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #efbf58;
+}
+
+.column p,
+.column a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.58rem;
+  line-height: 1.4;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.location svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(100% - 4rem, 1200px);
+  margin: 0 auto;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bottom p,
+.bottom a {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.5rem;
+}
+
+.bottom div {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1.5fr repeat(2, 1fr);
+  }
+
+  .container .column:last-child {
+    display: none;
+  }
+}
