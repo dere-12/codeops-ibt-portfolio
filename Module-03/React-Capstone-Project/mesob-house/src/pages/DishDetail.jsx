@@ -7,7 +7,7 @@ function DishDetail() {
     <main>
       <h1>Dish Detail</h1>
       <p>Selected dish: {slug}</p>
-      <p>This {slug}'s detail page.</p>
+      <p>This is {slug}'s detail page.</p>
     </main>
   );
 }

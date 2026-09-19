@@ -1,0 +1,133 @@
+.hero {
+  width: 100%;
+  background: #fff0e8;
+}
+
+.container {
+  width: min(100% - 4rem, 1200px);
+  margin: 0 auto;
+}
+
+.content {
+  max-width: 760px;
+  padding: 4.5rem 0 4rem;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #9c2d14;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.045rem;
+  text-transform: uppercase;
+}
+
+.eyebrow svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: #a16c07;
+}
+
+.pattern {
+  font-size: 0.42rem;
+  letter-spacing: 0.08rem;
+  color: #a16c07;
+}
+
+.title {
+  margin-top: 0.8rem;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 5vw, 4.65rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04rem;
+  color: #342724;
+}
+
+.title span {
+  color: #91280f;
+  font-style: italic;
+}
+
+.description {
+  max-width: 680px;
+  margin-top: 1.2rem;
+  color: #715f57;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.4rem;
+}
+
+.primaryButton,
+.secondaryButton,
+.ceremony {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 2.25rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.primaryButton {
+  background: #92270f;
+  color: #ffffff;
+}
+
+.primaryButton svg {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.secondaryButton {
+  border: 1px solid #ead6ca;
+  background: #fffaf7;
+  color: #4e403a;
+}
+
+.ceremony {
+  background: #f8e1d5;
+  color: #7a5b4a;
+}
+
+.ceremony svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: #a16c07;
+}
+
+.highlights {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  margin-top: 1.8rem;
+}
+
+.highlights > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.highlights strong {
+  color: #2f6b51;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.highlights span {
+  color: #806e65;
+  font-size: 0.58rem;
+}

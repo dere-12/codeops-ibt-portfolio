@@ -4,6 +4,14 @@
   background: #fffaf7;
 }
 
+.desktopHero {
+  display: none;
+}
+
+.mobileHero {
+  display: block;
+}
+
 .content {
   width: calc(100% - 2rem);
   max-width: 430px;
@@ -44,9 +52,26 @@
 }
 
 @media (min-width: 768px) {
+  .page {
+    padding-bottom: 0;
+  }
+
+  .desktopHero {
+    display: block;
+  }
+
+  .mobileHero {
+    display: none;
+  }
+
   .content {
     width: min(100% - 4rem, 1200px);
     max-width: none;
+  }
+
+  .section {
+    margin-top: 0;
+    padding: 3.5rem 0;
   }
 
   .specialsList {

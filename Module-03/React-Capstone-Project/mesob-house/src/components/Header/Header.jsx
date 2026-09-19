@@ -52,10 +52,12 @@ function Header() {
         <div className={styles.actions}>
           <NavLink
             to="/cart"
-            className={styles.cartLink}
+            className={styles.cartSummary}
             aria-label="Shopping cart"
           >
             <FiShoppingBag aria-hidden="true" />
+
+            <span>Cart</span>
           </NavLink>
 
           <NavLink
@@ -65,7 +67,7 @@ function Header() {
           >
             <FiUser aria-hidden="true" />
 
-            <span>Account</span>
+            <span className={styles.accountText}>Account</span>
           </NavLink>
         </div>
       </div>

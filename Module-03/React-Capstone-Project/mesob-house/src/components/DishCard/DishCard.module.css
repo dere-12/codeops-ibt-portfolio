@@ -61,6 +61,7 @@
   font-weight: 600;
   line-height: 1.05;
   color: #342925;
+  overflow-wrap: anywhere;
 }
 
 .nameAm {

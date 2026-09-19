@@ -5,6 +5,7 @@ import SpiritOfGursha from "../../components/SpiritOfGursha/SpiritOfGursha";
 import CeremonyCard from "../../components/CeremonyCard/CeremonyCard";
 import TeffBanner from "../../components/TeffBanner/TeffBanner";
 import SpecialSelection from "../../components/SpecialSelection/SpecialSelection";
+import DesktopHero from "../../components/DesktopHero/DesktopHero";
 import styles from "./TodaysSpecials.module.css";
 
 function TodaysSpecials() {
@@ -57,12 +58,19 @@ function TodaysSpecials() {
 
   return (
     <main className={styles.page}>
+      <div className={styles.desktopHero}>
+        <DesktopHero />
+      </div>
+
+      <div className={styles.mobileHero}>
+        <div className={styles.content}>
+          <TeffBanner />
+          <SpecialSelection />
+        </div>
+      </div>
+
       <div className={styles.content}>
-        <TeffBanner />
-
-        <SpecialSelection />
-
-        <section className={styles.section}>
+        <section id="specials" className={styles.section}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Today's Kitchen Highlight</h2>
 

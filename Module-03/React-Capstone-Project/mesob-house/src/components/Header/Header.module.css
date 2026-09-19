@@ -62,7 +62,23 @@
   gap: 1rem;
 }
 
-.cartLink,
+.cartSummary {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.45rem;
+  background: #f4e8df;
+  color: #654d42;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.cartSummary svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 .accountLink {
   display: flex;
   align-items: center;
@@ -70,7 +86,6 @@
   color: #6f625c;
 }
 
-.cartLink svg,
 .accountLink svg {
   width: 1.1rem;
   height: 1.1rem;
