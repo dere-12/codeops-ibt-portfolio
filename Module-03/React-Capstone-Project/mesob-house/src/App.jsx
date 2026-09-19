@@ -11,7 +11,15 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<TodaysSpecials />} />
           <Route path="/menu" element={<PlaceholderPage title="Menu" />} />
+          <Route
+            path="/featured-dish"
+            element={<PlaceholderPage title="Featured Dish" />}
+          />
           <Route path="/cart" element={<PlaceholderPage title="Cart" />} />
+          <Route
+            path="/checkout"
+            element={<PlaceholderPage title="Delivery & Checkout" />}
+          />
           <Route
             path="/account"
             element={<PlaceholderPage title="Account" />}
