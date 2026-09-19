@@ -60,6 +60,10 @@
   display: none;
 }
 
+.desktopCTA {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .page {
     padding-bottom: 0;
@@ -130,6 +134,10 @@
   }
 
   .desktopReflections {
+    display: block;
+  }
+
+  .desktopCTA {
     display: block;
   }
 }

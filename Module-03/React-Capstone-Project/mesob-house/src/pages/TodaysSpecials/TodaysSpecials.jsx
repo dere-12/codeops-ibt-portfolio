@@ -7,6 +7,7 @@ import TeffBanner from "../../components/TeffBanner/TeffBanner";
 import SpecialSelection from "../../components/SpecialSelection/SpecialSelection";
 import DesktopHero from "../../components/DesktopHero/DesktopHero";
 import GuestReflections from "../../components/GuestReflections/GuestReflections";
+import BottomCTA from "../../components/BottomCTA/BottomCTA";
 import styles from "./TodaysSpecials.module.css";
 
 function TodaysSpecials() {
@@ -123,6 +124,10 @@ function TodaysSpecials() {
             <GuestReflections />
           </div>
         </section>
+      </div>
+
+      <div className={styles.desktopCTA}>
+        <BottomCTA />
       </div>
     </main>
   );

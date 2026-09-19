@@ -1,0 +1,64 @@
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 0;
+  padding: 3rem;
+  background: #8f270f;
+  color: #ffffff;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content {
+  max-width: 700px;
+}
+
+.eyebrow {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.05rem;
+  color: #f1c163;
+}
+
+.title {
+  margin-top: 0.4rem;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.02;
+  color: #ffffff;
+}
+
+.text {
+  margin-top: 1rem;
+  color: #ffb7a8;
+  font-size: 14px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.4rem;
+  background: #ffffff;
+  color: #7f210c;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.button svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+@media (max-width: 767px) {
+  .section {
+    display: none;
+  }
+}
