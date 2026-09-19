@@ -1,20 +1,20 @@
 .footer {
   display: none;
-  background: #17503b;
-  color: #ffffff;
+  background: #fff0e8;
+  color: #342925;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: 1.3fr repeat(3, 1fr);
+  gap: 2.5rem;
   width: min(100% - 4rem, 1200px);
   margin: 0 auto;
   padding: 3rem 0 2.5rem;
 }
 
 .brand {
-  max-width: 330px;
+  max-width: 320px;
 }
 
 .logo {
@@ -24,21 +24,36 @@
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1;
+  color: #8e240f;
 }
 
 .logo span {
   margin-top: 0.18rem;
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 0.42rem;
+  font-size: 0.4rem;
+  font-weight: 800;
   letter-spacing: 0.06rem;
-  color: #efbf58;
+  color: #a06a06;
 }
 
 .description {
   margin-top: 0.8rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: #75645c;
   font-size: 0.62rem;
   line-height: 1.6;
+}
+
+.ceremonyNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  padding: 0.65rem;
+  border-radius: 0.4rem;
+  background: #fbe4d8;
+  color: #76584a;
+  font-size: 0.55rem;
+  line-height: 1.45;
 }
 
 .socials {
@@ -54,7 +69,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: #ead2c5;
+  color: #7f2a16;
 }
 
 .socials svg {
@@ -66,7 +82,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .column h2 {
@@ -74,14 +90,29 @@
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 0.65rem;
   font-weight: 800;
-  color: #efbf58;
+  color: #372b26;
 }
 
 .column p,
-.column a {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.58rem;
-  line-height: 1.4;
+.column a,
+.column strong {
+  font-size: 0.56rem;
+  line-height: 1.5;
+}
+
+.column p {
+  color: #77675f;
+}
+
+.column strong {
+  margin-top: 0.25rem;
+  color: #9a6406;
+}
+
+.phone {
+  margin-top: 0.25rem;
+  color: #942b13;
+  font-weight: 800;
 }
 
 .location {
@@ -103,13 +134,13 @@
   width: min(100% - 4rem, 1200px);
   margin: 0 auto;
   padding: 1rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid #e7d3c8;
 }
 
 .bottom p,
 .bottom a {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.5rem;
+  color: #8b7a72;
+  font-size: 0.48rem;
 }
 
 .bottom div {
@@ -125,7 +156,7 @@
 
 @media (max-width: 900px) {
   .container {
-    grid-template-columns: 1.5fr repeat(2, 1fr);
+    grid-template-columns: 1.3fr repeat(2, 1fr);
   }
 
   .container .column:last-child {

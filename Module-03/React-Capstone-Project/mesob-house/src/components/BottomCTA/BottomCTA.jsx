@@ -11,7 +11,7 @@ function BottomCTA() {
         <h2 className={styles.title}>
           Experience Authentic Habesha Warmth Tonight
         </h2>
-        <p className={styles.text}>
+        <p className={styles.description}>
           Whether gathering around our circular mesobs for communal dining or
           ordering freshly baked injera to your home in Addis Ababa.
         </p>
