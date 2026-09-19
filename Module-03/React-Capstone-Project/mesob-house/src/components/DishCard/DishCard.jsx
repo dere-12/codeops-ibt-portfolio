@@ -10,25 +10,27 @@ function DishCard({ dish, onQuickAdd }) {
           <span>Food image</span>
         </div>
 
-        <div className={styles.details}>
-          <div className={styles.titleRow}>
-            <div>
-              <span className={styles.category}>{dish.category}</span>
-
-              <h2 className={styles.name}>{dish.nameEn}</h2>
-            </div>
+        <div className={styles.content}>
+          <div className={styles.topRow}>
+            <span className={styles.category}>{dish.category}</span>
 
             <span className={styles.price}>ETB {dish.priceETB}</span>
           </div>
+
+          <h2 className={styles.name}>{dish.nameEn}</h2>
+
+          {dish.nameAm && <p className={styles.nameAm}>{dish.nameAm}</p>}
 
           {dish.tagline && <p className={styles.tagline}>{dish.tagline}</p>}
 
           <p className={styles.description}>{dish.description}</p>
 
           <div className={styles.meta}>
-            {dish.isFasting && <span>Fasting</span>}
-            {dish.spiceLevel && <span>{dish.spiceLevel}</span>}
-            {dish.servings && <span>{dish.servings}</span>}
+            {dish.isFasting && <span className={styles.metaItem}>Fasting</span>}
+
+            {dish.servings && (
+              <span className={styles.metaItem}>{dish.servings}</span>
+            )}
           </div>
         </div>
       </Link>
@@ -39,7 +41,7 @@ function DishCard({ dish, onQuickAdd }) {
         onClick={() => onQuickAdd(dish)}
       >
         <FiPlus aria-hidden="true" />
-        Quick Add
+        <span>Quick Add</span>
       </button>
     </article>
   );

@@ -33,7 +33,7 @@ function CeremonyCard() {
         type="button"
         className={styles.reserveButton}
         disabled
-        title="Booking functionality has not been provided yet."
+        title="Booking functionality coming soon."
       >
         Reserve Ceremony Spot
       </button>
