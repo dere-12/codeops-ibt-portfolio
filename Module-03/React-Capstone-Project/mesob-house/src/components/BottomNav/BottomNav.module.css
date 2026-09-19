@@ -1,21 +1,48 @@
 .nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  min-height: 64px;
+  padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom));
+  border-top: 1px solid #eadfd8;
+  background: #fffdfb;
 }
 
 .link,
 .linkActive {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  font-size: 0.75rem;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 54px;
+  border-radius: 0.5rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.link {
+  color: #756861;
+}
+
+.linkActive {
+  color: #8e240f;
 }
 
 .link svg,
 .linkActive svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: none;
+  }
 }

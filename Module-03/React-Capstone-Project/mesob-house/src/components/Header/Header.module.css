@@ -4,53 +4,56 @@
 }
 
 .mainHeader {
-  min-height: 72px;
+  min-height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
   gap: 2rem;
+  padding: 0 1rem;
 }
 
 .logo {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   line-height: 1;
 }
 
 .logoName {
   font-family: "Playfair Display", serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
+  color: #75240f;
 }
 
 .logoSubtitle {
   margin-top: 0.1rem;
-  font-size: 0.42rem;
+  font-size: 0.4rem;
   font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.05rem;
-  color: #9a6607;
+  line-height: 0.95;
+  letter-spacing: 0.045rem;
+  color: #9b6808;
 }
 
 .desktopNav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.75rem;
 }
 
 .navLink,
 .navLinkActive {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .navLink {
-  opacity: 0.8;
+  color: #6f625c;
 }
 
 .navLinkActive {
-  opacity: 1;
+  color: #8e240f;
 }
 
 .actions {
@@ -63,42 +66,38 @@
 .accountLink {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
+  color: #6f625c;
 }
 
 .cartLink svg,
 .accountLink svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
-.accountText {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.75rem;
+.accountLink {
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .observationBar {
+  min-height: 30px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  min-height: 32px;
-  padding: 0 2rem;
-  background: #174c39;
-  color: white;
-  font-size: 0.7rem;
+  padding: 0.35rem 1rem;
+  background: #17503b;
+  color: #ffffff;
+  font-size: 0.58rem;
   font-weight: 600;
 }
 
 @media (max-width: 767px) {
   .mainHeader {
-    min-height: 64px;
+    min-height: 62px;
     padding: 0 1rem;
-  }
-
-  .logo {
-    font-size: 1rem;
   }
 
   .desktopNav,
@@ -108,7 +107,15 @@
   }
 
   .cartLink svg {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .logoName {
+    font-size: 1rem;
+  }
+
+  .logoSubtitle {
+    font-size: 0.38rem;
   }
 }

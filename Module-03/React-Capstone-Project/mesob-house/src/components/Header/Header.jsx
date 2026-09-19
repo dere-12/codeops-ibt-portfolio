@@ -27,6 +27,7 @@ function Header() {
       <div className={styles.mainHeader}>
         <NavLink to="/" className={styles.logo} aria-label="Mesob House home">
           <span className={styles.logoName}>Mesob</span>
+
           <span className={styles.logoSubtitle}>
             HABESHA
             <br />
@@ -64,9 +65,7 @@ function Header() {
           >
             <FiUser aria-hidden="true" />
 
-            <span className={styles.accountText}>
-              <span>Account</span>
-            </span>
+            <span>Account</span>
           </NavLink>
         </div>
       </div>
@@ -77,10 +76,7 @@ function Header() {
           simmered fresh all day.
         </span>
 
-        <span>
-          100% Pure Teff Injera Available&nbsp; · &nbsp;See Fasting Specialties
-          →
-        </span>
+        <span>100% Pure Teff Injera Available · See Fasting Specialties →</span>
       </div>
     </header>
   );
