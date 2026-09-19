@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSpecials } from "../../services/menuService";
+import { getMenu, getSpecials } from "../../services/menuService";
 import DishCard from "../../components/DishCard/DishCard";
 import SpiritOfGursha from "../../components/SpiritOfGursha/SpiritOfGursha";
 import CeremonyCard from "../../components/CeremonyCard/CeremonyCard";
@@ -10,18 +10,24 @@ import styles from "./TodaysSpecials.module.css";
 
 function TodaysSpecials() {
   const [specials, setSpecials] = useState([]);
+  const [menu, setMenu] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function loadSpecials() {
+    async function loadPageData() {
       try {
         setLoading(true);
         setError("");
 
-        const data = await getSpecials();
-        setSpecials(data);
+        const [specialsData, menuData] = await Promise.all([
+          getSpecials(),
+          getMenu(),
+        ]);
+
+        setSpecials(specialsData);
+        setMenu(menuData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -29,7 +35,7 @@ function TodaysSpecials() {
       }
     }
 
-    loadSpecials();
+    loadPageData();
   }, []);
 
   function handleQuickAdd(dish) {
@@ -55,6 +61,12 @@ function TodaysSpecials() {
       </main>
     );
   }
+
+  const gurshaProducts = menu.filter(
+    (product) =>
+      product.slug === "house-tej-carafe" ||
+      product.slug === "spiced-habesha-chai",
+  );
 
   return (
     <main className={styles.page}>
@@ -85,7 +97,7 @@ function TodaysSpecials() {
 
               <p className={styles.specialsDescription}>
                 Carefully balanced stews prepared at dawn using our matriarch's
-                4–50-spice blend, served piping hot on hand-stretched injera.
+                4-50-spice blend, served piping hot on hand-stretched injera.
               </p>
             </div>
 
@@ -100,7 +112,8 @@ function TodaysSpecials() {
             ))}
           </div>
 
-          <SpiritOfGursha />
+          <SpiritOfGursha products={gurshaProducts} />
+
           <CeremonyCard />
         </section>
       </div>

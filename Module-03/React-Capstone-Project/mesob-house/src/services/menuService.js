@@ -11,3 +11,15 @@ export async function getSpecials() {
 
   return result.data;
 }
+
+export async function getMenu() {
+  const response = await fetch(`${API_BASE_URL}/menu/`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch the menu.");
+  }
+
+  const result = await response.json();
+
+  return result.data;
+}
