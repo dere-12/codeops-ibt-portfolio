@@ -1,0 +1,48 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: 5.5rem;
+  background: #fffaf7;
+}
+
+.content {
+  width: min(100% - 2rem, 900px);
+  margin: 0 auto;
+}
+
+.section {
+  margin-top: 1.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.sectionMeta {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.specialsList {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .content {
+    width: min(100% - 4rem, 1200px);
+  }
+
+  .specialsList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,85 @@
+.card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  background: #124c38;
+  color: #ffffff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.label svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.time {
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.title {
+  margin-top: 0.65rem;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.decorativeMarks {
+  margin-top: 0.3rem;
+  font-size: 0.45rem;
+  letter-spacing: 0.1rem;
+  opacity: 0.75;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.price {
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.price span {
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.reserveButton {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  border-radius: 0.35rem;
+  background: #a56f00;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.reserveButton:disabled {
+  cursor: default;
+}

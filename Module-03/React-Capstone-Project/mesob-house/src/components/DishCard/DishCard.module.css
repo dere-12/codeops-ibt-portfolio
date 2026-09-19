@@ -1,11 +1,102 @@
-.imagePlaceholder {
-  min-height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #000000;
+.card {
+  position: relative;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: #ffffff;
 }
 
 .dishLink {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.imagePlaceholder {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: #f3ece6;
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+.details {
+  min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.category {
   display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: 1.1rem;
+  line-height: 1.1;
+}
+
+.price {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.tagline,
+.description {
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.meta span {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  background: #f4eee9;
+}
+
+.quickAdd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.7rem;
+  border: 0;
+  border-radius: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #8e240f;
+  color: #ffffff;
+}
+
+.quickAdd svg {
+  width: 0.85rem;
+  height: 0.85rem;
 }

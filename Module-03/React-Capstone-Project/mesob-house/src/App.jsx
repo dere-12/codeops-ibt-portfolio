@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TodaysSpecials from "./pages/TodaysSpecials";
+import TodaysSpecials from "./pages/TodaysSpecials/TodaysSpecials";
 import DishDetail from "./pages/DishDetail";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import MainLayout from "./layouts/MainLayout";
