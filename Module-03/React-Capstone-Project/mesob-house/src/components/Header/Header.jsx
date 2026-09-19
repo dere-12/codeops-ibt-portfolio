@@ -26,8 +26,12 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.mainHeader}>
         <NavLink to="/" className={styles.logo} aria-label="Mesob House home">
-          <span>Mesob</span>
-          <span>House</span>
+          <span className={styles.logoName}>Mesob</span>
+          <span className={styles.logoSubtitle}>
+            HABESHA
+            <br />
+            HOUSE
+          </span>
         </NavLink>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">

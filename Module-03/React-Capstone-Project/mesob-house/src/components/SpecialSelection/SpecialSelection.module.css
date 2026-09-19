@@ -1,0 +1,79 @@
+.hero {
+  margin-top: 0.75rem;
+  padding: 0.85rem 0.85rem 0.75rem;
+  border-radius: 0.55rem;
+  background: #8e240e;
+  color: #ffffff;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.label svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: #e8ad3e;
+}
+
+.decorativeMarks {
+  font-size: 0.48rem;
+  letter-spacing: 0.1rem;
+  opacity: 0.8;
+}
+
+.title {
+  margin-top: 0.5rem;
+  font-size: 1.55rem;
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.description {
+  max-width: 290px;
+  margin-top: 0.45rem;
+  font-size: 0.67rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.58rem;
+  font-weight: 600;
+}
+
+.info svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.batch {
+  padding: 0.25rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.55rem;
+  font-weight: 700;
+}

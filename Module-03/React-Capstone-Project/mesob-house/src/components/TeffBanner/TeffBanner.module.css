@@ -1,0 +1,55 @@
+.banner {
+  margin-top: 1rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 0.55rem;
+  background: #fff0e8;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.04rem;
+  color: #9a260f;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.daily {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.daily svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: #a67106;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  background: #c9f0d9;
+  color: #276345;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.description {
+  margin-top: 0.2rem;
+  font-size: 0.62rem;
+  color: #75645c;
+}

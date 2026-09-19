@@ -3,6 +3,8 @@ import { getSpecials } from "../../services/menuService";
 import DishCard from "../../components/DishCard/DishCard";
 import SpiritOfGursha from "../../components/SpiritOfGursha/SpiritOfGursha";
 import CeremonyCard from "../../components/CeremonyCard/CeremonyCard";
+import TeffBanner from "../../components/TeffBanner/TeffBanner";
+import SpecialSelection from "../../components/SpecialSelection/SpecialSelection";
 import styles from "./TodaysSpecials.module.css";
 
 function TodaysSpecials() {
@@ -56,9 +58,13 @@ function TodaysSpecials() {
   return (
     <main className={styles.page}>
       <div className={styles.content}>
+        <TeffBanner />
+
+        <SpecialSelection />
+
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <h1 className={styles.sectionTitle}>Today's Kitchen Highlight</h1>
+            <h2 className={styles.sectionTitle}>Today's Kitchen Highlight</h2>
 
             <span className={styles.sectionMeta}>
               {specials.length} Specials Live
