@@ -56,6 +56,10 @@
   gap: 0.65rem;
 }
 
+.desktopReflections {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .page {
     padding-bottom: 0;
@@ -119,5 +123,13 @@
   .specialsList {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
+  }
+
+  .mobileCeremony {
+    display: none;
+  }
+
+  .desktopReflections {
+    display: block;
   }
 }

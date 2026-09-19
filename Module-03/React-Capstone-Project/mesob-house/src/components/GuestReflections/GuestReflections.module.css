@@ -1,0 +1,92 @@
+.section {
+  padding: 4rem 0;
+  background: #fffaf7;
+}
+
+.header {
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.045rem;
+  color: #9a6708;
+}
+
+.title {
+  margin-top: 0.35rem;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1;
+  color: #312622;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid #f0dfd5;
+  border-radius: 0.5rem;
+  background: #fff1e9;
+}
+
+.rating {
+  display: flex;
+  gap: 0.1rem;
+  color: #9c6706;
+}
+
+.rating svg {
+  width: 0.72rem;
+  height: 0.72rem;
+  fill: currentColor;
+}
+
+.quote {
+  margin-top: 0.65rem;
+  color: #594942;
+  font-family: "Playfair Display", serif;
+  font-size: 0.76rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.guest {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f0d9ca;
+  color: #8d351d;
+  font-size: 0.55rem;
+  font-weight: 800;
+}
+
+.name {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #3e322d;
+}
+
+.role {
+  margin-top: 0.15rem;
+  font-size: 0.5rem;
+  color: #88776e;
+}

@@ -6,6 +6,7 @@ import CeremonyCard from "../../components/CeremonyCard/CeremonyCard";
 import TeffBanner from "../../components/TeffBanner/TeffBanner";
 import SpecialSelection from "../../components/SpecialSelection/SpecialSelection";
 import DesktopHero from "../../components/DesktopHero/DesktopHero";
+import GuestReflections from "../../components/GuestReflections/GuestReflections";
 import styles from "./TodaysSpecials.module.css";
 
 function TodaysSpecials() {
@@ -114,7 +115,13 @@ function TodaysSpecials() {
 
           <SpiritOfGursha products={gurshaProducts} />
 
-          <CeremonyCard />
+          <div className={styles.mobileCeremony}>
+            <CeremonyCard />
+          </div>
+
+          <div className={styles.desktopReflections}>
+            <GuestReflections />
+          </div>
         </section>
       </div>
     </main>
