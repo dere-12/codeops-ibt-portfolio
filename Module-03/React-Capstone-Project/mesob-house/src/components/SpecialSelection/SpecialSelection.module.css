@@ -1,12 +1,12 @@
 .hero {
-  margin-top: 0.75rem;
-  padding: 0.85rem 0.85rem 0.75rem;
-  border-radius: 0.55rem;
-  background: #8e240e;
+  margin-top: 0.55rem;
+  padding: 0.75rem 0.8rem 0.7rem;
+  border-radius: 0.5rem;
+  background: #8f270f;
   color: #ffffff;
 }
 
-.topRow {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,63 +17,66 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.58rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.025rem;
 }
 
 .label svg {
-  width: 0.75rem;
-  height: 0.75rem;
-  color: #e8ad3e;
+  width: 0.65rem;
+  height: 0.65rem;
+  color: #efbb52;
 }
 
-.decorativeMarks {
-  font-size: 0.48rem;
-  letter-spacing: 0.1rem;
-  opacity: 0.8;
+.pattern {
+  font-size: 0.42rem;
+  letter-spacing: 0.08rem;
+  opacity: 0.75;
 }
 
 .title {
-  margin-top: 0.5rem;
-  font-size: 1.55rem;
-  line-height: 1.05;
+  margin-top: 0.45rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.42rem;
+  font-weight: 600;
+  line-height: 1.02;
   color: #ffffff;
 }
 
 .description {
-  max-width: 290px;
+  max-width: 300px;
   margin-top: 0.45rem;
-  font-size: 0.67rem;
+  font-size: 0.62rem;
   line-height: 1.45;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.78);
 }
 
-.bottomRow {
+.footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-top: 0.75rem;
+  margin-top: 0.7rem;
 }
 
-.info {
+.refill {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  font-size: 0.58rem;
-  font-weight: 600;
+  font-size: 0.55rem;
+  font-weight: 700;
 }
 
-.info svg {
-  width: 0.75rem;
-  height: 0.75rem;
+.refill svg {
+  width: 0.72rem;
+  height: 0.72rem;
 }
 
 .batch {
+  flex-shrink: 0;
   padding: 0.25rem 0.45rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  font-size: 0.55rem;
+  background: rgba(255, 255, 255, 0.13);
+  font-size: 0.52rem;
   font-weight: 700;
 }

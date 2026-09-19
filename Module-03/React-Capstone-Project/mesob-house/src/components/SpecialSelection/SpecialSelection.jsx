@@ -4,14 +4,14 @@ import styles from "./SpecialSelection.module.css";
 function SpecialSelection() {
   return (
     <section className={styles.hero}>
-      <div className={styles.topRow}>
+      <div className={styles.header}>
         <span className={styles.label}>
           <FiCheck aria-hidden="true" />
-          Special Selection
+          SPECIAL SELECTION
         </span>
 
-        <span className={styles.decorativeMarks} aria-hidden="true">
-          ▪▪▪▪ ▪▪▪▪
+        <span className={styles.pattern} aria-hidden="true">
+          ▪ ▪ ▪ ▪ ▪ ▪ ▪ ▪
         </span>
       </div>
 
@@ -26,8 +26,8 @@ function SpecialSelection() {
         stoves, and authentic Gursha sharing.
       </p>
 
-      <div className={styles.bottomRow}>
-        <span className={styles.info}>
+      <div className={styles.footer}>
+        <span className={styles.refill}>
           <FiCoffee aria-hidden="true" />
           Table-side Warm Bread Refills
         </span>

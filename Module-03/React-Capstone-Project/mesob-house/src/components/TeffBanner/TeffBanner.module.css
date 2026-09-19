@@ -1,23 +1,18 @@
 .banner {
-  margin-top: 1rem;
-  padding: 0.8rem 0.9rem;
-  border-radius: 0.55rem;
+  margin-top: 0.5rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.5rem;
   background: #fff0e8;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-}
-
 .eyebrow {
-  font-size: 0.58rem;
+  font-size: 0.55rem;
   font-weight: 800;
-  letter-spacing: 0.04rem;
-  color: #9a260f;
+  letter-spacing: 0.03rem;
+  color: #9b290f;
 }
 
-.titleRow {
+.mainRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,27 +24,29 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.72rem;
+  font-size: 0.67rem;
   font-weight: 700;
+  color: #5c4335;
 }
 
 .daily svg {
-  width: 0.9rem;
-  height: 0.9rem;
-  color: #a67106;
+  width: 0.85rem;
+  height: 0.85rem;
+  color: #a36f06;
 }
 
 .badge {
-  padding: 0.25rem 0.5rem;
+  flex-shrink: 0;
+  padding: 0.2rem 0.5rem;
   border-radius: 999px;
-  background: #c9f0d9;
-  color: #276345;
-  font-size: 0.58rem;
+  background: #c9efd8;
+  color: #2f7552;
+  font-size: 0.55rem;
   font-weight: 700;
 }
 
 .description {
-  margin-top: 0.2rem;
-  font-size: 0.62rem;
-  color: #75645c;
+  margin-top: 0.15rem;
+  font-size: 0.58rem;
+  color: #705f55;
 }
