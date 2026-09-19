@@ -30,13 +30,18 @@
   margin-bottom: 0.65rem;
 }
 
-.sectionTitle {
+.mobileSectionTitle {
+  display: block;
   max-width: 220px;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 800;
   line-height: 1.15;
   color: #352b27;
+}
+
+.desktopSectionHeader {
+  display: none;
 }
 
 .sectionMeta {
@@ -74,7 +79,45 @@
     padding: 3.5rem 0;
   }
 
+  .mobileSectionTitle {
+    display: none;
+  }
+
+  .desktopSectionHeader {
+    display: block;
+  }
+
+  .sectionHeader {
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
+  }
+
+  .specialsEyebrow {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.04rem;
+    color: #8e240f;
+  }
+
+  .specialsTitle {
+    margin-top: 0.35rem;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-weight: 600;
+    line-height: 1;
+    color: #302622;
+  }
+
+  .specialsDescription {
+    max-width: 700px;
+    margin-top: 0.55rem;
+    color: #76665e;
+    font-size: 0.68rem;
+    line-height: 1.5;
+  }
+
   .specialsList {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
   }
 }

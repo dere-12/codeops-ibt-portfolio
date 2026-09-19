@@ -72,7 +72,22 @@ function TodaysSpecials() {
       <div className={styles.content}>
         <section id="specials" className={styles.section}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Today's Kitchen Highlight</h2>
+            <h2 className={styles.mobileSectionTitle}>
+              Today's Kitchen Highlight
+            </h2>
+
+            <div className={styles.desktopSectionHeader}>
+              <p className={styles.specialsEyebrow}>✕ FROM THE CLAY POTS</p>
+
+              <h2 className={styles.specialsTitle}>
+                Today's Curated Chef Specials
+              </h2>
+
+              <p className={styles.specialsDescription}>
+                Carefully balanced stews prepared at dawn using our matriarch's
+                4–50-spice blend, served piping hot on hand-stretched injera.
+              </p>
+            </div>
 
             <span className={styles.sectionMeta}>
               {specials.length} Specials Live

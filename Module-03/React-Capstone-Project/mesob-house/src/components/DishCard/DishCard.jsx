@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiArrowRight } from "react-icons/fi";
 import styles from "./DishCard.module.css";
 
 function DishCard({ dish, onQuickAdd }) {
@@ -25,24 +25,29 @@ function DishCard({ dish, onQuickAdd }) {
 
           <p className={styles.description}>{dish.description}</p>
 
-          <div className={styles.meta}>
-            {dish.isFasting && <span className={styles.metaItem}>Fasting</span>}
-
-            {dish.servings && (
-              <span className={styles.metaItem}>{dish.servings}</span>
-            )}
-          </div>
+          {dish.isFasting && (
+            <div className={styles.meta}>
+              <span className={styles.metaItem}>Fasting</span>
+            </div>
+          )}
         </div>
       </Link>
 
-      <button
-        type="button"
-        className={styles.quickAdd}
-        onClick={() => onQuickAdd(dish)}
-      >
-        <FiPlus aria-hidden="true" />
-        <span>Quick Add</span>
-      </button>
+      <div className={styles.actions}>
+        <Link to={`/dish/${dish.slug}`} className={styles.detailsLink}>
+          View Details
+          <FiArrowRight aria-hidden="true" />
+        </Link>
+
+        <button
+          type="button"
+          className={styles.quickAdd}
+          onClick={() => onQuickAdd(dish)}
+        >
+          <FiPlus aria-hidden="true" />
+          <span>Quick Add</span>
+        </button>
+      </div>
     </article>
   );
 }
