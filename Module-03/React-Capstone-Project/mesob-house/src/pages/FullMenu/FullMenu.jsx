@@ -87,13 +87,16 @@ function FullMenu() {
     <main className={styles.page}>
       <div className={styles.container}>
         <header className={styles.pageHeader}>
-          <p className={styles.eyebrow}>OUR FULL MENU</p>
+          <p className={styles.eyebrow}>
+            HANDCRAFTED GONDAR &amp; ADDIS SPICES
+          </p>
 
-          <h1 className={styles.title}>Gather Around the Mesob</h1>
+          <h1 className={styles.title}>Our Complete Culinary Heritage</h1>
 
           <p className={styles.description}>
-            Explore traditional Ethiopian dishes, sizzling tibs, fasting
-            favorites, and house beverages.
+            Every dish is prepared daily from scratch using sun-dried spices,
+            stone-ground legume flours, and clarified herbal butter sourced
+            directly from highland farm cooperatives.
           </p>
         </header>
 
@@ -105,7 +108,7 @@ function FullMenu() {
               type="search"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search dishes..."
+              placeholder="Search dishes by name (e.g. Kitfo, Shiro, Tibs, Doro Wat)..."
               className={styles.searchInput}
             />
           </label>
@@ -142,7 +145,12 @@ function FullMenu() {
         ) : (
           <section className={styles.menuGrid}>
             {filteredMenu.map((dish) => (
-              <DishCard key={dish.id} dish={dish} onQuickAdd={handleQuickAdd} />
+              <DishCard
+                key={dish.id}
+                dish={dish}
+                onQuickAdd={handleQuickAdd}
+                showDetails={false}
+              />
             ))}
           </section>
         )}

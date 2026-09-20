@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FiPlus, FiArrowRight } from "react-icons/fi";
 import styles from "./DishCard.module.css";
 
-function DishCard({ dish, onQuickAdd }) {
+function DishCard({ dish, onQuickAdd, showDetails = true }) {
   return (
     <article className={styles.card}>
       <Link to={`/dish/${dish.slug}`} className={styles.dishLink}>
@@ -31,11 +31,17 @@ function DishCard({ dish, onQuickAdd }) {
         </div>
       </Link>
 
-      <div className={styles.actions}>
-        <Link to={`/dish/${dish.slug}`} className={styles.detailsLink}>
-          View Details
-          <FiArrowRight aria-hidden="true" />
-        </Link>
+      <div
+        className={`${styles.actions} ${
+          showDetails ? "" : styles.actionsSingle
+        }`}
+      >
+        {showDetails && (
+          <Link to={`/dish/${dish.slug}`} className={styles.detailsLink}>
+            View Details
+            <FiArrowRight aria-hidden="true" />
+          </Link>
+        )}
 
         <button
           type="button"
