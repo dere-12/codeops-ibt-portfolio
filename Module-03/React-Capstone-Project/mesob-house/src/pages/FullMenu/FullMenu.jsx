@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getMenu } from "../../services/menuService";
 import DishCard from "../../components/DishCard/DishCard";
 import BasketBar from "../../components/BasketBar/BasketBar";
+import TraditionalGursha from "../../components/TraditionalGursha/TraditionalGursha";
 import styles from "./FullMenu.module.css";
 
 function FullMenu() {
@@ -104,7 +105,7 @@ function FullMenu() {
               type="search"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search by dish name..."
+              placeholder="Search dishes..."
               className={styles.searchInput}
             />
           </label>
@@ -127,6 +128,10 @@ function FullMenu() {
             </button>
           ))}
         </nav>
+
+        <div className={styles.mobileGursha}>
+          <TraditionalGursha />
+        </div>
 
         {filteredMenu.length === 0 ? (
           <div className={styles.emptyState}>

@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  padding-bottom: 6rem;
+  padding-bottom: 10rem;
   background: #fffaf7;
 }
 
@@ -68,7 +68,7 @@
   display: flex;
   overflow-x: auto;
   gap: 0.45rem;
-  margin-top: 0.9rem;
+  margin-top: 0.75rem;
   padding-bottom: 0.25rem;
   scrollbar-width: none;
 }
@@ -105,10 +105,14 @@
   opacity: 0.8;
 }
 
+.mobileGursha {
+  display: block;
+}
+
 .menuGrid {
   display: grid;
   gap: 0.65rem;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
 }
 
 .emptyState {
@@ -144,6 +148,10 @@
     max-width: none;
   }
 
+  .mobileGursha {
+    display: none;
+  }
+
   .pageHeader {
     padding-top: 3.5rem;
   }
@@ -159,10 +167,6 @@
 
   .controls {
     margin-top: 1.5rem;
-  }
-
-  .searchLabel {
-    max-width: 100%;
   }
 
   .categories {

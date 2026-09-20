@@ -21,8 +21,6 @@ function DishCard({ dish, onQuickAdd }) {
 
           {dish.nameAm && <p className={styles.nameAm}>{dish.nameAm}</p>}
 
-          {dish.tagline && <p className={styles.tagline}>{dish.tagline}</p>}
-
           <p className={styles.description}>{dish.description}</p>
 
           {dish.isFasting && (
@@ -43,9 +41,11 @@ function DishCard({ dish, onQuickAdd }) {
           type="button"
           className={styles.quickAdd}
           onClick={() => onQuickAdd(dish)}
+          aria-label={`Add ${dish.nameEn} to basket`}
         >
           <FiPlus aria-hidden="true" />
-          <span>Quick Add</span>
+
+          <span className={styles.quickAddText}>Quick Add</span>
         </button>
       </div>
     </article>
