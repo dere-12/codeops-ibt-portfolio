@@ -1,0 +1,151 @@
+import { useEffect, useState } from "react";
+import { getMenu } from "../../services/menuService";
+import DishCard from "../../components/DishCard/DishCard";
+import BasketBar from "../../components/BasketBar/BasketBar";
+import styles from "./FullMenu.module.css";
+
+function FullMenu() {
+  const [menu, setMenu] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All Dishes");
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadMenu() {
+      try {
+        setLoading(true);
+        setError("");
+
+        const data = await getMenu();
+        setMenu(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadMenu();
+  }, []);
+
+  function handleQuickAdd(dish) {
+    setCartItems((currentItems) => [...currentItems, dish]);
+  }
+
+  const categories = [
+    "All Dishes",
+    ...new Set(menu.map((dish) => dish.category)),
+  ];
+
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+
+  const filteredMenu = menu.filter((dish) => {
+    const matchesSearch =
+      dish.nameEn.toLowerCase().includes(normalizedSearch) ||
+      dish.nameAm.includes(searchTerm.trim());
+
+    const matchesCategory =
+      selectedCategory === "All Dishes" || dish.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  function getCategoryCount(category) {
+    if (category === "All Dishes") {
+      return menu.length;
+    }
+
+    return menu.filter((dish) => dish.category === category).length;
+  }
+
+  const cartTotal = cartItems.reduce((total, dish) => total + dish.priceETB, 0);
+
+  if (loading) {
+    return (
+      <main className={styles.page}>
+        <div className={styles.container}>
+          <p>Loading full menu...</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className={styles.page}>
+        <div className={styles.container}>
+          <p>{error}</p>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <header className={styles.pageHeader}>
+          <p className={styles.eyebrow}>OUR FULL MENU</p>
+
+          <h1 className={styles.title}>Gather Around the Mesob</h1>
+
+          <p className={styles.description}>
+            Explore traditional Ethiopian dishes, sizzling tibs, fasting
+            favorites, and house beverages.
+          </p>
+        </header>
+
+        <div className={styles.controls}>
+          <label className={styles.searchLabel}>
+            <span>Search dishes</span>
+
+            <input
+              type="search"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              placeholder="Search by dish name..."
+              className={styles.searchInput}
+            />
+          </label>
+        </div>
+
+        <nav className={styles.categories} aria-label="Menu categories">
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className={
+                selectedCategory === category
+                  ? styles.categoryActive
+                  : styles.category
+              }
+              onClick={() => setSelectedCategory(category)}
+            >
+              <span>{category}</span>
+              <span>{getCategoryCount(category)}</span>
+            </button>
+          ))}
+        </nav>
+
+        {filteredMenu.length === 0 ? (
+          <div className={styles.emptyState}>
+            <h2>No dishes found</h2>
+
+            <p>Try another dish name or choose a different category.</p>
+          </div>
+        ) : (
+          <section className={styles.menuGrid}>
+            {filteredMenu.map((dish) => (
+              <DishCard key={dish.id} dish={dish} onQuickAdd={handleQuickAdd} />
+            ))}
+          </section>
+        )}
+      </div>
+
+      <BasketBar itemCount={cartItems.length} total={cartTotal} />
+    </main>
+  );
+}
+
+export default FullMenu;

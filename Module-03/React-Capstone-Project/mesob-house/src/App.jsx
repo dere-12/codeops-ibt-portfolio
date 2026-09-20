@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TodaysSpecials from "./pages/TodaysSpecials/TodaysSpecials";
+import FullMenu from "./pages/FullMenu/FullMenu";
 import DishDetail from "./pages/DishDetail";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import MainLayout from "./layouts/MainLayout";
@@ -10,7 +11,9 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<TodaysSpecials />} />
-          <Route path="/menu" element={<PlaceholderPage title="Menu" />} />
+
+          <Route path="/menu" element={<FullMenu />} />
+
           <Route
             path="/featured-dish"
             element={<PlaceholderPage title="Featured Dish" />}
