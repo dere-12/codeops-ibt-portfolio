@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import { FiShoppingBag, FiUser } from "react-icons/fi";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { FiChevronLeft, FiShoppingBag, FiUser } from "react-icons/fi";
 import styles from "./Header.module.css";
 
 const navigationItems = [
@@ -22,9 +22,18 @@ const navigationItems = [
 ];
 
 function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isDishDetail = location.pathname.startsWith("/dish/");
+
   return (
     <header className={styles.header}>
-      <div className={styles.mainHeader}>
+      <div
+        className={`${styles.standardHeader} ${
+          isDishDetail ? styles.standardHeaderHiddenOnMobile : ""
+        }`}
+      >
         <NavLink to="/" className={styles.logo} aria-label="Mesob House home">
           <span className={styles.logoName}>Mesob</span>
 
@@ -56,7 +65,6 @@ function Header() {
             aria-label="Shopping cart"
           >
             <FiShoppingBag aria-hidden="true" />
-
             <span>Cart</span>
           </NavLink>
 
@@ -66,11 +74,33 @@ function Header() {
             aria-label="Account"
           >
             <FiUser aria-hidden="true" />
-
-            <span className={styles.accountText}>Account</span>
+            <span>Account</span>
           </NavLink>
         </div>
       </div>
+
+      {isDishDetail && (
+        <div className={styles.mobileDetailHeader}>
+          <button
+            type="button"
+            className={styles.mobileBackButton}
+            onClick={() => navigate(-1)}
+            aria-label="Go back"
+          >
+            <FiChevronLeft aria-hidden="true" />
+          </button>
+
+          <span className={styles.mobileDetailTitle}>Dish Detail</span>
+
+          <NavLink
+            to="/cart"
+            className={styles.mobileCartButton}
+            aria-label="Shopping cart"
+          >
+            <FiShoppingBag aria-hidden="true" />
+          </NavLink>
+        </div>
+      )}
 
       <div className={styles.observationBar}>
         <span>

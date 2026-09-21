@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  padding-bottom: 6rem;
+  padding-bottom: 8rem;
   background: #fffaf7;
 }
 
@@ -10,46 +10,12 @@
   margin: 0 auto;
 }
 
-.backButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  margin-top: 1rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #735f54;
-  font-size: 0.62rem;
-  font-weight: 700;
-}
-
-.backButton svg {
-  width: 0.85rem;
-  height: 0.85rem;
-}
-
-.breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.3rem;
-  margin-top: 0.85rem;
-  color: #917f75;
-  font-size: 0.48rem;
-  line-height: 1.4;
-}
-
-.breadcrumbs a {
-  color: #8e240f;
-}
-
-.breadcrumbs strong {
-  color: #65534a;
-  font-weight: 700;
+.desktopNavigation {
+  display: none;
 }
 
 .product {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .imageArea {
@@ -58,55 +24,80 @@
 
 .imagePlaceholder {
   width: 100%;
-  aspect-ratio: 1 / 0.85;
+  aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.65rem;
   background: #eee1d8;
   color: #927f73;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
 }
 
 .content {
-  margin-top: 1rem;
+  margin-top: 0.9rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.titleContent {
+  min-width: 0;
 }
 
 .category {
-  font-size: 0.55rem;
-  font-weight: 800;
-  letter-spacing: 0.03rem;
-  text-transform: uppercase;
+  display: block;
   color: #96715f;
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.025rem;
+  text-transform: uppercase;
 }
 
 .name {
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
+  overflow-wrap: anywhere;
   font-family: "Playfair Display", serif;
-  font-size: 2rem;
+  font-size: 1.85rem;
   font-weight: 600;
-  line-height: 1;
+  line-height: 0.98;
   color: #332723;
 }
 
 .nameAm {
-  margin-top: 0.15rem;
-  color: #88776d;
-  font-size: 0.68rem;
+  margin-top: 0.12rem;
+  color: #8b776d;
+  font-size: 0.62rem;
+}
+
+.priceBlock {
+  flex-shrink: 0;
+  padding-top: 0.2rem;
 }
 
 .price {
-  margin-top: 0.7rem;
   color: #8e240f;
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 800;
 }
 
 .description {
-  margin-top: 0.75rem;
+  margin-top: 0.7rem;
   color: #705f56;
-  font-size: 0.68rem;
+  font-size: 0.67rem;
   line-height: 1.65;
+}
+
+.divider {
+  width: 2.5rem;
+  height: 0.2rem;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: #edd8cc;
 }
 
 .desktopPurchase {
@@ -131,9 +122,9 @@
 }
 
 .successMessage {
-  margin-top: 0.7rem;
+  margin-top: 0.65rem;
   color: #2e7552;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 700;
 }
 
@@ -177,13 +168,37 @@
     max-width: none;
   }
 
+  .desktopNavigation {
+    display: block;
+    padding-top: 1.5rem;
+  }
+
   .backButton {
-    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    color: #735f54;
+    font-size: 0.62rem;
+    font-weight: 700;
   }
 
   .breadcrumbs {
-    margin-top: 1rem;
-    font-size: 0.55rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.85rem;
+    color: #917f75;
+    font-size: 0.52rem;
+    line-height: 1.4;
+  }
+
+  .breadcrumbs a {
+    color: #8e240f;
+  }
+
+  .breadcrumbs strong {
+    color: #65534a;
+    font-weight: 700;
   }
 
   .product {
@@ -208,6 +223,10 @@
     font-size: clamp(2.8rem, 4vw, 4rem);
   }
 
+  .price {
+    font-size: 1.05rem;
+  }
+
   .description {
     max-width: 520px;
     font-size: 0.75rem;
@@ -215,7 +234,7 @@
 
   .desktopPurchase {
     display: block;
-    margin-top: 1.5rem;
+    margin-top: 1.4rem;
   }
 
   .mobilePurchase {

@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { FiChevronLeft } from "react-icons/fi";
+import { Link, useParams } from "react-router-dom";
 import { getMenu } from "../services/menuService";
 import DishPurchase from "../components/DishPurchase/DishPurchase";
 import styles from "./DishDetail.module.css";
 
 function DishDetail() {
   const { slug } = useParams();
-  const navigate = useNavigate();
 
   const [dish, setDish] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -66,17 +64,9 @@ function DishDetail() {
     return (
       <main className={styles.page}>
         <div className={styles.container}>
-          <button
-            type="button"
-            className={styles.backButton}
-            onClick={() => navigate(-1)}
-          >
-            <FiChevronLeft aria-hidden="true" />
-            Back
-          </button>
-
           <div className={styles.errorState}>
             <h1>Dish not found</h1>
+
             <p>{error}</p>
 
             <Link to="/menu" className={styles.menuLink}>
@@ -93,24 +83,21 @@ function DishDetail() {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <button
-          type="button"
-          className={styles.backButton}
-          onClick={() => navigate(-1)}
-        >
-          <FiChevronLeft aria-hidden="true" />
-          Back
-        </button>
+        <div className={styles.desktopNavigation}>
+          <Link to="/menu" className={styles.backButton}>
+            ← Back to Menu
+          </Link>
 
-        <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
-          <Link to="/">Home</Link>
-          <span>/</span>
-          <Link to="/menu">Menu</Link>
-          <span>/</span>
-          <span>{dish.category}</span>
-          <span>/</span>
-          <strong>{dish.nameEn}</strong>
-        </nav>
+          <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
+            <Link to="/">Home</Link>
+            <span>/</span>
+            <Link to="/menu">Menu</Link>
+            <span>/</span>
+            <span>{dish.category}</span>
+            <span>/</span>
+            <strong>{dish.nameEn}</strong>
+          </nav>
+        </div>
 
         <section className={styles.product}>
           <div className={styles.imageArea}>
@@ -120,15 +107,25 @@ function DishDetail() {
           </div>
 
           <div className={styles.content}>
-            <span className={styles.category}>{dish.category}</span>
+            <div className={styles.titleRow}>
+              <div className={styles.titleContent}>
+                <span className={styles.category}>{dish.category}</span>
 
-            <h1 className={styles.name}>{dish.nameEn}</h1>
+                <h1 className={styles.name}>{dish.nameEn}</h1>
 
-            {dish.nameAm && <p className={styles.nameAm}>{dish.nameAm}</p>}
+                {dish.nameAm && <p className={styles.nameAm}>{dish.nameAm}</p>}
+              </div>
 
-            <p className={styles.price}>ETB {dish.priceETB.toLocaleString()}</p>
+              <div className={styles.priceBlock}>
+                <p className={styles.price}>
+                  ETB {dish.priceETB.toLocaleString()}
+                </p>
+              </div>
+            </div>
 
             <p className={styles.description}>{dish.description}</p>
+
+            <div className={styles.divider} />
 
             <div className={styles.desktopPurchase}>
               <DishPurchase
