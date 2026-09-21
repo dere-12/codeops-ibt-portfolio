@@ -1,0 +1,89 @@
+.purchase {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border: 1px solid #decfc6;
+  border-radius: 0.4rem;
+  background: #ffffff;
+}
+
+.quantity button {
+  width: 1.9rem;
+  height: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0.3rem;
+  background: transparent;
+  color: #6d5a50;
+}
+
+.quantity button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.quantity svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.quantity span {
+  min-width: 1.6rem;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #352925;
+}
+
+.addButton {
+  flex: 1;
+  min-height: 2.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  border-radius: 0.4rem;
+  background: #8e240f;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.addButton svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.addButton strong {
+  font-size: 0.62rem;
+}
+
+@media (min-width: 768px) {
+  .purchase {
+    width: 100%;
+  }
+
+  .quantity button {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .quantity span {
+    min-width: 1.8rem;
+  }
+
+  .addButton {
+    min-height: 2.5rem;
+  }
+}
