@@ -1,0 +1,62 @@
+.banner {
+  display: none;
+  align-items: center;
+  gap: 0.8rem;
+  width: min(100% - 5rem, 1200px);
+  margin: 0 auto 2rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.45rem;
+  background: #fff0e8;
+}
+
+.icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 0.4rem;
+  background: #f5d6a2;
+  color: #97630a;
+}
+
+.icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.content {
+  min-width: 0;
+}
+
+.content h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #352925;
+}
+
+.content p {
+  margin-top: 0.15rem;
+  color: #77665d;
+  font-size: 0.55rem;
+  line-height: 1.45;
+}
+
+.button {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.35rem;
+  background: #ffffff;
+  color: #8e240f;
+  font-size: 0.58rem;
+  font-weight: 800;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    display: flex;
+  }
+}

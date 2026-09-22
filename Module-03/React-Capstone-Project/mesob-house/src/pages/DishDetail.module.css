@@ -121,6 +121,10 @@
   margin: 0 auto;
 }
 
+.desktopGursha {
+  display: none;
+}
+
 .successMessage {
   margin-top: 0.65rem;
   color: #2e7552;
@@ -170,25 +174,16 @@
 
   .desktopNavigation {
     display: block;
-    padding-top: 1.5rem;
-  }
-
-  .backButton {
-    display: inline-flex;
-    align-items: center;
-    color: #735f54;
-    font-size: 0.62rem;
-    font-weight: 700;
+    padding-top: 1.25rem;
   }
 
   .breadcrumbs {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.3rem;
-    margin-top: 0.85rem;
+    gap: 0.35rem;
     color: #917f75;
-    font-size: 0.52rem;
+    font-size: 0.54rem;
     line-height: 1.4;
   }
 
@@ -203,41 +198,81 @@
 
   .product {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
-    gap: 3rem;
-    margin-top: 1.5rem;
-    padding-bottom: 4rem;
+    grid-template-columns: minmax(0, 1.05fr) minmax(390px, 0.95fr);
+    gap: 2.5rem;
+    margin-top: 1.4rem;
+    padding-bottom: 3rem;
+  }
+
+  .imageArea {
+    align-self: start;
   }
 
   .imagePlaceholder {
     aspect-ratio: 1 / 0.9;
     min-height: 520px;
+    border-radius: 0.65rem;
   }
 
   .content {
-    align-self: center;
+    align-self: start;
     margin-top: 0;
+    padding: 2rem;
+    border: 1px solid #eee0d8;
+    border-radius: 0.65rem;
+    background: #ffffff;
+    box-shadow: 0 4px 16px rgba(72, 46, 34, 0.08);
+  }
+
+  .titleRow {
+    align-items: flex-start;
   }
 
   .name {
-    font-size: clamp(2.8rem, 4vw, 4rem);
+    font-size: clamp(2.7rem, 4vw, 4rem);
+    line-height: 0.95;
+  }
+
+  .nameAm {
+    font-size: 0.68rem;
+  }
+
+  .priceBlock {
+    padding-top: 0.35rem;
   }
 
   .price {
-    font-size: 1.05rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 0.4rem;
+    background: #f8e7df;
+    font-size: 1rem;
   }
 
   .description {
-    max-width: 520px;
-    font-size: 0.75rem;
+    max-width: 560px;
+    margin-top: 1rem;
+    font-size: 0.74rem;
+    line-height: 1.65;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    margin-top: 1.35rem;
+    border-radius: 0;
+    background: #eee0d8;
   }
 
   .desktopPurchase {
     display: block;
-    margin-top: 1.4rem;
+    margin-top: 1.25rem;
   }
 
   .mobilePurchase {
     display: none;
+  }
+
+  .desktopGursha {
+    display: block;
   }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getMenu } from "../services/menuService";
 import DishPurchase from "../components/DishPurchase/DishPurchase";
+import DishDetailGursha from "../components/DishDetailGursha/DishDetailGursha";
 import styles from "./DishDetail.module.css";
 
 function DishDetail() {
@@ -84,10 +85,6 @@ function DishDetail() {
     <main className={styles.page}>
       <div className={styles.container}>
         <div className={styles.desktopNavigation}>
-          <Link to="/menu" className={styles.backButton}>
-            ← Back to Menu
-          </Link>
-
           <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
             <Link to="/">Home</Link>
             <span>/</span>
@@ -145,6 +142,10 @@ function DishDetail() {
             )}
           </div>
         </section>
+      </div>
+
+      <div className={styles.desktopGursha}>
+        <DishDetailGursha />
       </div>
 
       <div className={styles.mobilePurchase}>
