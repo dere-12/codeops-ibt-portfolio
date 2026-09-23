@@ -1,0 +1,510 @@
+.page {
+  min-height: 100vh;
+  padding: 0 1rem 8.5rem;
+  background: #fff8f4;
+}
+
+.mobileProgress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.progressStep {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.progressStep > span {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: #8f1d0a;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.progressStep strong {
+  font-size: 0.9rem;
+  color: #2f211c;
+}
+
+.progressLabels {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #8d7d74;
+  white-space: nowrap;
+}
+
+.progressLabels .active {
+  color: #8f1d0a;
+}
+
+.desktopHero {
+  display: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileHeading {
+  margin-bottom: 1rem;
+}
+
+.headingRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.headingRow h1 {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  color: #8f1d0a;
+}
+
+.headingRow span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9c6d50;
+  white-space: nowrap;
+}
+
+.cartLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.basketColumn {
+  min-width: 0;
+}
+
+.basketHeading {
+  display: none;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ledgerColumn {
+  display: none;
+}
+
+.mobileSummary {
+  margin-top: 1rem;
+}
+
+.summary {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 0.75rem;
+}
+
+.summaryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.summaryHeader h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2f211c;
+}
+
+.summaryHeader span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #9c6d50;
+}
+
+.summaryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eadfd8;
+  font-size: 0.85rem;
+  color: #735b4e;
+}
+
+.summaryRow strong {
+  color: #2f211c;
+  font-size: 0.95rem;
+}
+
+.totalRow {
+  margin-top: 1rem;
+  padding: 0.95rem;
+  background: #fff5ef;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.totalRow div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.totalRow span {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  color: #8f1d0a;
+}
+
+.totalRow small {
+  color: #735b4e;
+  font-size: 0.68rem;
+}
+
+.totalRow strong {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #8f1d0a;
+}
+
+.clearButton,
+.desktopCheckoutButton,
+.checkoutButton {
+  cursor: pointer;
+}
+
+.clearButton {
+  border: 0;
+  background: transparent;
+  color: #735b4e;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+}
+
+.clearButton svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.desktopCheckoutButton {
+  width: 100%;
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 0.45rem;
+  padding: 0.85rem 1rem;
+  background: #8f1d0a;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.desktopCheckoutButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ledgerNote {
+  margin: 0.85rem 0 0;
+  color: #735b4e;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.mobileCheckoutBar {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 4.7rem;
+  z-index: 20;
+}
+
+.checkoutButton {
+  width: 100%;
+  border: 0;
+  border-radius: 0.6rem;
+  padding: 0.9rem 1rem;
+  background: #8f1d0a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(73, 31, 19, 0.18);
+}
+
+.checkoutLabel,
+.checkoutTotal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.checkoutLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.checkoutTotal {
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.checkoutLabel svg,
+.checkoutTotal svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.emptyState {
+  min-height: 20rem;
+  padding: 2rem 1rem;
+  background: #ffffff;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.emptyIcon {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: #fff0e8;
+  color: #8f1d0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyIcon svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.emptyState h2 {
+  margin: 1rem 0 0;
+  font-size: 1.2rem;
+  color: #2f211c;
+}
+
+.emptyState p {
+  max-width: 18rem;
+  margin: 0.5rem 0 1.25rem;
+  color: #735b4e;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.emptyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.45rem;
+  background: #8f1d0a;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.emptyLink svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .page {
+    padding: 0 0 3rem;
+    background: #fffaf7;
+  }
+
+  .mobileProgress,
+  .mobileHeading,
+  .mobileSummary,
+  .mobileCheckoutBar {
+    display: none;
+  }
+
+  .desktopHero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 3rem 4.5%;
+    background: #fff1eb;
+  }
+
+  .eyebrow {
+    display: block;
+    margin-bottom: 0.55rem;
+    color: #9a6500;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .desktopHero h1 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 4vw, 3.5rem);
+    line-height: 1;
+    color: #8f1d0a;
+  }
+
+  .desktopProgress {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 0.8rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    color: #9b8d85;
+    font-size: 0.72rem;
+  }
+
+  .desktopProgress span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .desktopProgress strong {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0e3dd;
+    color: #8a7267;
+    font-size: 0.65rem;
+  }
+
+  .desktopProgress .activeStep {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.35rem;
+    background: #a92d14;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .desktopProgress .activeStep strong {
+    background: #ffffff;
+    color: #a92d14;
+  }
+
+  .content {
+    padding: 2.75rem 4.5% 3rem;
+  }
+
+  .cartLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 2.1fr) minmax(20rem, 0.95fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .basketHeading {
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .basketHeading > div {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .basketHeading h2 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.45rem;
+    color: #2f211c;
+  }
+
+  .basketHeading span {
+    color: #9c8174;
+    font-size: 0.78rem;
+  }
+
+  .itemsList {
+    gap: 0.85rem;
+  }
+
+  .ledgerColumn {
+    display: block;
+  }
+
+  .summary {
+    position: sticky;
+    top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 0.65rem;
+    box-shadow: 0 0.35rem 1rem rgba(74, 48, 35, 0.08);
+  }
+
+  .summaryHeader h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+  }
+
+  .summaryRow {
+    padding-bottom: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .totalRow {
+    margin-top: 1rem;
+  }
+
+  .totalRow span {
+    font-size: 1.35rem;
+  }
+
+  .totalRow strong {
+    font-size: 1.7rem;
+  }
+
+  .ledgerNote {
+    text-align: center;
+  }
+
+  .emptyState {
+    min-height: 26rem;
+  }
+}

@@ -1,9 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
 import TodaysSpecials from "./pages/TodaysSpecials/TodaysSpecials";
 import FullMenu from "./pages/FullMenu/FullMenu";
+import Cart from "./pages/Cart/Cart";
 import DishDetail from "./pages/DishDetail";
 import PlaceholderPage from "./pages/PlaceholderPage";
-import MainLayout from "./layouts/MainLayout";
 
 function App() {
   return (
@@ -11,17 +12,15 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<TodaysSpecials />} />
-
           <Route path="/menu" element={<FullMenu />} />
-
           <Route
             path="/featured-dish"
             element={<PlaceholderPage title="Featured Dish" />}
           />
-          <Route path="/cart" element={<PlaceholderPage title="Cart" />} />
+          <Route path="/cart" element={<Cart />} />
           <Route
             path="/checkout"
-            element={<PlaceholderPage title="Delivery & Checkout" />}
+            element={<PlaceholderPage title="Checkout" />}
           />
           <Route
             path="/account"
