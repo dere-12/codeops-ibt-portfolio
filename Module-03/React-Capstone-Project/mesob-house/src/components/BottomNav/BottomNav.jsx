@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FiStar, FiBookOpen, FiShoppingBag, FiUser } from "react-icons/fi";
+import useCartStore from "../../store/cartStore";
 import styles from "./BottomNav.module.css";
 
 const navItems = [
@@ -26,6 +27,10 @@ const navItems = [
 ];
 
 function BottomNav() {
+  const items = useCartStore((state) => state.items);
+
+  const cartCount = items.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <nav className={styles.nav} aria-label="Main navigation">
       {navItems.map(({ label, path, icon: Icon }) => (
@@ -36,7 +41,14 @@ function BottomNav() {
             isActive ? styles.linkActive : styles.link
           }
         >
-          <Icon aria-hidden="true" />
+          <span className={styles.iconWrapper}>
+            <Icon aria-hidden="true" />
+
+            {label === "Cart" && cartCount > 0 && (
+              <span className={styles.badge}>{cartCount}</span>
+            )}
+          </span>
+
           <span>{label}</span>
         </NavLink>
       ))}

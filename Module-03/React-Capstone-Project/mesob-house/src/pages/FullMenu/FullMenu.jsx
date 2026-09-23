@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMenu } from "../../services/menuService";
+import useCartStore from "../../store/cartStore";
 import DishCard from "../../components/DishCard/DishCard";
 import BasketBar from "../../components/BasketBar/BasketBar";
 import TraditionalGursha from "../../components/TraditionalGursha/TraditionalGursha";
@@ -9,9 +10,10 @@ function FullMenu() {
   const [menu, setMenu] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Dishes");
-  const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
     async function loadMenu() {
@@ -32,7 +34,7 @@ function FullMenu() {
   }, []);
 
   function handleQuickAdd(dish) {
-    setCartItems((currentItems) => [...currentItems, dish]);
+    addToCart(dish);
   }
 
   const categories = [
@@ -60,8 +62,6 @@ function FullMenu() {
 
     return menu.filter((dish) => dish.category === category).length;
   }
-
-  const cartTotal = cartItems.reduce((total, dish) => total + dish.priceETB, 0);
 
   if (loading) {
     return (
@@ -156,7 +156,7 @@ function FullMenu() {
         )}
       </div>
 
-      <BasketBar itemCount={cartItems.length} total={cartTotal} />
+      <BasketBar />
     </main>
   );
 }

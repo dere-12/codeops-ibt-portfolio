@@ -1,5 +1,6 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FiChevronLeft, FiShoppingBag, FiUser } from "react-icons/fi";
+import useCartStore from "../../store/cartStore";
 import styles from "./Header.module.css";
 
 const navigationItems = [
@@ -26,6 +27,10 @@ function Header() {
   const navigate = useNavigate();
 
   const isDishDetail = location.pathname.startsWith("/dish/");
+
+  const items = useCartStore((state) => state.items);
+
+  const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <header className={styles.header}>
@@ -62,9 +67,18 @@ function Header() {
           <NavLink
             to="/cart"
             className={styles.cartSummary}
-            aria-label="Shopping cart"
+            aria-label={`Shopping cart, ${cartCount} ${
+              cartCount === 1 ? "item" : "items"
+            }`}
           >
-            <FiShoppingBag aria-hidden="true" />
+            <span className={styles.cartIconWrapper}>
+              <FiShoppingBag aria-hidden="true" />
+
+              {cartCount > 0 && (
+                <span className={styles.cartBadge}>{cartCount}</span>
+              )}
+            </span>
+
             <span>Cart</span>
           </NavLink>
 
@@ -95,9 +109,17 @@ function Header() {
           <NavLink
             to="/cart"
             className={styles.mobileCartButton}
-            aria-label="Shopping cart"
+            aria-label={`Shopping cart, ${cartCount} ${
+              cartCount === 1 ? "item" : "items"
+            }`}
           >
-            <FiShoppingBag aria-hidden="true" />
+            <span className={styles.cartIconWrapper}>
+              <FiShoppingBag aria-hidden="true" />
+
+              {cartCount > 0 && (
+                <span className={styles.cartBadge}>{cartCount}</span>
+              )}
+            </span>
           </NavLink>
         </div>
       )}

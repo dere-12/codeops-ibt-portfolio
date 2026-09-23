@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getMenu } from "../services/menuService";
+import useCartStore from "../store/cartStore";
 import DishPurchase from "../components/DishPurchase/DishPurchase";
 import DishDetailGursha from "../components/DishDetailGursha/DishDetailGursha";
 import styles from "./DishDetail.module.css";
@@ -13,6 +14,8 @@ function DishDetail() {
   const [addedQuantity, setAddedQuantity] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
     async function loadDish() {
@@ -48,6 +51,7 @@ function DishDetail() {
   }
 
   function handleAddToBasket() {
+    addToCart(dish, quantity);
     setAddedQuantity(quantity);
   }
 

@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
+import useCartStore from "../../store/cartStore";
 import styles from "./BasketBar.module.css";
 
-function BasketBar({ itemCount, total }) {
+function BasketBar() {
+  const items = useCartStore((state) => state.items);
+
+  const itemCount = items.reduce((total, item) => total + item.quantity, 0);
+
+  const total = items.reduce(
+    (sum, item) => sum + item.dish.priceETB * item.quantity,
+    0,
+  );
+
   return (
     <aside className={styles.bar}>
       <div className={styles.summary}>

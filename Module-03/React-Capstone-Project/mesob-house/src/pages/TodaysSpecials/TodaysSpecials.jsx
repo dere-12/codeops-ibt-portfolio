@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMenu, getSpecials } from "../../services/menuService";
+import useCartStore from "../../store/cartStore";
 import DishCard from "../../components/DishCard/DishCard";
 import SpiritOfGursha from "../../components/SpiritOfGursha/SpiritOfGursha";
 import CeremonyCard from "../../components/CeremonyCard/CeremonyCard";
@@ -7,15 +8,15 @@ import TeffBanner from "../../components/TeffBanner/TeffBanner";
 import SpecialSelection from "../../components/SpecialSelection/SpecialSelection";
 import DesktopHero from "../../components/DesktopHero/DesktopHero";
 import GuestReflections from "../../components/GuestReflections/GuestReflections";
-import BottomCTA from "../../components/BottomCTA/BottomCTA";
 import styles from "./TodaysSpecials.module.css";
 
 function TodaysSpecials() {
   const [specials, setSpecials] = useState([]);
   const [menu, setMenu] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
     async function loadPageData() {
@@ -41,7 +42,7 @@ function TodaysSpecials() {
   }, []);
 
   function handleQuickAdd(dish) {
-    setCartItems((currentItems) => [...currentItems, dish]);
+    addToCart(dish);
   }
 
   if (loading) {
@@ -124,10 +125,6 @@ function TodaysSpecials() {
             <GuestReflections />
           </div>
         </section>
-      </div>
-
-      <div className={styles.desktopCTA}>
-        <BottomCTA />
       </div>
     </main>
   );
