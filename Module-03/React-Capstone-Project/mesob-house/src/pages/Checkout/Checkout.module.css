@@ -710,6 +710,34 @@
   margin-top: 1.2rem;
 }
 
+.mobileProgressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.mobileProgressHeader p {
+  margin: 0;
+  color: #9a2e16;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.mobileProgressHeader h1 {
+  margin: 0.15rem 0 0;
+  font-family: "Playfair Display", serif;
+  color: #38261f;
+  font-size: 1.15rem;
+}
+
+.mobileStepIndicator {
+  color: #8f1d0a;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
 @media (min-width: 768px) {
   .page {
     padding: 0 4.5% 3rem;
@@ -718,6 +746,10 @@
   .mobileHeader,
   .mobileProgress,
   .mobileSubmitBar {
+    display: none;
+  }
+
+  .mobileProgressHeader {
     display: none;
   }
 

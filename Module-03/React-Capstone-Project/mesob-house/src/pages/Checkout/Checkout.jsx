@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  FiArrowLeft,
   FiArrowRight,
   FiCheck,
   FiClock,
@@ -118,7 +117,14 @@ function Checkout() {
 
   return (
     <main className={styles.page}>
-      <CheckoutMobileHeader itemCount={itemCount} navigate={navigate} />
+      <section className={styles.mobileProgressHeader}>
+        <div>
+          <p>STEP 2 OF 3</p>
+          <h1>Delivery &amp; Checkout</h1>
+        </div>
+
+        <div className={styles.mobileStepIndicator}>2 / 3</div>
+      </section>
 
       <section className={styles.desktopHeader}>
         <div>
@@ -362,31 +368,6 @@ function Checkout() {
   );
 }
 
-function CheckoutMobileHeader({ itemCount, navigate }) {
-  return (
-    <section className={styles.mobileHeader}>
-      <button
-        type="button"
-        className={styles.backButton}
-        onClick={() => navigate(-1)}
-        aria-label="Go back"
-      >
-        <FiArrowLeft />
-      </button>
-
-      <div>
-        <p>STEP 2 OF 3</p>
-        <h1>Delivery &amp; Checkout</h1>
-      </div>
-
-      <div className={styles.headerCart}>
-        <FiShoppingBag />
-        <span>{itemCount}</span>
-      </div>
-    </section>
-  );
-}
-
 function SectionHeader({ icon, title, subtitle, iconClassName = "" }) {
   return (
     <div className={styles.sectionHeader}>
@@ -522,8 +503,6 @@ function OrderSummary({
 }
 
 function CheckoutSuccess({ order, onHome, onMenu }) {
-  const paymentMethod = getPaymentMethodName(order.customer.paymentMethod);
-
   return (
     <main className={styles.page}>
       <section className={styles.successCard}>
@@ -565,7 +544,10 @@ function CheckoutSuccess({ order, onHome, onMenu }) {
             }
           />
 
-          <ConfirmationRow label="Payment Method" value={paymentMethod} />
+          <ConfirmationRow
+            label="Payment Method"
+            value={getPaymentMethodName(order.customer.paymentMethod)}
+          />
 
           <div className={styles.confirmationTotal}>
             <span>Order Total</span>
