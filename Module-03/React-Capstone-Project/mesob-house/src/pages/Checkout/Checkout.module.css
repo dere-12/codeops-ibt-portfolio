@@ -1,0 +1,172 @@
+.mobileOrderSummary {
+  display: block;
+}
+
+.mobileSummaryCount {
+  margin: 0.75rem 0 0;
+  color: #8b7a72;
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+.orderSummary {
+  padding: 1rem;
+}
+
+.summaryHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summaryHeader p {
+  margin: 0;
+  color: #9c6a00;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.summaryHeader h2 {
+  margin: 0.3rem 0 0;
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  color: #38261f;
+}
+
+.summaryHeader a {
+  color: #9a2e16;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.orderItem {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.orderImage {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.35rem;
+  background: #eee4dc;
+  color: #7e675d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.orderImage span {
+  font-size: 0.5rem;
+}
+
+.orderItemCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.orderItemCopy strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #38261f;
+  font-size: 0.74rem;
+}
+
+.orderItemCopy span {
+  color: #8a786f;
+  font-size: 0.62rem;
+}
+
+.orderItem > strong {
+  color: #38261f;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.summaryRows {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #eadbd4;
+}
+
+.summaryRows > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0;
+  color: #796960;
+  font-size: 0.72rem;
+}
+
+.summaryRows strong {
+  color: #38261f;
+}
+
+.summaryGrandTotal {
+  margin-top: 0.4rem;
+  padding: 0.8rem;
+  border-radius: 0.45rem;
+  background: #fff0e8;
+}
+
+.summaryGrandTotal span {
+  color: #38261f;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+}
+
+.summaryGrandTotal strong {
+  color: #8f1d0a;
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+}
+
+@media (min-width: 768px) {
+  .mobileOrderSummary {
+    display: none;
+  }
+
+  .summaryColumn {
+    display: block;
+  }
+
+  .orderSummary {
+    position: sticky;
+    top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 0.7rem;
+    background: #ffffff;
+    box-shadow: 0 0.5rem 1.25rem rgba(71, 46, 34, 0.08);
+  }
+
+  .summaryHeader h2 {
+    font-size: 1.55rem;
+  }
+
+  .orderItem {
+    grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+  }
+
+  .orderImage {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .summaryRows > div {
+    font-size: 0.74rem;
+  }
+}

@@ -5,6 +5,7 @@ import FullMenu from "./pages/FullMenu/FullMenu";
 import Cart from "./pages/Cart/Cart";
 import DishDetail from "./pages/DishDetail";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -18,10 +19,7 @@ function App() {
             element={<PlaceholderPage title="Featured Dish" />}
           />
           <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/checkout"
-            element={<PlaceholderPage title="Checkout" />}
-          />
+          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="/account"
             element={<PlaceholderPage title="Account" />}
