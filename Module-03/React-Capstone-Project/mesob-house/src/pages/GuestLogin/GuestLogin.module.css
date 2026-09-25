@@ -1,0 +1,413 @@
+.page {
+  min-height: 100vh;
+  padding: 1rem;
+  background: #fff8f4;
+}
+
+.breadcrumb {
+  max-width: 40rem;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #a18f87;
+  font-size: 0.68rem;
+}
+
+.breadcrumb a {
+  color: inherit;
+}
+
+.breadcrumb strong {
+  color: #8f1d0a;
+  font-weight: 600;
+}
+
+.loginCard,
+.confirmationCard {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 0.7rem;
+  background: #ffffff;
+  box-shadow: 0 0.45rem 1.2rem rgba(73, 42, 28, 0.08);
+}
+
+.logoMark {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto;
+  border-radius: 0.65rem;
+  background: #f2dfd6;
+  color: #8f1d0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoMark span {
+  font-family: "Playfair Display", serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.eyebrow {
+  margin: 1rem 0 0;
+  text-align: center;
+  color: #9a6500;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.loginCard h1 {
+  margin: 0.35rem 0 0;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  color: #2f211c;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.intro {
+  margin: 0.5rem auto 0;
+  max-width: 23rem;
+  color: #7b6b63;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.methodSelector {
+  margin-top: 1.25rem;
+  padding: 0.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.2rem;
+  border-radius: 0.45rem;
+  background: #f3e7e1;
+}
+
+.methodButton,
+.methodButtonActive {
+  min-height: 2.55rem;
+  border: 0;
+  border-radius: 0.35rem;
+  padding: 0.55rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.methodButton {
+  background: transparent;
+  color: #7c6a61;
+}
+
+.methodButtonActive {
+  background: #ffffff;
+  color: #8f1d0a;
+  box-shadow: 0 0.15rem 0.35rem rgba(67, 38, 27, 0.08);
+}
+
+.methodButton svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.form {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  color: #4f3d36;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.phoneInput,
+.inputWrapper {
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.35rem;
+  background: #fff0e9;
+}
+
+.phoneInput > span {
+  align-self: stretch;
+  padding: 0 0.7rem;
+  border-right: 1px solid #dfc8bd;
+  display: inline-flex;
+  align-items: center;
+  color: #5e473e;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.phoneInput input,
+.inputWrapper input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  padding: 0.7rem;
+  color: #38261f;
+  font: inherit;
+  font-size: 0.78rem;
+  box-sizing: border-box;
+}
+
+.inputWrapper > svg {
+  flex: 0 0 auto;
+  margin-left: 0.7rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  color: #8e786f;
+}
+
+.phoneInput:focus-within,
+.inputWrapper:focus-within {
+  box-shadow: 0 0 0 2px rgba(169, 45, 20, 0.08);
+}
+
+.phoneInput input[aria-invalid="true"],
+.inputWrapper input[aria-invalid="true"] {
+  box-shadow: inset 0 0 0 1px #b9341c;
+}
+
+.passwordToggle {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  background: transparent;
+  color: #806f67;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.passwordToggle svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.fieldError {
+  margin: 0;
+  color: #b9341c;
+  font-size: 0.64rem;
+  line-height: 1.4;
+}
+
+.signInButton,
+.guestButton {
+  width: 100%;
+  min-height: 2.85rem;
+  border-radius: 0.45rem;
+  padding: 0.7rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.signInButton {
+  margin-top: 0.1rem;
+  border: 0;
+  background: #a92d14;
+  color: #ffffff;
+  box-shadow: 0 0.4rem 1rem rgba(110, 37, 20, 0.18);
+}
+
+.signInButton svg,
+.guestButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.signInButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.divider {
+  margin: 1.1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #a18f87;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eadbd4;
+}
+
+.guestButton {
+  border: 1px solid #d9c3ba;
+  background: #ffffff;
+  color: #6c5045;
+}
+
+.registerPrompt {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #eadbd4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  color: #796961;
+  font-size: 0.68rem;
+  text-align: center;
+}
+
+.registerPrompt svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: #9a6500;
+}
+
+.registerPrompt a {
+  color: #8f1d0a;
+  font-weight: 700;
+}
+
+.confirmationCard {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.confirmationIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #def2e2;
+  color: #237542;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmationIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.confirmationEyebrow {
+  margin: 1rem 0 0;
+  color: #9a2e16;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.confirmationCard h1 {
+  margin: 0.35rem 0 0;
+  font-family: "Playfair Display", serif;
+  color: #8f1d0a;
+  font-size: 1.95rem;
+  line-height: 1.1;
+}
+
+.confirmationText {
+  max-width: 25rem;
+  margin: 0.65rem auto 0;
+  color: #796a62;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.confirmationDetails {
+  margin-top: 1.2rem;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  background: #fff3ed;
+  text-align: left;
+}
+
+.confirmationDetails > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid #eadbd4;
+}
+
+.confirmationDetails > div:last-child {
+  border-bottom: 0;
+}
+
+.confirmationDetails span {
+  color: #84736a;
+  font-size: 0.68rem;
+}
+
+.confirmationDetails strong {
+  max-width: 65%;
+  color: #38261f;
+  font-size: 0.7rem;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.primaryButton {
+  width: 100%;
+  min-height: 2.8rem;
+  margin-top: 1.2rem;
+  border: 0;
+  border-radius: 0.45rem;
+  background: #a92d14;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primaryButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 1.5rem 4.5% 3rem;
+  }
+
+  .loginCard,
+  .confirmationCard {
+    padding: 2.25rem;
+  }
+}
