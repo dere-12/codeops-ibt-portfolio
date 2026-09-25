@@ -14,13 +14,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import loginSchema from "../../schemas/loginSchema";
 import styles from "./GuestLogin.module.css";
 
-const defaultValues = {
-  loginMethod: "phone",
-  phone: "",
-  email: "",
-  password: "",
-};
-
 function GuestLogin() {
   const navigate = useNavigate();
 

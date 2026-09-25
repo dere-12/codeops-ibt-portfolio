@@ -8,6 +8,7 @@ import JoinRegister from "./pages/JoinRegister/JoinRegister";
 import DishDetail from "./pages/DishDetail";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import GuestLogin from "./pages/GuestLogin/GuestLogin";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/account" element={<JoinRegister />} />
           <Route path="/login" element={<GuestLogin />} />
           <Route path="/dish/:slug" element={<DishDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
