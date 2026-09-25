@@ -3,9 +3,10 @@ import MainLayout from "./layouts/MainLayout";
 import TodaysSpecials from "./pages/TodaysSpecials/TodaysSpecials";
 import FullMenu from "./pages/FullMenu/FullMenu";
 import Cart from "./pages/Cart/Cart";
+import Checkout from "./pages/Checkout/Checkout";
+import JoinRegister from "./pages/JoinRegister/JoinRegister";
 import DishDetail from "./pages/DishDetail";
 import PlaceholderPage from "./pages/PlaceholderPage";
-import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -20,9 +21,10 @@ function App() {
           />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/account" element={<JoinRegister />} />
           <Route
-            path="/account"
-            element={<PlaceholderPage title="Account" />}
+            path="/login"
+            element={<PlaceholderPage title="Guest Login" />}
           />
           <Route path="/dish/:slug" element={<DishDetail />} />
         </Route>
