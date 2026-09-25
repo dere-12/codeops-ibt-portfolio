@@ -19,27 +19,23 @@ import styles from "./Checkout.module.css";
 const paymentMethods = [
   {
     value: "telebirr",
-    icon: "tele",
+    shortName: "tele",
     name: "Telebirr",
-    description: "Instant mobile birr",
   },
   {
     value: "cbe-birr",
-    icon: "CBE",
+    shortName: "CBE",
     name: "CBE Birr",
-    description: "Commercial Bank of Ethiopia",
   },
   {
     value: "cash-pos",
-    icon: "POS",
+    shortName: "POS",
     name: "Cash / Wireless POS",
-    description: "Pay on delivery",
   },
   {
     value: "amole-awash",
-    icon: "Awash",
+    shortName: "Awash",
     name: "Amole / Awash Birr",
-    description: "Digital payment option",
   },
 ];
 
@@ -73,19 +69,21 @@ function Checkout() {
     mode: "onBlur",
   });
 
-  const dispatchType = watch("dispatchType");
-  const paymentMethod = watch("paymentMethod");
+  const selectedDispatchType = watch("dispatchType");
+  const selectedPaymentMethod = watch("paymentMethod");
 
   const itemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const subtotal = items.reduce(
-    (sum, item) => sum + item.dish.priceETB * item.quantity,
+    (total, item) => total + item.dish.priceETB * item.quantity,
     0,
   );
 
-  const handleCheckoutSubmit = (data) => {
+  const formattedTotal = `ETB ${subtotal.toLocaleString()}`;
+
+  function handleCheckoutSubmit(formData) {
     const orderSnapshot = {
-      data,
+      customer: formData,
       items: items.map((item) => ({
         dish: item.dish,
         quantity: item.quantity,
@@ -95,153 +93,62 @@ function Checkout() {
     };
 
     setSubmittedOrder(orderSnapshot);
+
     clearCart();
 
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  };
+  }
 
   if (submittedOrder) {
     return (
-      <main className={styles.page}>
-        <section className={styles.successCard}>
-          <div className={styles.successIcon}>
-            <FiCheck />
-          </div>
-
-          <p className={styles.successEyebrow}>CHECKOUT COMPLETE</p>
-
-          <h1>Order Details Confirmed</h1>
-
-          <p className={styles.successText}>
-            Your checkout information has been recorded on this device. No
-            payment was processed online.
-          </p>
-
-          <div className={styles.confirmationSummary}>
-            <div className={styles.confirmationRow}>
-              <span>Name</span>
-              <strong>{submittedOrder.data.fullName}</strong>
-            </div>
-
-            <div className={styles.confirmationRow}>
-              <span>Phone</span>
-              <strong>{submittedOrder.data.phone}</strong>
-            </div>
-
-            {submittedOrder.data.email && (
-              <div className={styles.confirmationRow}>
-                <span>Email</span>
-                <strong>{submittedOrder.data.email}</strong>
-              </div>
-            )}
-
-            <div className={styles.confirmationRow}>
-              <span>Delivery Destination</span>
-              <strong>
-                {submittedOrder.data.subCity}, {submittedOrder.data.street}
-              </strong>
-            </div>
-
-            <div className={styles.confirmationRow}>
-              <span>Landmark</span>
-              <strong>{submittedOrder.data.landmark}</strong>
-            </div>
-
-            <div className={styles.confirmationRow}>
-              <span>Dispatch</span>
-              <strong>
-                {submittedOrder.data.dispatchType === "immediate"
-                  ? "Immediate"
-                  : "Dinner"}
-              </strong>
-            </div>
-
-            <div className={styles.confirmationRow}>
-              <span>Payment Method</span>
-              <strong>
-                {getPaymentMethodName(submittedOrder.data.paymentMethod)}
-              </strong>
-            </div>
-
-            <div className={styles.confirmationTotal}>
-              <span>Order Total</span>
-              <strong>ETB {submittedOrder.total.toLocaleString()}</strong>
-            </div>
-          </div>
-
-          <div className={styles.successActions}>
-            <button
-              type="button"
-              className={styles.primaryAction}
-              onClick={() => navigate("/")}
-            >
-              Back to Home
-              <FiArrowRight />
-            </button>
-
-            <button
-              type="button"
-              className={styles.secondaryAction}
-              onClick={() => navigate("/menu")}
-            >
-              View Full Menu
-            </button>
-          </div>
-        </section>
-      </main>
+      <CheckoutSuccess
+        order={submittedOrder}
+        onHome={() => navigate("/")}
+        onMenu={() => navigate("/menu")}
+      />
     );
   }
 
   if (items.length === 0) {
-    return (
-      <main className={styles.page}>
-        <section className={styles.emptyCheckout}>
-          <div className={styles.emptyIcon}>
-            <FiShoppingBag />
-          </div>
-
-          <h1>Your basket is empty</h1>
-
-          <p>Add dishes to your basket before continuing to checkout.</p>
-
-          <Link to="/menu" className={styles.primaryAction}>
-            Browse the Menu
-            <FiArrowRight />
-          </Link>
-        </section>
-      </main>
-    );
+    return <EmptyCheckout onBrowseMenu={() => navigate("/menu")} />;
   }
-
-  const formattedTotal = `ETB ${subtotal.toLocaleString()}`;
 
   return (
     <main className={styles.page}>
-      <section className={styles.checkoutHeader}>
-        <button
-          type="button"
-          className={styles.backButton}
-          onClick={() => navigate(-1)}
-          aria-label="Go back"
-        >
-          <FiArrowLeft />
-        </button>
+      <CheckoutMobileHeader itemCount={itemCount} navigate={navigate} />
 
+      <section className={styles.desktopHeader}>
         <div>
-          <p>STEP 2 OF 3</p>
+          <p className={styles.eyebrow}>STEP 2 OF 3</p>
           <h1>Delivery &amp; Checkout</h1>
         </div>
 
-        <div className={styles.headerCart}>
-          <FiShoppingBag />
-          <span>{itemCount}</span>
+        <div className={styles.desktopProgress}>
+          <span className={styles.completedStep}>
+            <strong>✓</strong>
+            Review Order
+          </span>
+
+          <span>/</span>
+
+          <span className={styles.activeStep}>
+            <strong>2</strong>
+            Delivery &amp; Payment
+          </span>
+
+          <span>/</span>
+
+          <span>
+            <strong>3</strong>
+            Confirmation
+          </span>
         </div>
       </section>
 
-      <section className={styles.progressBar}>
+      <section className={styles.mobileProgress}>
         <div className={styles.progressTrack}>
           <div className={styles.progressFill} />
         </div>
@@ -259,19 +166,14 @@ function Checkout() {
       >
         <div className={styles.formColumn}>
           <section className={styles.formCard}>
-            <div className={styles.sectionHeader}>
-              <div className={styles.sectionIcon}>
-                <FiUser />
-              </div>
-
-              <div>
-                <h2>Recipient Contact</h2>
-                <p>For delivery updates &amp; Telegram OTP</p>
-              </div>
-            </div>
+            <SectionHeader
+              icon={<FiUser />}
+              title="Recipient Contact"
+              subtitle="Your contact details for order communication"
+            />
 
             <div className={styles.fieldsGrid}>
-              <Field
+              <FormField
                 label="Full Name"
                 name="fullName"
                 register={register}
@@ -280,8 +182,8 @@ function Checkout() {
                 autoComplete="name"
               />
 
-              <Field
-                label="Phone (Calls & Telegram SMS)"
+              <FormField
+                label="Phone"
                 name="phone"
                 register={register}
                 error={errors.phone}
@@ -290,8 +192,8 @@ function Checkout() {
                 autoComplete="tel"
               />
 
-              <div className={styles.desktopOnlyField}>
-                <Field
+              <div className={styles.emailField}>
+                <FormField
                   label="Email for Digital Receipt"
                   name="email"
                   register={register}
@@ -305,27 +207,23 @@ function Checkout() {
           </section>
 
           <section className={styles.formCard}>
-            <div className={styles.sectionHeader}>
-              <div className={`${styles.sectionIcon} ${styles.locationIcon}`}>
-                <FiMapPin />
-              </div>
-
-              <div>
-                <h2>Delivery Destination</h2>
-                <p>Addis Ababa Metropolitan Area</p>
-              </div>
-            </div>
+            <SectionHeader
+              icon={<FiMapPin />}
+              title="Delivery Destination"
+              subtitle="Enter where your order should be delivered"
+              iconClassName={styles.locationIcon}
+            />
 
             <div className={styles.fieldsGrid}>
-              <Field
+              <FormField
                 label="Sub-City / Neighborhood"
                 name="subCity"
                 register={register}
                 error={errors.subCity}
-                placeholder="Bole Sub-city, Edna Mall area"
+                placeholder="Bole Sub-city"
               />
 
-              <Field
+              <FormField
                 label="House No. / Street"
                 name="street"
                 register={register}
@@ -334,67 +232,43 @@ function Checkout() {
               />
 
               <div className={styles.fullWidthField}>
-                <Field
+                <FormField
                   label="Landmark & Gate Instructions"
                   name="landmark"
                   register={register}
                   error={errors.landmark}
-                  placeholder="Opposite Boston Day Spa, entrance through gate"
+                  placeholder="Near a recognizable landmark or gate"
                 />
               </div>
             </div>
           </section>
 
           <section className={styles.formCard}>
-            <div className={styles.sectionHeader}>
-              <div className={`${styles.sectionIcon} ${styles.clockIcon}`}>
-                <FiClock />
-              </div>
-
-              <div>
-                <h2>Dispatch Timing</h2>
-                <p>Choose when your order should be dispatched</p>
-              </div>
-            </div>
+            <SectionHeader
+              icon={<FiClock />}
+              title="Dispatch Timing"
+              subtitle="Choose when your order should be dispatched"
+              iconClassName={styles.clockIcon}
+            />
 
             <div className={styles.optionGrid}>
-              <label
-                className={`${styles.choiceCard} ${
-                  dispatchType === "immediate" ? styles.choiceCardSelected : ""
-                }`}
-              >
-                <input
-                  type="radio"
-                  value="immediate"
-                  {...register("dispatchType")}
-                />
+              <ChoiceCard
+                value="immediate"
+                selected={selectedDispatchType === "immediate"}
+                register={register}
+                name="dispatchType"
+                title="Immediate Dispatch"
+                description="Send the order as soon as possible"
+              />
 
-                <div>
-                  <strong>Immediate Dispatch</strong>
-                  <span>Approx. 35–45 min</span>
-                </div>
-
-                <span className={styles.radioIndicator} />
-              </label>
-
-              <label
-                className={`${styles.choiceCard} ${
-                  dispatchType === "dinner" ? styles.choiceCardSelected : ""
-                }`}
-              >
-                <input
-                  type="radio"
-                  value="dinner"
-                  {...register("dispatchType")}
-                />
-
-                <div>
-                  <strong>Schedule for Dinner</strong>
-                  <span>Evening dispatch</span>
-                </div>
-
-                <span className={styles.radioIndicator} />
-              </label>
+              <ChoiceCard
+                value="dinner"
+                selected={selectedDispatchType === "dinner"}
+                register={register}
+                name="dispatchType"
+                title="Schedule for Dinner"
+                description="Prepare for your evening meal"
+              />
             </div>
 
             {errors.dispatchType && (
@@ -403,24 +277,20 @@ function Checkout() {
           </section>
 
           <section className={styles.formCard}>
-            <div className={styles.sectionHeader}>
-              <div className={`${styles.sectionIcon} ${styles.paymentIcon}`}>
-                <FiCreditCard />
-              </div>
-
-              <div>
-                <h2>Payment Method</h2>
-                <p>Select one method for your order record</p>
-              </div>
-            </div>
+            <SectionHeader
+              icon={<FiCreditCard />}
+              title="Payment Method"
+              subtitle="Choose one payment method for your order"
+              iconClassName={styles.paymentIcon}
+            />
 
             <div className={styles.paymentList}>
               {paymentMethods.map((method) => (
                 <label
                   key={method.value}
                   className={`${styles.paymentOption} ${
-                    paymentMethod === method.value
-                      ? styles.paymentOptionSelected
+                    selectedPaymentMethod === method.value
+                      ? styles.selectedOption
                       : ""
                   }`}
                 >
@@ -430,14 +300,13 @@ function Checkout() {
                     {...register("paymentMethod")}
                   />
 
-                  <span className={styles.paymentIconBadge}>{method.icon}</span>
-
-                  <span className={styles.paymentCopy}>
-                    <strong>{method.name}</strong>
-                    <small>{method.description}</small>
+                  <span className={styles.paymentBadge}>
+                    {method.shortName}
                   </span>
 
-                  <span className={styles.radioIndicator} />
+                  <span className={styles.paymentName}>{method.name}</span>
+
+                  <span className={styles.radioCircle} />
                 </label>
               ))}
             </div>
@@ -447,12 +316,8 @@ function Checkout() {
             )}
           </section>
 
-          <div className={styles.mobileOrderSummary}>
-            <OrderSummary
-              items={items}
-              itemCount={itemCount}
-              formattedTotal={formattedTotal}
-            />
+          <div className={styles.mobileSummary}>
+            <OrderSummary items={items} total={formattedTotal} />
           </div>
 
           <section className={styles.promise}>
@@ -461,7 +326,7 @@ function Checkout() {
             <div>
               <h2>The Mesob House Promise</h2>
               <p>
-                Each communal platter arrives with the hospitality and care of a
+                Every order is prepared with the warmth and care of a
                 traditional Mesob experience.
               </p>
             </div>
@@ -471,8 +336,7 @@ function Checkout() {
         <aside className={styles.summaryColumn}>
           <OrderSummary
             items={items}
-            itemCount={itemCount}
-            formattedTotal={formattedTotal}
+            total={formattedTotal}
             showCheckout
             isSubmitting={isSubmitting}
           />
@@ -489,6 +353,7 @@ function Checkout() {
             </span>
 
             <strong>{formattedTotal}</strong>
+
             <FiArrowRight />
           </button>
         </div>
@@ -497,7 +362,52 @@ function Checkout() {
   );
 }
 
-function Field({ label, name, register, error, type = "text", ...inputProps }) {
+function CheckoutMobileHeader({ itemCount, navigate }) {
+  return (
+    <section className={styles.mobileHeader}>
+      <button
+        type="button"
+        className={styles.backButton}
+        onClick={() => navigate(-1)}
+        aria-label="Go back"
+      >
+        <FiArrowLeft />
+      </button>
+
+      <div>
+        <p>STEP 2 OF 3</p>
+        <h1>Delivery &amp; Checkout</h1>
+      </div>
+
+      <div className={styles.headerCart}>
+        <FiShoppingBag />
+        <span>{itemCount}</span>
+      </div>
+    </section>
+  );
+}
+
+function SectionHeader({ icon, title, subtitle, iconClassName = "" }) {
+  return (
+    <div className={styles.sectionHeader}>
+      <div className={`${styles.sectionIcon} ${iconClassName}`}>{icon}</div>
+
+      <div>
+        <h2>{title}</h2>
+        <p>{subtitle}</p>
+      </div>
+    </div>
+  );
+}
+
+function FormField({
+  label,
+  name,
+  register,
+  error,
+  type = "text",
+  ...inputProps
+}) {
   return (
     <div className={styles.field}>
       <label htmlFor={name}>{label}</label>
@@ -515,10 +425,28 @@ function Field({ label, name, register, error, type = "text", ...inputProps }) {
   );
 }
 
+function ChoiceCard({ value, selected, register, name, title, description }) {
+  return (
+    <label
+      className={`${styles.choiceCard} ${
+        selected ? styles.selectedOption : ""
+      }`}
+    >
+      <input type="radio" value={value} {...register(name)} />
+
+      <div>
+        <strong>{title}</strong>
+        <span>{description}</span>
+      </div>
+
+      <span className={styles.radioCircle} />
+    </label>
+  );
+}
+
 function OrderSummary({
   items,
-  itemCount,
-  formattedTotal,
+  total,
   showCheckout = false,
   isSubmitting = false,
 }) {
@@ -540,7 +468,7 @@ function OrderSummary({
               <span>Food Image</span>
             </div>
 
-            <div className={styles.orderItemCopy}>
+            <div className={styles.orderItemInfo}>
               <strong>{item.dish.nameEn}</strong>
 
               <span>
@@ -548,7 +476,7 @@ function OrderSummary({
               </span>
             </div>
 
-            <strong>
+            <strong className={styles.itemTotal}>
               ETB {(item.dish.priceETB * item.quantity).toLocaleString()}
             </strong>
           </div>
@@ -558,12 +486,12 @@ function OrderSummary({
       <div className={styles.summaryRows}>
         <div>
           <span>Items Subtotal</span>
-          <strong>{formattedTotal}</strong>
+          <strong>{total}</strong>
         </div>
 
-        <div className={styles.summaryGrandTotal}>
+        <div className={styles.grandTotal}>
           <span>Estimated Total</span>
-          <strong>{formattedTotal}</strong>
+          <strong>{total}</strong>
         </div>
       </div>
 
@@ -578,23 +506,128 @@ function OrderSummary({
               {isSubmitting ? "Confirming..." : "Confirm Order & Pay"}
             </span>
 
-            <strong>{formattedTotal}</strong>
+            <strong>{total}</strong>
+
             <FiArrowRight />
           </button>
 
           <p className={styles.paymentDisclaimer}>
-            Payment selection is recorded as part of the checkout form. No
+            Payment selection is recorded with your checkout information. No
             online payment is processed in this version.
           </p>
         </>
       )}
-
-      {!showCheckout && (
-        <p className={styles.mobileSummaryCount}>
-          {itemCount} {itemCount === 1 ? "item" : "items"} in your order
-        </p>
-      )}
     </section>
+  );
+}
+
+function CheckoutSuccess({ order, onHome, onMenu }) {
+  const paymentMethod = getPaymentMethodName(order.customer.paymentMethod);
+
+  return (
+    <main className={styles.page}>
+      <section className={styles.successCard}>
+        <div className={styles.successIcon}>
+          <FiCheck />
+        </div>
+
+        <p className={styles.successEyebrow}>CHECKOUT COMPLETE</p>
+
+        <h1>Order Details Confirmed</h1>
+
+        <p className={styles.successText}>
+          Your checkout information has been recorded. No online payment was
+          processed.
+        </p>
+
+        <div className={styles.confirmationSummary}>
+          <ConfirmationRow label="Name" value={order.customer.fullName} />
+
+          <ConfirmationRow label="Phone" value={order.customer.phone} />
+
+          {order.customer.email && (
+            <ConfirmationRow label="Email" value={order.customer.email} />
+          )}
+
+          <ConfirmationRow
+            label="Delivery"
+            value={`${order.customer.subCity}, ${order.customer.street}`}
+          />
+
+          <ConfirmationRow label="Landmark" value={order.customer.landmark} />
+
+          <ConfirmationRow
+            label="Dispatch"
+            value={
+              order.customer.dispatchType === "immediate"
+                ? "Immediate"
+                : "Dinner"
+            }
+          />
+
+          <ConfirmationRow label="Payment Method" value={paymentMethod} />
+
+          <div className={styles.confirmationTotal}>
+            <span>Order Total</span>
+
+            <strong>ETB {order.total.toLocaleString()}</strong>
+          </div>
+        </div>
+
+        <div className={styles.successActions}>
+          <button
+            type="button"
+            className={styles.primaryAction}
+            onClick={onHome}
+          >
+            Back to Home
+            <FiArrowRight />
+          </button>
+
+          <button
+            type="button"
+            className={styles.secondaryAction}
+            onClick={onMenu}
+          >
+            View Full Menu
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function ConfirmationRow({ label, value }) {
+  return (
+    <div className={styles.confirmationRow}>
+      <span>{label}</span>
+      <strong>{value}</strong>
+    </div>
+  );
+}
+
+function EmptyCheckout({ onBrowseMenu }) {
+  return (
+    <main className={styles.page}>
+      <section className={styles.emptyCheckout}>
+        <div className={styles.emptyIcon}>
+          <FiShoppingBag />
+        </div>
+
+        <h1>Your basket is empty</h1>
+
+        <p>Add some dishes to your basket before continuing to checkout.</p>
+
+        <button
+          type="button"
+          className={styles.primaryAction}
+          onClick={onBrowseMenu}
+        >
+          Browse the Menu
+          <FiArrowRight />
+        </button>
+      </section>
+    </main>
   );
 }
 

@@ -1,12 +1,397 @@
-.mobileOrderSummary {
-  display: block;
+.page {
+  min-height: 100vh;
+  padding: 0 1rem 7rem;
+  background: #fff8f4;
 }
 
-.mobileSummaryCount {
-  margin: 0.75rem 0 0;
-  color: #8b7a72;
-  font-size: 0.65rem;
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.backButton {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: transparent;
+  color: #38261f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.backButton svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.mobileHeader > div:nth-child(2) {
+  flex: 1;
   text-align: center;
+}
+
+.mobileHeader p {
+  margin: 0;
+  color: #9a2e16;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.mobileHeader h1 {
+  margin: 0.15rem 0 0;
+  font-family: "Playfair Display", serif;
+  color: #38261f;
+  font-size: 1.1rem;
+}
+
+.headerCart {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerCart svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.headerCart span {
+  position: absolute;
+  top: -0.15rem;
+  right: -0.15rem;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.15rem;
+  border-radius: 999px;
+  background: #a92d14;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 700;
+}
+
+.desktopHeader {
+  display: none;
+}
+
+.mobileProgress {
+  margin-bottom: 1rem;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 0.25rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #efdcd5;
+}
+
+.progressFill {
+  width: 66.666%;
+  height: 100%;
+  background: #a92d14;
+}
+
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  color: #978983;
+  font-size: 0.6rem;
+}
+
+.progressLabels strong {
+  color: #8f1d0a;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formCard,
+.orderSummary,
+.promise,
+.successCard,
+.emptyCheckout {
+  background: #ffffff;
+  border-radius: 0.7rem;
+}
+
+.formCard {
+  padding: 1rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.sectionIcon {
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: #ffe0d7;
+  color: #8f1d0a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionIcon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.locationIcon {
+  background: #ffebc6;
+  color: #815600;
+}
+
+.clockIcon {
+  background: #eee9e5;
+  color: #62534b;
+}
+
+.paymentIcon {
+  background: #d9f3df;
+  color: #246f3b;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  color: #372820;
+  font-size: 0.95rem;
+}
+
+.sectionHeader p {
+  margin: 0.2rem 0 0;
+  color: #81726a;
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.fieldsGrid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.emailField {
+  display: none;
+}
+
+.fullWidthField {
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  color: #5c4940;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
+  padding: 0.7rem 0.75rem;
+  background: #fff1eb;
+  color: #38261f;
+  font: inherit;
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.field input::placeholder {
+  color: #a38f86;
+}
+
+.field input:focus {
+  border-color: #cf806b;
+  box-shadow: 0 0 0 2px rgba(169, 45, 20, 0.08);
+}
+
+.field input[aria-invalid="true"] {
+  border-color: #b9341c;
+}
+
+.fieldError,
+.formError {
+  margin: 0;
+  color: #b9341c;
+  font-size: 0.65rem;
+  line-height: 1.4;
+}
+
+.optionGrid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.choiceCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 0.45rem;
+  background: #fff1eb;
+  cursor: pointer;
+}
+
+.choiceCard input,
+.paymentOption input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choiceCard > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.choiceCard strong {
+  color: #38261f;
+  font-size: 0.76rem;
+}
+
+.choiceCard span:not(.radioCircle) {
+  color: #8c7b73;
+  font-size: 0.64rem;
+}
+
+.selectedOption {
+  border-color: #c66b53;
+  background: #ffe8df;
+}
+
+.radioCircle {
+  flex: 0 0 1rem;
+  width: 1rem;
+  height: 1rem;
+  margin-left: auto;
+  border: 1px solid #91837c;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.selectedOption .radioCircle {
+  border: 3px solid #ffffff;
+  background: #a92d14;
+  box-shadow: 0 0 0 1px #a92d14;
+}
+
+.paymentList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.paymentOption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 0.45rem;
+  background: #fff1eb;
+  cursor: pointer;
+}
+
+.paymentBadge {
+  flex: 0 0 2.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.35rem;
+  background: #f0dfd8;
+  color: #70483c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 800;
+}
+
+.selectedOption .paymentBadge {
+  background: #a92d14;
+  color: #ffffff;
+}
+
+.paymentName {
+  color: #38261f;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.promise {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.9rem;
+  background: #fff1e9;
+}
+
+.promise > svg {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.1rem;
+  color: #8a6500;
+}
+
+.promise h2 {
+  margin: 0;
+  color: #4c372e;
+  font-size: 0.78rem;
+}
+
+.promise p {
+  margin: 0.25rem 0 0;
+  color: #806f67;
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.summaryColumn {
+  display: none;
+}
+
+.mobileSummary {
+  display: block;
 }
 
 .orderSummary {
@@ -22,36 +407,36 @@
 
 .summaryHeader p {
   margin: 0;
-  color: #9c6a00;
-  font-size: 0.62rem;
+  color: #9a6a00;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 
 .summaryHeader h2 {
-  margin: 0.3rem 0 0;
+  margin: 0.25rem 0 0;
   font-family: "Playfair Display", serif;
-  font-size: 1.25rem;
   color: #38261f;
+  font-size: 1.3rem;
 }
 
 .summaryHeader a {
   color: #9a2e16;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
 }
 
 .orderItems {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.75rem;
   margin-top: 1rem;
 }
 
 .orderItem {
   display: grid;
   grid-template-columns: 3rem minmax(0, 1fr) auto;
-  gap: 0.65rem;
+  gap: 0.6rem;
   align-items: center;
 }
 
@@ -60,7 +445,7 @@
   height: 3rem;
   border-radius: 0.35rem;
   background: #eee4dc;
-  color: #7e675d;
+  color: #7d685e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,75 +453,366 @@
 }
 
 .orderImage span {
-  font-size: 0.5rem;
+  font-size: 0.48rem;
 }
 
-.orderItemCopy {
+.orderItemInfo {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.18rem;
   min-width: 0;
 }
 
-.orderItemCopy strong {
+.orderItemInfo strong {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #38261f;
-  font-size: 0.74rem;
-}
-
-.orderItemCopy span {
-  color: #8a786f;
-  font-size: 0.62rem;
-}
-
-.orderItem > strong {
-  color: #38261f;
   font-size: 0.7rem;
+}
+
+.orderItemInfo span {
+  color: #8c7a71;
+  font-size: 0.6rem;
+}
+
+.itemTotal {
+  color: #38261f;
+  font-size: 0.66rem;
   white-space: nowrap;
 }
 
 .summaryRows {
   margin-top: 1rem;
-  padding-top: 0.85rem;
+  padding-top: 0.8rem;
   border-top: 1px solid #eadbd4;
 }
 
 .summaryRows > div {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.45rem 0;
-  color: #796960;
-  font-size: 0.72rem;
+  padding: 0.4rem 0;
+  color: #796961;
+  font-size: 0.7rem;
 }
 
 .summaryRows strong {
   color: #38261f;
 }
 
-.summaryGrandTotal {
-  margin-top: 0.4rem;
-  padding: 0.8rem;
-  border-radius: 0.45rem;
+.grandTotal {
+  margin-top: 0.35rem;
+  padding: 0.75rem;
+  border-radius: 0.4rem;
   background: #fff0e8;
 }
 
-.summaryGrandTotal span {
+.grandTotal span {
   color: #38261f;
   font-family: "Playfair Display", serif;
-  font-size: 1rem;
+  font-size: 0.98rem;
 }
 
-.summaryGrandTotal strong {
+.grandTotal strong {
   color: #8f1d0a;
   font-family: "Playfair Display", serif;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+}
+
+.desktopSubmit {
+  display: none;
+}
+
+.paymentDisclaimer {
+  margin: 0.7rem 0 0;
+  color: #8b7a72;
+  font-size: 0.6rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.mobileSubmitBar {
+  position: fixed;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 4.7rem;
+  z-index: 30;
+}
+
+.mobileSubmit {
+  width: 100%;
+  min-height: 3.15rem;
+  border: 0;
+  border-radius: 0.55rem;
+  padding: 0.75rem 0.9rem;
+  background: #a92d14;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: 0 0.55rem 1.4rem rgba(73, 31, 19, 0.18);
+  cursor: pointer;
+}
+
+.mobileSubmit span {
+  flex: 1;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.mobileSubmit strong {
+  font-size: 0.82rem;
+}
+
+.mobileSubmit svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.mobileSubmit:disabled,
+.desktopSubmit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.successCard,
+.emptyCheckout {
+  max-width: 34rem;
+  margin: 2rem auto;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.successIcon,
+.emptyIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #def2e2;
+  color: #237542;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successIcon svg,
+.emptyIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.successEyebrow {
+  margin: 1rem 0 0;
+  color: #9a2e16;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.successCard h1,
+.emptyCheckout h1 {
+  margin: 0.4rem 0 0;
+  font-family: "Playfair Display", serif;
+  color: #8f1d0a;
+  font-size: 1.9rem;
+}
+
+.successText,
+.emptyCheckout p {
+  max-width: 28rem;
+  margin: 0.65rem auto 0;
+  color: #786860;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.confirmationSummary {
+  margin-top: 1.2rem;
+  padding: 0.85rem;
+  border-radius: 0.5rem;
+  background: #fff3ed;
+  text-align: left;
+}
+
+.confirmationRow,
+.confirmationTotal {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid #eadbd4;
+}
+
+.confirmationRow span,
+.confirmationTotal span {
+  color: #806f67;
+  font-size: 0.68rem;
+}
+
+.confirmationRow strong,
+.confirmationTotal strong {
+  max-width: 62%;
+  color: #38261f;
+  font-size: 0.7rem;
+  text-align: right;
+}
+
+.confirmationTotal {
+  margin-top: 0.2rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.confirmationTotal strong {
+  color: #8f1d0a;
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+}
+
+.successActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  min-height: 2.75rem;
+  border-radius: 0.45rem;
+  padding: 0.7rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primaryAction {
+  border: 0;
+  background: #a92d14;
+  color: #ffffff;
+}
+
+.secondaryAction {
+  border: 1px solid #d9c3ba;
+  background: #ffffff;
+  color: #6b4f44;
+}
+
+.emptyCheckout .primaryAction {
+  margin-top: 1.2rem;
 }
 
 @media (min-width: 768px) {
-  .mobileOrderSummary {
+  .page {
+    padding: 0 4.5% 3rem;
+  }
+
+  .mobileHeader,
+  .mobileProgress,
+  .mobileSubmitBar {
+    display: none;
+  }
+
+  .desktopHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.5rem 0;
+  }
+
+  .eyebrow {
+    margin: 0;
+    color: #9a6500;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .desktopHeader h1 {
+    margin: 0.3rem 0 0;
+    font-family: "Playfair Display", serif;
+    color: #8f1d0a;
+    font-size: clamp(2.1rem, 4vw, 3rem);
+  }
+
+  .desktopProgress {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #988a82;
+    font-size: 0.68rem;
+  }
+
+  .desktopProgress > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .desktopProgress strong {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    background: #eee4df;
+    color: #7e6d65;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+  }
+
+  .desktopProgress .completedStep,
+  .desktopProgress .activeStep {
+    color: #8f1d0a;
+    font-weight: 700;
+  }
+
+  .desktopProgress .completedStep strong {
+    background: #267544;
+    color: #ffffff;
+  }
+
+  .desktopProgress .activeStep strong {
+    background: #a92d14;
+    color: #ffffff;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(22rem, 0.75fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .formCard {
+    padding: 1.25rem;
+  }
+
+  .fieldsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .emailField,
+  .fullWidthField {
+    display: block;
+    grid-column: 1 / -1;
+  }
+
+  .optionGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mobileSummary {
     display: none;
   }
 
@@ -148,13 +824,11 @@
     position: sticky;
     top: 1.5rem;
     padding: 1.25rem;
-    border-radius: 0.7rem;
-    background: #ffffff;
-    box-shadow: 0 0.5rem 1.25rem rgba(71, 46, 34, 0.08);
+    box-shadow: 0 0.45rem 1.2rem rgba(71, 46, 34, 0.08);
   }
 
   .summaryHeader h2 {
-    font-size: 1.55rem;
+    font-size: 1.5rem;
   }
 
   .orderItem {
@@ -166,7 +840,51 @@
     height: 3.25rem;
   }
 
-  .summaryRows > div {
+  .orderItemInfo strong {
     font-size: 0.74rem;
+  }
+
+  .itemTotal {
+    font-size: 0.72rem;
+  }
+
+  .desktopSubmit {
+    width: 100%;
+    margin-top: 1rem;
+    min-height: 2.9rem;
+    border: 0;
+    border-radius: 0.45rem;
+    padding: 0.75rem 0.9rem;
+    background: #a92d14;
+    color: #ffffff;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+  }
+
+  .desktopSubmit span {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .desktopSubmit strong {
+    font-size: 0.72rem;
+  }
+
+  .desktopSubmit svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+
+  .paymentDisclaimer {
+    font-size: 0.62rem;
+  }
+
+  .successCard,
+  .emptyCheckout {
+    margin-top: 3rem;
   }
 }
