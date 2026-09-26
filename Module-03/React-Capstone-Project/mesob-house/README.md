@@ -1,16 +1,109 @@
-# React + Vite
+# Mesob House
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Mesob House is a responsive Ethiopian dining and food-ordering website built with React and Vite.
 
-Currently, two official plugins are available:
+The project is based on the provided Figma designs and uses the provided Addis Eats menu API as the source of truth for food data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Mesob House allows users to:
 
-## Expanding the Oxlint configuration
+- Explore Today's Specials.
+- Browse the full menu by category.
+- Search dishes by English or Amharic name.
+- View individual dish details.
+- Add dishes to a shared shopping cart.
+- Update quantities and remove cart items.
+- Create a local account.
+- Sign in with the local account.
+- Continue browsing as a guest.
+- Proceed through a protected checkout flow.
+- Submit delivery and payment selections through client-side validation.
+- Receive a checkout confirmation.
+- Navigate through responsive mobile and desktop layouts.
+- Receive a dedicated 404 page for unknown routes.
+- Recover from rendering errors through a React Error Boundary.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+---
+
+## Tech Stack
+
+- React
+- Vite
+- React Router
+- Zustand
+- React Hook Form
+- Zod
+- React Icons
+- CSS Modules
+- JavaScript (ES Modules)
+
+---
+
+## React Concepts Used
+
+The project applies the React concepts covered throughout the course, including:
+
+### Core React
+
+- Components
+- JSX
+- Props
+- Conditional rendering
+- Lists and keys
+- `useState`
+- `useEffect`
+- `useRef`
+- Custom component composition
+
+### Routing
+
+- React Router
+- Nested layouts
+- Dynamic dish routes
+- Catch-all 404 route
+- Protected routes
+- Redirecting unauthenticated users
+- Returning users to their intended destination after authentication
+
+### Forms
+
+- Controlled form workflows
+- React Hook Form
+- Zod schemas
+- Client-side validation
+- Validation messages
+- Form submission states
+
+### State Management
+
+Zustand is used for shared application state.
+
+The project currently uses Zustand for:
+
+- Shopping cart state
+- Authentication/session state
+
+The shopping cart remains available across different pages because it is maintained in a shared store.
+
+### Error Handling
+
+The project includes React Error Boundaries for rendering failures.
+
+A fallback interface is displayed when a React component tree crashes instead of leaving the page unusable.
+
+### Code Splitting
+
+Page-level components are loaded with `React.lazy()`.
+
+`Suspense` provides a loading state while the requested page chunk is loading.
+
+This creates route-level code splitting instead of loading every page component into the initial JavaScript bundle.
+
+---
+
+## Acknowledgments & Credits
+
+This project was developed as part of the Full Stack Software Development Curriculum at IBT College under Module 3 (Frontend: React and Next.js).
