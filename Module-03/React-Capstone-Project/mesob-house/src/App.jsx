@@ -1,14 +1,25 @@
+import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import MainLayout from "./layouts/MainLayout";
-import Cart from "./pages/Cart/Cart";
-import Checkout from "./pages/Checkout/Checkout";
-import DishDetail from "./pages/DishDetail";
-import FullMenu from "./pages/FullMenu/FullMenu";
-import GuestLogin from "./pages/GuestLogin/GuestLogin";
-import JoinRegister from "./pages/JoinRegister/JoinRegister";
-import NotFound from "./pages/NotFound/NotFound";
-import TodaysSpecials from "./pages/TodaysSpecials/TodaysSpecials";
+
+const TodaysSpecials = lazy(
+  () => import("./pages/TodaysSpecials/TodaysSpecials"),
+);
+
+const FullMenu = lazy(() => import("./pages/FullMenu/FullMenu"));
+
+const Cart = lazy(() => import("./pages/Cart/Cart"));
+
+const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
+
+const JoinRegister = lazy(() => import("./pages/JoinRegister/JoinRegister"));
+
+const DishDetail = lazy(() => import("./pages/DishDetail"));
+
+const GuestLogin = lazy(() => import("./pages/GuestLogin/GuestLogin"));
+
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 
 function App() {
   return (
