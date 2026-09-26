@@ -8,17 +8,25 @@ import {
   FiPhone,
   FiUserPlus,
 } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import loginSchema from "../../schemas/loginSchema";
+import useAuthStore from "../../store/authStore";
 import styles from "./GuestLogin.module.css";
 
 function GuestLogin() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const signIn = useAuthStore((state) => state.signIn);
 
   const [showPassword, setShowPassword] = useState(false);
   const [loginConfirmation, setLoginConfirmation] = useState(null);
+  const [authError, setAuthError] = useState("");
+
+  const returnTo = location.state?.from?.pathname
+    ? `${location.state.from.pathname}${location.state.from.search ?? ""}${location.state.from.hash ?? ""}`
+    : "/";
 
   const {
     register,
@@ -40,9 +48,26 @@ function GuestLogin() {
   const loginMethod = watch("loginMethod");
 
   function handleLoginSubmit(data) {
+    setAuthError("");
+
+    const result = signIn({
+      loginMethod: data.loginMethod,
+      identifier: data.loginMethod === "phone" ? data.phone : data.email,
+    });
+
+    if (!result.success) {
+      setAuthError(
+        result.reason === "NO_ACCOUNT"
+          ? "No local Mesob House account was found in this browser. Please register first."
+          : "The entered identifier does not match the local account saved in this browser.",
+      );
+      return;
+    }
+
     setLoginConfirmation({
       loginMethod: data.loginMethod,
       identifier: data.loginMethod === "phone" ? data.phone : data.email,
+      fullName: result.account.fullName,
     });
 
     window.scrollTo({
@@ -66,8 +91,9 @@ function GuestLogin() {
           <h1>Welcome Back to Mesob House</h1>
 
           <p className={styles.confirmationText}>
-            Your sign-in information passed validation. Real authentication is
-            not connected in this version.
+            Welcome back, {loginConfirmation.fullName}. Your local session is
+            active. This demo does not connect to a server or verify passwords
+            against a backend.
           </p>
 
           <div className={styles.confirmationDetails}>
@@ -90,9 +116,9 @@ function GuestLogin() {
           <button
             type="button"
             className={styles.primaryButton}
-            onClick={() => navigate("/")}
+            onClick={() => navigate(returnTo, { replace: true })}
           >
-            Continue to Home
+            {returnTo === "/" ? "Continue to Home" : "Continue to Checkout"}
             <FiArrowRight />
           </button>
         </section>
@@ -123,6 +149,12 @@ function GuestLogin() {
           Continue your Mesob House dining experience.
         </p>
 
+        {authError && (
+          <p className={styles.fieldError} role="alert">
+            {authError}
+          </p>
+        )}
+
         <div
           className={styles.methodSelector}
           role="tablist"
@@ -132,7 +164,7 @@ function GuestLogin() {
             type="button"
             className={
               loginMethod === "phone"
-                ? styles.activeMethod
+                ? styles.methodButtonActive
                 : styles.methodButton
             }
             onClick={() =>
@@ -149,7 +181,7 @@ function GuestLogin() {
             type="button"
             className={
               loginMethod === "email"
-                ? styles.activeMethod
+                ? styles.methodButtonActive
                 : styles.methodButton
             }
             onClick={() =>
@@ -271,7 +303,9 @@ function GuestLogin() {
 
           <span>
             New to our dining family?{" "}
-            <Link to="/account">Create an account</Link>
+            <Link to="/account" state={{ from: location.state?.from }}>
+              Create an account
+            </Link>
           </span>
         </div>
       </section>

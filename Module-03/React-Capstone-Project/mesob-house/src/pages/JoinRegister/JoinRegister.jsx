@@ -7,9 +7,10 @@ import {
   FiStar,
   FiUser,
 } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import useAuthStore from "../../store/authStore";
 import registerSchema from "../../schemas/registerSchema";
 import styles from "./JoinRegister.module.css";
 
@@ -24,7 +25,13 @@ const defaultValues = {
 
 function JoinRegister() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const registerUser = useAuthStore((state) => state.registerUser);
   const [registration, setRegistration] = useState(null);
+
+  const returnTo = location.state?.from?.pathname
+    ? `${location.state.from.pathname}${location.state.from.search ?? ""}${location.state.from.hash ?? ""}`
+    : "/";
 
   const {
     register,
@@ -37,6 +44,12 @@ function JoinRegister() {
   });
 
   function handleRegisterSubmit(data) {
+    registerUser({
+      fullName: data.fullName,
+      phone: data.phone,
+      email: data.email,
+    });
+
     setRegistration({
       fullName: data.fullName,
       phone: data.phone,
@@ -64,9 +77,8 @@ function JoinRegister() {
           <h1>Welcome to Mesob House</h1>
 
           <p className={styles.successText}>
-            Your registration information passed validation. No account was
-            created on a server because this version does not yet have an
-            account API.
+            Your local Mesob House profile is ready on this browser and you are
+            now signed in.
           </p>
 
           <div className={styles.confirmationCard}>
@@ -81,18 +93,18 @@ function JoinRegister() {
             <button
               type="button"
               className={styles.primaryButton}
-              onClick={() => navigate("/")}
+              onClick={() => navigate(returnTo)}
             >
-              Go to Home
+              {returnTo === "/" ? "Continue to Home" : "Continue to Checkout"}
               <FiArrowRight />
             </button>
 
             <button
               type="button"
               className={styles.secondaryButton}
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/menu")}
             >
-              Go to Sign In
+              Browse Full Menu
             </button>
           </div>
         </section>
@@ -287,7 +299,9 @@ function JoinRegister() {
 
           <p className={styles.signInPrompt}>
             Already part of our dining family?{" "}
-            <Link to="/login">Sign in here</Link>
+            <Link to="/login" state={{ from: location.state?.from }}>
+              Sign in here
+            </Link>
           </p>
         </section>
       </section>

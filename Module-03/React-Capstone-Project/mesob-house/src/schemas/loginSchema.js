@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const ethiopianPhoneRegex = /^(?:\+251|251|0)(?:9|7)\d{8}$/;
+const ethiopianPhoneRegex = /^(?:(?:\+251|251|0)(?:9|7)\d{8}|(?:9|7)\d{8})$/;
 
 const loginSchema = z
   .object({

@@ -63,8 +63,11 @@
 }
 
 .cartSummary,
-.accountLink {
-  display: flex;
+.authLink,
+.authLinkPrimary,
+.welcomeMessage,
+.signOutButton {
+  display: inline-flex;
   align-items: center;
   gap: 0.35rem;
 }
@@ -84,7 +87,10 @@
 }
 
 .cartSummary svg,
-.accountLink svg {
+.authLink svg,
+.authLinkPrimary svg,
+.welcomeMessage svg,
+.signOutButton svg {
   width: 1.05rem;
   height: 1.05rem;
 }
@@ -107,10 +113,49 @@
   line-height: 1;
 }
 
-.accountLink {
+.authLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.authLink,
+.authLinkPrimary,
+.welcomeMessage,
+.signOutButton {
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.authLink {
+  padding: 0.45rem 0.55rem;
   color: #6f625c;
-  font-size: 0.7rem;
-  font-weight: 600;
+}
+
+.authLinkPrimary {
+  padding: 0.48rem 0.7rem;
+  border-radius: 0.4rem;
+  background: #f4e8df;
+  color: #8e240f;
+}
+
+.welcomeGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.welcomeMessage {
+  color: #6f625c;
+  white-space: nowrap;
+}
+
+.signOutButton {
+  border: 0;
+  padding: 0.42rem 0.55rem;
+  background: transparent;
+  color: #8e240f;
+  cursor: pointer;
 }
 
 .mobileDetailHeader {
@@ -179,6 +224,11 @@
   }
 
   .observationBar {
+    display: none;
+  }
+
+  .authLinks,
+  .welcomeGroup {
     display: none;
   }
 

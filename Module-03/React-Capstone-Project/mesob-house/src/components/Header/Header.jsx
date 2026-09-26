@@ -1,5 +1,13 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { FiChevronLeft, FiShoppingBag, FiUser } from "react-icons/fi";
+import {
+  FiChevronLeft,
+  FiLogIn,
+  FiLogOut,
+  FiShoppingBag,
+  FiUser,
+  FiUserPlus,
+} from "react-icons/fi";
+import useAuthStore from "../../store/authStore";
 import useCartStore from "../../store/cartStore";
 import styles from "./Header.module.css";
 
@@ -7,10 +15,6 @@ const navigationItems = [
   {
     label: "Menu",
     path: "/menu",
-  },
-  {
-    label: "Featured Dish",
-    path: "/featured-dish",
   },
   {
     label: "Order & Cart",
@@ -30,7 +34,16 @@ function Header() {
 
   const items = useCartStore((state) => state.items);
 
+  const account = useAuthStore((state) => state.account);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const signOut = useAuthStore((state) => state.signOut);
+
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
+
+  function handleSignOut() {
+    signOut();
+    navigate("/");
+  }
 
   return (
     <header className={styles.header}>
@@ -82,14 +95,35 @@ function Header() {
             <span>Cart</span>
           </NavLink>
 
-          <NavLink
-            to="/account"
-            className={styles.accountLink}
-            aria-label="Account"
-          >
-            <FiUser aria-hidden="true" />
-            <span>Account</span>
-          </NavLink>
+          {isAuthenticated ? (
+            <div className={styles.welcomeGroup}>
+              <span className={styles.welcomeMessage}>
+                <FiUser aria-hidden="true" />
+                Welcome {account?.fullName || "Guest"}
+              </span>
+
+              <button
+                type="button"
+                className={styles.signOutButton}
+                onClick={handleSignOut}
+              >
+                <FiLogOut aria-hidden="true" />
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <div className={styles.authLinks}>
+              <NavLink to="/login" className={styles.authLink}>
+                <FiLogIn aria-hidden="true" />
+                Sign In
+              </NavLink>
+
+              <NavLink to="/account" className={styles.authLinkPrimary}>
+                <FiUserPlus aria-hidden="true" />
+                Register
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
 
