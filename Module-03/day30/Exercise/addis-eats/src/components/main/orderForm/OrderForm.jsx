@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../../../contexts/CartContextProvider";
 
-function OrderForm({ total }) {
+function OrderForm() {
+  const { items, dispatch } = useContext(CartContext);
   const [form, setForm] = useState({
     name: "",
     phone: "",
     area: "Bole",
   });
 
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
   const isValid = /^(?:\+251|0)9\d{8}$/.test(form.phone);
 
   function handleChange(e) {
@@ -17,6 +23,14 @@ function OrderForm({ total }) {
   function handleSubmit(e) {
     e.preventDefault();
     alert(`Order submitted for ${form.name}. Total: ${total} ETB`);
+
+    setForm({
+      name: "",
+      phone: "",
+      area: "Bole",
+    });
+
+    dispatch({ type: "clear" });
   }
 
   return (

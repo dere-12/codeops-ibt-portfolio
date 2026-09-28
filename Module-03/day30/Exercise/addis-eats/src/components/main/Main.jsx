@@ -1,15 +1,12 @@
 import Menu from "./menu/Menu";
 import Sidebar from "./sidebar/Sidebar";
 import "./Main.css";
-import { CartProvider } from "./cart/CartProvider";
 
 function Main() {
   return (
     <div className="main">
+      <Menu />
       <Sidebar />
-      <CartProvider>
-        <Menu />
-      </CartProvider>
     </div>
   );
 }

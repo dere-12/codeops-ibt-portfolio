@@ -1,12 +1,11 @@
 import "./Dish.css";
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../../../contexts/CartContextProvider";
 
-function Dish({ dish, onAddToCart}) {
-  const [count, setCount] = useState(0)
-
+function Dish({ dish }) {
+  const { dispatch } = useContext(CartContext);
   function handleAdd() {
-    setCount(count + 1);
-    onAddToCart(dish.price);
+    dispatch({ type: "add", dish: dish });
   }
 
   return (
@@ -14,12 +13,10 @@ function Dish({ dish, onAddToCart}) {
       <div className="img-cont">
         <img src={dish.image} alt={dish.name} />
       </div>
-      <div className="spicy">
-        {dish.spicy && <span>🌶️ spicy</span>}
-      </div>
+      <div className="spicy">{dish.spicy && <span>🌶️ spicy</span>}</div>
       <p>{dish.name}</p>
       <p>{dish.price}</p>
-      <button onClick={handleAdd}>Add ({count})</button>
+      <button onClick={handleAdd}>Add</button>
     </div>
   );
 }

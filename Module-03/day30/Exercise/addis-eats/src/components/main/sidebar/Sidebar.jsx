@@ -1,10 +1,11 @@
 import "./Sidebar.css";
+import CheckoutPanel from "../CheckoutPanel/CheckoutPanel";
 
 function Sidebar() {
   return (
-    <div className="sidebar">
-      <p>Sidebar</p>
-    </div>
+    <aside className="sidebar">
+      <CheckoutPanel />
+    </aside>
   );
 }
 
