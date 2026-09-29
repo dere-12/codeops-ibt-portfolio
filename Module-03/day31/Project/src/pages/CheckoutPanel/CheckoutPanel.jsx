@@ -1,5 +1,5 @@
 import CartItems from "../Cart/CartItems";
-import OrderForm from "../OrderForm/OrderForm";
+import OrderForm from "../../components/OrderForm/OrderForm";
 import styles from "./checkoutPanel.module.css";
 
 function CheckoutPanel() {

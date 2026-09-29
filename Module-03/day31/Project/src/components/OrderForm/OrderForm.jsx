@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import styles from "./orderForm.module.css";
-import { CartContext } from "../../../contexts/CartContext/CartContextProvider";
+import { CartContext } from "../../contexts/CartContext/CartContextProvider";
 
 function OrderForm() {
   const { total, dispatch } = useContext(CartContext);
