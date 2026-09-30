@@ -1,14 +1,16 @@
-import CartItems from "../Cart/CartItems";
+import CartItems from "../CartItems/CartItems";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import styles from "./checkoutPanel.module.css";
 
 function CheckoutPanel() {
   return (
-    <aside>
-      <h3 className={styles.orderTitle}>Your Order Details</h3>
-      <CartItems />
-      <OrderForm />
-    </aside>
+    <div className={styles.checkoutCont}>
+      <div className={styles.contents}>
+        <h3 className={styles.orderTitle}>Your Order Details</h3>
+        <CartItems />
+        <OrderForm />
+      </div>
+    </div>
   );
 }
 

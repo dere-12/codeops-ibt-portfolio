@@ -17,8 +17,7 @@
   border: none;
   border-radius: 2px;
   font-size: 12px;
-  padding: 6px 8px;
-  width: 100%;
+  padding: 6px 1rem;
   transition: background 0.3s;
 }
 
@@ -30,4 +29,22 @@
 .price {
   margin-top: 8px;
   font-family: monospace;
+}
+
+.cardBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewDetail a {
+  text-decoration: none;
+  color: black;
+}
+
+.viewDetail {
+  background-color: #e4e3e3;
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 6px 1rem;
 }

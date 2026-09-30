@@ -1,7 +1,7 @@
 import styles from "./header.module.css";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext/CartContextProvider";
-import Navbar from "../NavBar/NavBar";
+import Navbar from "../Navbar/Navbar";
 
 function Header() {
   const { items } = useContext(CartContext);

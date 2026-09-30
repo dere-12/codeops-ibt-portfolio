@@ -1,5 +1,18 @@
-.cartItem {
+.cartDishesList {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.contents {
+  width: 500px;
+}
+
+.cartItem {
+  /* width: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +53,7 @@
 }
 
 .summary {
-  width: 100%;
+  width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,4 +73,10 @@
 
 .summary button:hover {
   background-color: #079292;
+}
+
+.proceed a {
+  margin-top: 1.8rem;
+  color: black;
+  font-weight: bold;
 }

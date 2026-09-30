@@ -22,11 +22,11 @@ function Dish({ dish, currency = "ETB" }) {
           {dish.price} {currency}
         </p>
       </div>
-      <div>
+      <div className={styles.cardBottom}>
         <div className={styles.addToCart}>
           <button onClick={handleAddToCart}>Add To Cart</button>
         </div>
-        <div>
+        <div className={styles.viewDetail}>
           <Link to={`/menu/${dish.id}`}>View Details</Link>
         </div>
       </div>

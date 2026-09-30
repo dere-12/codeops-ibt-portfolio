@@ -1,8 +1,29 @@
+import { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext/AuthContext";
+import styles from "./Login.module.css";
+
 function Login() {
+  const { login } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname ?? "/menu";
+
+  async function handleLogin() {
+    await login("0912345678");
+
+    navigate(from, {
+      replace: true,
+    });
+  }
+
   return (
-    <section>
+    <section className={styles.loginCon}>
       <h2>Login</h2>
-      <p>Login form will be added in Phase 2.</p>
+
+      <p>You need to sign in before checkout.</p>
+
+      <button onClick={handleLogin}>Sign In</button>
     </section>
   );
 }

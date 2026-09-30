@@ -1,9 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 function Navbar() {
   return (
-    <nav>
-      <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+    <nav className={styles.navCon}>
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? styles.active : "")}
+      >
         Home
       </NavLink>
 
@@ -11,7 +15,7 @@ function Navbar() {
 
       <NavLink
         to="/menu"
-        className={({ isActive }) => (isActive ? "active" : "")}
+        className={({ isActive }) => (isActive ? styles.active : "")}
       >
         Menu
       </NavLink>
@@ -20,7 +24,7 @@ function Navbar() {
 
       <NavLink
         to="/cart"
-        className={({ isActive }) => (isActive ? "active" : "")}
+        className={({ isActive }) => (isActive ? styles.active : "")}
       >
         Cart
       </NavLink>
@@ -29,7 +33,7 @@ function Navbar() {
 
       <NavLink
         to="/checkout"
-        className={({ isActive }) => (isActive ? "active" : "")}
+        className={({ isActive }) => (isActive ? styles.active : "")}
       >
         Checkout
       </NavLink>

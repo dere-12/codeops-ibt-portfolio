@@ -1,13 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import styles from "./menu.module.css";
 import Dish from "../../components/Dish/Dish";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
-import CheckoutPanel from "../CheckoutPanel/CheckoutPanel";
 
 function Menu() {
-  // const [category, setCategory] = useState("All");
   const [searchParams, setSearchParams] = useSearchParams();
   const { dishes, loading, error } = useFetch("/public/data/dishes.json");
   const searchInputRef = useRef(null);
@@ -48,7 +46,7 @@ function Menu() {
   }
 
   return (
-    <main className={styles.mainContainer}>
+    <div className={styles.mainContainer}>
       <section className={styles.searchInputContainer}>
         <input ref={searchInputRef} type="text" placeholder="Search Dishes" />
       </section>
@@ -60,10 +58,7 @@ function Menu() {
           return <Dish key={dish.id} dish={{ ...dish }} />;
         })}
       </section>
-      <section className={styles.checkoutContainer}>
-        <CheckoutPanel />
-      </section>
-    </main>
+    </div>
   );
 }
 

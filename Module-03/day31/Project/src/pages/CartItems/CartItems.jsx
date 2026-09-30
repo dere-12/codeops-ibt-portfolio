@@ -1,9 +1,11 @@
 import { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext/CartContextProvider";
 import styles from "./cartItems.module.css";
 
 function CartItems() {
   const { items, dispatch, total } = useContext(CartContext);
+  const location = useLocation();
 
   function handleRemove(id) {
     dispatch({ type: "remove", id: id });
@@ -14,8 +16,8 @@ function CartItems() {
   }
 
   return (
-    <div>
-      <div className={styles.cartDishesList}>
+    <div className={styles.cartDishesList}>
+      <div className={styles.contents}>
         {items.length === 0 ? (
           <p className={styles.emptyCart}>Your cart is empty.</p>
         ) : (
@@ -38,6 +40,11 @@ function CartItems() {
         <p>Total: {total} ETB.</p>
         <button onClick={handleClear}>Clear Cart</button>
       </div>
+      {location.pathname === "/cart" && (
+        <div className={styles.proceed}>
+          <Link to="/checkout">Proceed to Checkout</Link>
+        </div>
+      )}
     </div>
   );
 }
