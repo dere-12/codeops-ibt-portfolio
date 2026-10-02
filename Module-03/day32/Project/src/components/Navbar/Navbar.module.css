@@ -1,0 +1,14 @@
+.navCon {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.navCon a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.navCon a.active {
+  font-weight: bold;
+}

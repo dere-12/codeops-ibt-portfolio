@@ -1,0 +1,30 @@
+.mainContainer {
+  padding: 2rem;
+}
+
+.searchInputContainer {
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.searchInputContainer input {
+  border: 2px solid #d5fbfb;
+  padding: 6px 4px;
+  width: 400px;
+  border-radius: 4px;
+}
+
+.searchInputContainer input:focus {
+  outline-color: #1dfafe;
+}
+
+.dishContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 6px;
+  gap: 6px;
+}
+
+.categoryBtns {
+  grid-column: 1 / 5;
+}

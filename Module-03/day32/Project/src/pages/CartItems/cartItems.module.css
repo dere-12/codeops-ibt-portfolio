@@ -1,0 +1,82 @@
+.cartDishesList {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.contents {
+  width: 500px;
+}
+
+.cartItem {
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  padding: 4px;
+  border-bottom: 2px solid #c4f9f9;
+}
+
+.cartItem span {
+  font-weight: bold;
+}
+
+.cartItem p {
+  font-size: 13px;
+  font-family: monospace;
+}
+
+.emptyCart {
+  text-align: center;
+}
+
+.cartItem button {
+  border: none;
+  border-radius: 2px;
+  padding: 6px 10px;
+  font-size: 10px;
+  background-color: #f95f5f;
+  color: #eedfdf;
+  transition:
+    background,
+    color 0.3s;
+}
+
+.cartItem button:hover {
+  background-color: #fe0000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.summary {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.summary button {
+  border: none;
+  padding: 6px 12px;
+  background-color: #09caca;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.summary button:hover {
+  background-color: #079292;
+}
+
+.proceed a {
+  margin-top: 1.8rem;
+  color: black;
+  font-weight: bold;
+}

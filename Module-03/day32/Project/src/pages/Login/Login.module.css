@@ -1,0 +1,18 @@
+.loginCon {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.loginCon button {
+  margin-top: 1.8rem;
+  padding: 6px 1rem;
+  border: none;
+  font-size: 1.2rem;
+  background-color: #72feac;
+  cursor: pointer;
+  border-radius: 2px;
+}
