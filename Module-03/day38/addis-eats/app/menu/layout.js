@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const categories = [
   "Traditional Stews & Wat",
   "Tibs & Grills",
@@ -21,13 +19,6 @@ export default function MenuLayout({ children }) {
             </li>
           ))}
         </ul>
-
-        <Link
-          href="/menu"
-          className="mt-6 inline-block font-medium text-blue-600 hover:underline"
-        >
-          View All Dishes
-        </Link>
       </aside>
 
       <section>{children}</section>

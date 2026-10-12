@@ -31,10 +31,6 @@ export default function FilterShell({ children }) {
         ))}
       </div>
 
-      <p className="mb-4 text-sm text-gray-500">
-        Selected category: {selected}
-      </p>
-
       {children}
     </div>
   );

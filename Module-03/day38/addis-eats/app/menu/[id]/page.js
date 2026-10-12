@@ -12,9 +12,7 @@ export async function generateStaticParams() {
 
 export default async function DishPage({ params }) {
   const { id } = await params;
-
   const dishes = await getDishes();
-
   const dish = dishes.find((item) => item.slug === id);
 
   if (!dish) {
@@ -23,10 +21,7 @@ export default async function DishPage({ params }) {
 
   return (
     <article className="mx-auto w-[90%] max-w-4xl py-10">
-      <Link
-        href="/menu"
-        className="text-sm text-blue-600 hover:underline"
-      >
+      <Link href="/menu" className="text-sm text-blue-600 hover:underline">
         ← Back to Menu
       </Link>
 
@@ -35,9 +30,7 @@ export default async function DishPage({ params }) {
           <div>
             <h1 className="text-3xl font-bold">{dish.nameEn}</h1>
 
-            <p className="mt-1 text-lg text-gray-500">
-              {dish.nameAm}
-            </p>
+            <p className="mt-1 text-lg text-gray-500">{dish.nameAm}</p>
           </div>
 
           {dish.isSpecial && (

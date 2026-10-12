@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function DishList({ dishes }) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -25,6 +27,13 @@ export default function DishList({ dishes }) {
 
             <span className="text-xs text-gray-500">{dish.category}</span>
           </div>
+
+          <Link
+            href={`/menu/${dish.slug}`}
+            className="inline-block rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
+          >
+            View detail
+          </Link>
         </article>
       ))}
     </div>

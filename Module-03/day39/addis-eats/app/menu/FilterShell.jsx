@@ -10,12 +10,12 @@ const categories = [
   "Beverages & Tej",
 ];
 
-export default function CategoryBar() {
+export default function FilterShell({ children }) {
   const [selected, setSelected] = useState("All");
 
   return (
-    <div className="mb-6">
-      <div className="flex flex-wrap gap-2">
+    <div>
+      <div className="mb-6 flex flex-wrap gap-2">
         {categories.map((category) => (
           <button
             key={category}
@@ -31,7 +31,7 @@ export default function CategoryBar() {
         ))}
       </div>
 
-      <p className="mt-3 text-sm text-gray-600">Selected: {selected}</p>
+      {children}
     </div>
   );
 }
