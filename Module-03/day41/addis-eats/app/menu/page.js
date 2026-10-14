@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import FilterShell from "./FilterShell";
-import DishList from "./DishList";
+import SearchBox from "./SearchBox";
 import { getDishes } from "@/lib/menu";
 
 export const revalidate = 3600;
@@ -18,14 +18,20 @@ function DishSkeleton() {
   );
 }
 
-export default async function MenuPage() {
+async function MenuContent() {
   const dishes = await getDishes();
 
   return (
+    <FilterShell>
+      <SearchBox initialData={dishes} />
+    </FilterShell>
+  );
+}
+
+export default function MenuPage() {
+  return (
     <Suspense fallback={<DishSkeleton />}>
-      <FilterShell>
-        <DishList dishes={dishes} />
-      </FilterShell>
+      <MenuContent />
     </Suspense>
   );
 }
