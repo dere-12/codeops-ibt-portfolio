@@ -34,11 +34,11 @@ export default function OrderStatus({ id, initial }) {
         <p className="mt-3 text-sm text-gray-500">Checking for updates...</p>
       )}
 
-      {error && (
+      {/* {error && (
         <p className="mt-3 text-sm text-amber-700">
           Could not refresh the status. Showing the last available data.
         </p>
-      )}
+      )} */}
     </section>
   );
 }
