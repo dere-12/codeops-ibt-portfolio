@@ -1,19 +1,17 @@
-import bcrypt from "bcryptjs";
-
 const users = [
   {
     id: "user_customer_1",
     name: "Abel Dawit",
     email: process.env.DEMO_CUSTOMER_EMAIL,
     role: "customer",
-    passwordHash: process.env.DEMO_CUSTOMER_PASSWORD_HASH,
+    password: process.env.DEMO_CUSTOMER_PASSWORD,
   },
   {
     id: "user_staff_1",
     name: "Kitchen Staff",
     email: process.env.DEMO_STAFF_EMAIL,
     role: "staff",
-    passwordHash: process.env.DEMO_STAFF_PASSWORD_HASH,
+    password: process.env.DEMO_STAFF_PASSWORD,
   },
 ];
 
@@ -26,14 +24,11 @@ export async function authenticateUser(email, password) {
     (item) => item.email?.toLowerCase() === normalizedEmail,
   );
 
-  if (!user || !user.passwordHash) {
+  if (!user || !user.password) {
     return null;
   }
 
-  const passwordIsValid = await bcrypt.compare(
-    String(password ?? ""),
-    user.passwordHash,
-  );
+  const passwordIsValid = user.password === String(password ?? "");
 
   if (!passwordIsValid) {
     return null;
