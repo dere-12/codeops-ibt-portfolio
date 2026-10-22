@@ -1,11 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { useCartStore } from "@/lib/cart-store";
 
 export default function DishList({ dishes }) {
+  const addItem = useCartStore((state) => state.addItem);
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {dishes.map((dish) => (
         <article
-          key={dish.id}
+          key={dish.slug}
           className="rounded-lg border bg-white p-5 shadow-sm"
         >
           <div className="mb-3 flex items-start justify-between gap-3">
@@ -28,12 +33,22 @@ export default function DishList({ dishes }) {
             <span className="text-xs text-gray-500">{dish.category}</span>
           </div>
 
-          <Link
-            href={`/menu/${dish.slug}`}
-            className="inline-block rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
-          >
-            View detail
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={`/menu/${dish.slug}`}
+              className="rounded-md border px-4 py-2 text-sm font-medium hover:bg-gray-100"
+            >
+              View detail
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => addItem(dish)}
+              className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
+            >
+              Add to Cart
+            </button>
+          </div>
         </article>
       ))}
     </div>

@@ -23,46 +23,89 @@ export default async function OrdersPage() {
       <p className="mt-2 text-gray-600">Orders belonging to {user.name}.</p>
 
       {orders.length === 0 ? (
-        <p className="mt-6">You haven't placed any orders yet.</p>
+        <div className="mt-6">
+          <p>You haven't placed any orders yet.</p>
+
+          <Link
+            href="/menu"
+            className="mt-4 inline-block text-blue-600 hover:underline"
+          >
+            Browse Menu
+          </Link>
+        </div>
       ) : (
         <div className="mt-6 space-y-4">
-          {orders.map((order) => (
-            <article key={order.id} className="rounded-lg border p-5">
-              <p>
-                <span className="font-semibold">Order ID:</span> {order.id}
-              </p>
+          {orders.map((order) => {
+            const subtotal = (order.items ?? []).reduce(
+              (total, item) => total + item.priceETB * item.quantity,
+              0,
+            );
 
-              <p className="mt-1">
-                <span className="font-semibold">Status:</span> {order.status}
-              </p>
+            return (
+              <article key={order.id} className="rounded-lg border p-5">
+                <p>
+                  <span className="font-semibold">Order ID:</span> {order.id}
+                </p>
 
-              <p className="mt-1">
-                <span className="font-semibold">Quantity:</span>{" "}
-                {order.quantity}
-              </p>
+                <p className="mt-1">
+                  <span className="font-semibold">Status:</span> {order.status}
+                </p>
 
-              <Link
-                href={`/orders/${order.id}`}
-                className="mt-3 inline-block text-blue-600 hover:underline"
-              >
-                Track order
-              </Link>
+                <p className="mt-1">
+                  <span className="font-semibold">Total dishes:</span>{" "}
+                  {order.quantity}
+                </p>
 
-              {order.status !== "CANCELLED" && (
-                <form
-                  action={cancelOrder.bind(null, order.id)}
-                  className="mt-3"
+                {order.items?.length > 0 && (
+                  <div className="mt-4">
+                    <h2 className="font-semibold">Items</h2>
+
+                    <ul className="mt-2 space-y-1">
+                      {order.items.map((item) => (
+                        <li
+                          key={item.slug}
+                          className="flex justify-between gap-4 text-sm"
+                        >
+                          <span>
+                            {item.nameEn} × {item.quantity}
+                          </span>
+
+                          <span className="whitespace-nowrap">
+                            {item.priceETB * item.quantity} ETB
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <p className="mt-3 text-right font-semibold">
+                      Subtotal: {subtotal} ETB
+                    </p>
+                  </div>
+                )}
+
+                <Link
+                  href={`/orders/${order.id}`}
+                  className="mt-3 inline-block text-blue-600 hover:underline"
                 >
-                  <button
-                    type="submit"
-                    className="rounded-md border border-red-500 px-3 py-2 text-red-600 hover:bg-red-50"
+                  Track order
+                </Link>
+
+                {order.status !== "CANCELLED" && (
+                  <form
+                    action={cancelOrder.bind(null, order.id)}
+                    className="mt-3"
                   >
-                    Cancel order
-                  </button>
-                </form>
-              )}
-            </article>
-          ))}
+                    <button
+                      type="submit"
+                      className="rounded-md border border-red-500 px-3 py-2 text-red-600 hover:bg-red-50"
+                    >
+                      Cancel order
+                    </button>
+                  </form>
+                )}
+              </article>
+            );
+          })}
         </div>
       )}
     </main>
