@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
-import DishDetail from "./pages/DishDetail/DishDitail";
+import DishDetail from "./pages/DishDetail/DishDetail";
 import CartItems from "./pages/CartItems/CartItems";
 import CheckoutPanel from "./pages/CheckoutPanel/CheckoutPanel";
 import Login from "./pages/Login/Login";

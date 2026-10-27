@@ -1,0 +1,31 @@
+.errorCont,
+.dishCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 2.5rem;
+}
+
+.errorCont,
+.dishCont a {
+  text-decoration: none;
+  margin-top: 1.8rem;
+  color: black;
+  font-weight: bold;
+}
+
+.errorCont a:hover {
+  text-decoration: underline;
+}
+
+.errorCont p {
+  font-size: 13px;
+}
+
+.dishCont button {
+  padding: 6px 1.5rem;
+  margin-top: 12px;
+  cursor: pointer;
+}

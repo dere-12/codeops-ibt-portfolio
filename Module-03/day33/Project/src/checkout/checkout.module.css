@@ -1,0 +1,96 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #b8c5c5;
+  border-radius: 4px;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  background: #fff;
+}
+
+.input:focus {
+  outline: 2px solid #087f8c;
+  outline-offset: 1px;
+}
+
+.input[aria-invalid="true"] {
+  border-color: #b42318;
+}
+
+.fieldError,
+.serverError {
+  color: #b42318;
+  font-size: 0.875rem;
+}
+
+.errorSummary {
+  border: 1px solid #b42318;
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  color: #7a271a;
+}
+
+.errorSummary p {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.errorSummary ul {
+  padding-left: 1.25rem;
+}
+
+.errorSummary a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.characterCount,
+.helpText {
+  color: #555;
+  font-size: 0.8rem;
+  margin-top: -0.7rem;
+}
+
+.submitButton {
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  background: #087f8c;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #06636d;
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.successMessage {
+  color: #176b3a;
+  font-weight: 600;
+}
