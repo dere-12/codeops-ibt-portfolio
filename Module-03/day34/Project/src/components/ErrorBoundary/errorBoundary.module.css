@@ -1,0 +1,32 @@
+.fallback {
+  margin: 1rem;
+  padding: 1.25rem;
+  border: 1px solid #e3a7a7;
+  border-radius: 6px;
+  background: #fff8f8;
+  color: #702525;
+}
+
+.fallback h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.fallback p {
+  margin-bottom: 0.85rem;
+  line-height: 1.5;
+}
+
+.retryButton {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.55rem 0.85rem;
+  background: #702525;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.retryButton:hover {
+  background: #511a1a;
+}
