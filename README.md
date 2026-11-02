@@ -23,8 +23,15 @@ codeops-ibt-portfolio/
 ├── Module-02/
 │   ├── README.md
 │   ├── day01
+|   ├── day02
 |   └── ....
-│
+|
+├── Module-03/
+│   ├── README.md
+│   ├── day01
+|   └── day02
+|   └── ....
+|
 └── ...
 ```
 
@@ -42,14 +49,15 @@ Each module contains:
 |---------|--------|--------|
 | Module 01 | ✅ Completed | Python Fundamentals, OOP, Design Patterns, Data Structures & Algorithms |
 | Module 02 | ✅ Completed | Frontend Development - HTML, CSS & JavaScript |
-| Module 03 | 🚧 In Progress | Frontend Development - React & Next.js |
-| ... 
+| Module 03 | ✅ Completed | Frontend Development - React & Next.js |
+| Module 04 | 🚧 In Progress | Backend Development - Node.js & Express |
+| ...
 
 ---
 
 ## Modules
 
-### 📘 Module 01
+### Module 01
 Python Programming Fundamentals
 
 Topics include:
@@ -68,29 +76,55 @@ Topics include:
 
 ---
 
-### 🌐 Module 02
+### Module 02
 Frontend Development Fundamentals - HTML, CSS & JavaScript
 
 Topics include:
 
-- How the Web Works & HTML Foundations        
-- HTML — Forms, Tables, Media & Accessibility 
-- CSS Foundations                             
-- CSS Layout — Flexbox & Grid                 
-- Responsive Design, Animation & Frameworks   
-- JavaScript Foundations                      
+- How the Web Works & HTML Foundations
+- HTML — Forms, Tables, Media & Accessibility
+- CSS Foundations
+- CSS Layout — Flexbox & Grid
+- Responsive Design, Animation & Frameworks
+- JavaScript Foundations
 - Functions, Closures & Higher-Order Functions
-- Arrays, Objects & Modern JavaScript         
-- The DOM & Events                            
-- Asynchronous JavaScript & APIs              
-- Storage, Forms & Regular Expressions        
+- Arrays, Objects & Modern JavaScript
+- The DOM & Events
+- Asynchronous JavaScript & APIs
+- Storage, Forms & Regular Expressions
 
 👉 See **Module-02/README.md** for detailed information.
 
 ---
 
-### 🌐 Module 03
-Frontend Development - React and Next.js *(In Progress)*
+### Module 03
+Frontend Development - React and Next.js
+
+#### React
+
+- React fundamentals: Components, Props, State, and JSX.
+- React Hooks and managing component state.
+- Routing and navigation.
+- Context API and global state management.
+- ...
+
+#### Next.js
+
+- Next.js fundamentals and App Router.
+- Server Components and Client Components.
+- Layouts, nested routes, and dynamic routes.
+- Data fetching and API integration.
+- Route Handlers and Server Actions.
+- Forms and form submissions using `useActionState`.
+- Caching, revalidation, and data synchronization.
+- ...
+
+👉 See **Module-03/README.md** for detailed information.
+
+---
+
+### Module 04
+Backend Development - Node.js and Express *(In Progress)*
 
 ---
 

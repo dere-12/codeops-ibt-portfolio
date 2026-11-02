@@ -1,4 +1,4 @@
-# Module 02 – Frontend Development 🌐
+# Module 02 – Frontend Development
 
 This module contains solutions to the daily exercises and projects from **Module 02** of the Full Stack Software Development course provided by **IBT College**.
 
