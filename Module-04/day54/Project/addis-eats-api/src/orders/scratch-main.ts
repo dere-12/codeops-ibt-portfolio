@@ -1,30 +1,30 @@
 import {
   InMemoryOrderRepository,
   OrderNotFoundError,
-  OrderService,
+  OrdersService,
   seedOrders,
 } from './index';
 
 const repository = new InMemoryOrderRepository(seedOrders);
-const orderService = new OrderService(repository);
+const ordersService = new OrdersService(repository);
 
-const order = orderService.find('ord_001');
+const order = ordersService.find('ord_001');
 console.log('Found order:', order);
 
-const customerNames: string[] = orderService.summarise('customerName');
+const customerNames: string[] = ordersService.summarise('customerName');
 
 console.log('Customer names:', customerNames);
 
-const orderIds: string[] = orderService.summarise('id');
+const orderIds: string[] = ordersService.summarise('id');
 
 console.log('Order IDs:', orderIds);
 
-const fees = orderService.feesByArea();
+const fees = ordersService.feesByArea();
 
 console.log('Delivery fee for Bole:', fees.Bole);
 
 try {
-  orderService.find('ord_missing');
+  ordersService.find('ord_missing');
 } catch (error) {
   if (error instanceof OrderNotFoundError) {
     console.error(error.message);

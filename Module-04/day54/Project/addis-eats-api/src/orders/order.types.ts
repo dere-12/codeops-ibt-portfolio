@@ -24,3 +24,10 @@ export interface Order {
   telebirrPhone?: string;
   totalSantim: number;
 }
+
+export interface CreateOrderInput {
+  customer: string;
+  area: Area;
+  totalSantim: number;
+  telebirrPhone?: string;
+}

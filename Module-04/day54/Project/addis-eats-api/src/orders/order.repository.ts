@@ -3,6 +3,7 @@ import type { Order } from './order.types';
 export interface OrderRepository {
   byId(id: string): Order | undefined;
   all(): Order[];
+  add(order: Order): void;
 }
 
 export class InMemoryOrderRepository implements OrderRepository {
@@ -20,5 +21,9 @@ export class InMemoryOrderRepository implements OrderRepository {
 
   all(): Order[] {
     return [...this.orders.values()];
+  }
+
+  add(order: Order): void {
+    this.orders.set(order.id, order);
   }
 }

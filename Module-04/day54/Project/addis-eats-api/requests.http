@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:3000/api
+
+### Get the seeded orders
+GET {{baseUrl}}/orders
+
+### Get one existing order
+GET {{baseUrl}}/orders/ord_001
+
+### Create an order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "totalSantim": 32000,
+  "telebirrPhone": "0912345678"
+}
+
+### Invalid totalSantim should return 400
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "totalSantim": -5
+}
+
+### unknownField should be stripped from the created order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Hana Tesfaye",
+  "area": "Kazanchis",
+  "totalSantim": 18000,
+  "unknownField": "this should be removed"
+}
