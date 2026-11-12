@@ -1,0 +1,104 @@
+@baseUrl = http://localhost:3000/api
+
+### Get all restaurants
+GET {{baseUrl}}/restaurants
+
+### Filter restaurants by area
+GET {{baseUrl}}/restaurants?area=Bole
+
+### Get one restaurant
+GET {{baseUrl}}/restaurants/1
+
+### A missing restaurant should return 404
+GET {{baseUrl}}/restaurants/99
+
+### An unsupported area should return 400
+GET {{baseUrl}}/restaurants?area=Adama
+
+### Create a restaurant
+POST {{baseUrl}}/restaurants
+Content-Type: application/json
+
+{
+  "name": "Sishu",
+  "area": "Kazanchis"
+}
+
+### Get all seeded dishes
+GET {{baseUrl}}/dishes
+
+### Get one existing dish
+GET {{baseUrl}}/dishes/1
+
+### Filter dishes by restaurant
+GET {{baseUrl}}/dishes?restaurantId=1
+
+### A missing dish should return 404
+GET {{baseUrl}}/dishes/99
+
+### Create a dish for an existing restaurant
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+
+{
+  "restaurantId": 1,
+  "name": "Kitfo Leb Leb",
+  "priceSantim": 55000
+}
+
+### Reject a dish linked to a restaurant that does not exist (expected 404)
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+
+{
+  "restaurantId": 99,
+  "name": "Special Tibs",
+  "priceSantim": 48000
+}
+
+### Invalid dish input should return 400
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+
+{
+  "name": "Invalid dish",
+  "priceSantim": 0
+}
+
+### Existing Day54 Orders checks
+GET {{baseUrl}}/orders
+
+### Get one existing order
+GET {{baseUrl}}/orders/ord_001
+
+### Create an order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "totalSantim": 32000,
+  "telebirrPhone": "0912345678"
+}
+
+### Invalid totalSantim should return 400
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "totalSantim": -5
+}
+
+### unknownField should be stripped from the created order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Hana Tesfaye",
+  "area": "Kazanchis",
+  "totalSantim": 18000,
+  "unknownField": "this should be removed"
+}
