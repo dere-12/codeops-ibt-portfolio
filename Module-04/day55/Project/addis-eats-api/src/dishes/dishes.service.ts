@@ -1,11 +1,17 @@
+import { Inject, Injectable } from '@nestjs/common';
 import { ResourceNotFoundError } from '../common/errors/resource-not-found.error';
+import { RESTAURANT_REPOSITORY } from '../restaurants/restaurant.tokens';
 import type { RestaurantRepository } from '../restaurants/restaurants.repository';
+import { DISH_REPOSITORY } from './dish.tokens';
 import type { CreateDishInput, Dish } from './dish.types';
 import type { DishRepository } from './dishes.repository';
 
+@Injectable()
 export class DishesService {
   constructor(
+    @Inject(DISH_REPOSITORY)
     private readonly dishRepository: DishRepository,
+    @Inject(RESTAURANT_REPOSITORY)
     private readonly restaurantRepository: RestaurantRepository,
   ) {}
 

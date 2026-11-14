@@ -2,10 +2,9 @@ import {
   InMemoryOrderRepository,
   OrderNotFoundError,
   OrdersService,
-  seedOrders,
 } from './index';
 
-const repository = new InMemoryOrderRepository(seedOrders);
+const repository = new InMemoryOrderRepository();
 const ordersService = new OrdersService(repository);
 
 const order = ordersService.find('ord_001');

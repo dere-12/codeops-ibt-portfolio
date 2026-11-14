@@ -18,7 +18,7 @@ function createSeedOrder(
   };
 }
 
-export const seedOrders: Order[] = [
+export const ORDERS_SEED: Order[] = [
   createSeedOrder(
     'ord_001',
     'Abel Kebede',

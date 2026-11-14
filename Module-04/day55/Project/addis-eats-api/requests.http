@@ -24,6 +24,16 @@ Content-Type: application/json
   "area": "Kazanchis"
 }
 
+### Unknown fields should be removed
+POST {{baseUrl}}/restaurants
+Content-Type: application/json
+
+{
+  "name": "Y",
+  "area": "Bole",
+  "hacked": true
+}
+
 ### Get all seeded dishes
 GET {{baseUrl}}/dishes
 

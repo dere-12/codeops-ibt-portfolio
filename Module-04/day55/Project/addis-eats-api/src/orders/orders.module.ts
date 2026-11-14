@@ -3,7 +3,6 @@ import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 import { ORDER_REPOSITORY } from './order.tokens';
 import { InMemoryOrderRepository } from './order.repository';
-import { seedOrders } from './seed-orders';
 
 @Module({
   controllers: [OrdersController],
@@ -11,7 +10,7 @@ import { seedOrders } from './seed-orders';
     OrdersService,
     {
       provide: ORDER_REPOSITORY,
-      useFactory: () => new InMemoryOrderRepository(seedOrders),
+      useClass: InMemoryOrderRepository,
     },
   ],
 })

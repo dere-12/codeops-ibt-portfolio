@@ -1,4 +1,6 @@
+import { Injectable } from '@nestjs/common';
 import type { Restaurant } from './restaurant.types';
+import { RESTAURANTS_SEED } from './restaurants.seed';
 
 export interface RestaurantRepository {
   all(): Restaurant[];
@@ -6,14 +8,11 @@ export interface RestaurantRepository {
   save(restaurant: Restaurant): Restaurant;
 }
 
+@Injectable()
 export class InMemoryRestaurantRepository implements RestaurantRepository {
-  private readonly rows: Map<number, Restaurant>;
-
-  constructor(seed: Restaurant[] = []) {
-    this.rows = new Map<number, Restaurant>(
-      seed.map((restaurant) => [restaurant.id, restaurant] as const),
-    );
-  }
+  private readonly rows = new Map<number, Restaurant>(
+    RESTAURANTS_SEED.map((restaurant) => [restaurant.id, restaurant] as const),
+  );
 
   all(): Restaurant[] {
     return [...this.rows.values()];

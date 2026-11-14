@@ -1,4 +1,6 @@
+import { Inject, Injectable } from '@nestjs/common';
 import { ResourceNotFoundError } from '../common/errors/resource-not-found.error';
+import { RESTAURANT_REPOSITORY } from './restaurant.tokens';
 import type { RestaurantRepository } from './restaurants.repository';
 import type {
   Area,
@@ -6,8 +8,12 @@ import type {
   Restaurant,
 } from './restaurant.types';
 
+@Injectable()
 export class RestaurantsService {
-  constructor(private readonly repository: RestaurantRepository) {}
+  constructor(
+    @Inject(RESTAURANT_REPOSITORY)
+    private readonly repository: RestaurantRepository,
+  ) {}
 
   findAll(area?: Area): Restaurant[] {
     const restaurants = this.repository.all();
