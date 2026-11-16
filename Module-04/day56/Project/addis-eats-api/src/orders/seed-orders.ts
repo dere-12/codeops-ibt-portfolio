@@ -1,0 +1,111 @@
+import type { Area, Order, OrderStatus } from './order.types';
+
+function createSeedOrder(
+  id: string,
+  customerName: string,
+  area: Area,
+  status: OrderStatus,
+  dishName: string,
+  priceSantim: number,
+): Order {
+  return {
+    id,
+    customerName,
+    area,
+    status,
+    dishes: [{ name: dishName, priceSantim }],
+    totalSantim: priceSantim,
+  };
+}
+
+export const ORDERS_SEED: Order[] = [
+  createSeedOrder(
+    'ord_001',
+    'Abel Kebede',
+    'Bole',
+    'PREPARING',
+    'Doro Wat',
+    32000,
+  ),
+  createSeedOrder(
+    'ord_002',
+    'Hana Tesfaye',
+    'Kazanchis',
+    'PENDING',
+    'Shiro',
+    18000,
+  ),
+  createSeedOrder(
+    'ord_003',
+    'Dawit Bekele',
+    'Piassa',
+    'ON_THE_WAY',
+    'Siga Wat',
+    45000,
+  ),
+  createSeedOrder(
+    'ord_004',
+    'Marta Alemu',
+    'Megenagna',
+    'DELIVERED',
+    'Beg Alicha',
+    28000,
+  ),
+  createSeedOrder('ord_005', 'Samuel Girma', 'Bole', 'PENDING', 'Kitfo', 52000),
+  createSeedOrder(
+    'ord_006',
+    'Rahel Tadesse',
+    'Kazanchis',
+    'PREPARING',
+    'Misir Wat',
+    22000,
+  ),
+  createSeedOrder(
+    'ord_007',
+    'Yonas Haile',
+    'Piassa',
+    'DELIVERED',
+    'Doro Wat',
+    32000,
+  ),
+  createSeedOrder(
+    'ord_008',
+    'Selamawit Bekele',
+    'Megenagna',
+    'CANCELLED',
+    'Shiro',
+    18000,
+  ),
+  createSeedOrder(
+    'ord_009',
+    'Mikias Worku',
+    'Bole',
+    'ON_THE_WAY',
+    'Siga Wat',
+    45000,
+  ),
+  createSeedOrder(
+    'ord_010',
+    'Liya Getachew',
+    'Kazanchis',
+    'REFUNDED',
+    'Beg Alicha',
+    28000,
+  ),
+  createSeedOrder(
+    'ord_011',
+    'Nahom Fikru',
+    'Piassa',
+    'PREPARING',
+    'Kitfo',
+    52000,
+  ),
+  createSeedOrder(
+    'ord_012',
+    'Eden Solomon',
+    'Megenagna',
+    'PENDING',
+    'Misir Wat',
+    22000,
+  ),
+];
