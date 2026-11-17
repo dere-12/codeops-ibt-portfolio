@@ -7,7 +7,9 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  Res,
 } from '@nestjs/common';
+import type { Response } from 'express';
 import type { Page } from '../common/page';
 import { CreateDishDto } from './dto/create-dish.dto';
 import type { Dish } from './dish.types';
@@ -34,7 +36,14 @@ export class DishesController {
 
   @Post()
   @Header('Cache-Control', 'no-store')
-  create(@Body() dto: CreateDishDto): Dish {
-    return this.dishesService.create(dto);
+  create(
+    @Body() dto: CreateDishDto,
+    @Res({ passthrough: true }) response: Response,
+  ): Dish {
+    const dish = this.dishesService.create(dto);
+
+    response.setHeader('Location', `/api/v1/dishes/${dish.id}`);
+
+    return dish;
   }
 }

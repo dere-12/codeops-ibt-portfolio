@@ -7,7 +7,9 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  Res,
 } from '@nestjs/common';
+import type { Response } from 'express';
 import type { Page } from '../common/page';
 import { CreateRestaurantDto } from './dto/create-restaurant.dto';
 import { FindRestaurantsQuery } from './dto/find-restaurants.query';
@@ -20,7 +22,7 @@ export class RestaurantsController {
 
   @Get()
   @Header('Cache-Control', 'public, max-age=60')
-  findAll(@Query() query: FindRestaurantsQuery): Page<Restaurant> {
+  findAll(@Query() query: FindRestaurantsQuery): Page<Partial<Restaurant>> {
     return this.restaurantsService.findAll(query);
   }
 
@@ -32,7 +34,14 @@ export class RestaurantsController {
 
   @Post()
   @Header('Cache-Control', 'no-store')
-  create(@Body() dto: CreateRestaurantDto): Restaurant {
-    return this.restaurantsService.create(dto);
+  create(
+    @Body() dto: CreateRestaurantDto,
+    @Res({ passthrough: true }) response: Response,
+  ): Restaurant {
+    const restaurant = this.restaurantsService.create(dto);
+
+    response.setHeader('Location', `/api/v1/restaurants/${restaurant.id}`);
+
+    return restaurant;
   }
 }

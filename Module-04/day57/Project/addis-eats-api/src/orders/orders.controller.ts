@@ -11,7 +11,9 @@ import {
   Patch,
   Post,
   Query,
+  Res,
 } from '@nestjs/common';
+import type { Response } from 'express';
 import type { Page } from '../common/page';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { FindOrdersQuery } from './dto/find-orders.query';
@@ -37,8 +39,15 @@ export class OrdersController {
 
   @Post()
   @Header('Cache-Control', 'no-store')
-  create(@Body() dto: CreateOrderDto): Order {
-    return this.ordersService.create(dto);
+  create(
+    @Body() dto: CreateOrderDto,
+    @Res({ passthrough: true }) response: Response,
+  ): Order {
+    const order = this.ordersService.create(dto);
+
+    response.setHeader('Location', `/api/v1/orders/${order.id}`);
+
+    return order;
   }
 
   @Patch(':id/status')

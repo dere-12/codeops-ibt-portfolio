@@ -45,3 +45,29 @@ DELETE {{baseUrl}}/orders/14
 
 ### 12. Delete a missing order (expected 404)
 DELETE {{baseUrl}}/orders/999
+
+### Filter by multiple statuses
+GET {{baseUrl}}/orders?status=PENDING,PREPARING
+
+### Sort orders by totalSantim descending
+GET {{baseUrl}}/orders?sort=-totalSantim
+
+### Sort orders by customer ascending
+GET {{baseUrl}}/orders?sort=customer
+
+### Delete an order (expected 204)
+DELETE {{baseUrl}}/orders/14
+
+### Delete the same order again (expected 204)
+DELETE {{baseUrl}}/orders/14
+
+### Create an order and inspect the Location response header
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "restaurantId": 1,
+  "totalSantim": 32000
+}

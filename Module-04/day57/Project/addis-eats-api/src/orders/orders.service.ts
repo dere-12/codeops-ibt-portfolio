@@ -1,3 +1,4 @@
+
 import { Inject, Injectable } from '@nestjs/common';
 import { ResourceNotFoundError } from '../common/errors/resource-not-found.error';
 import type { Page } from '../common/page';
@@ -6,7 +7,12 @@ import type { RestaurantRepository } from '../restaurants/restaurants.repository
 import { OrderNotFoundError } from './order.errors';
 import { ORDER_REPOSITORY } from './order.tokens';
 import type { OrderRepository } from './order.repository';
-import type { Area, CreateOrderInput, Order, OrderStatus } from './order.types';
+import type {
+  Area,
+  CreateOrderInput,
+  Order,
+  OrderStatus,
+} from './order.types';
 import type { FindOrdersQuery } from './dto/find-orders.query';
 
 @Injectable()
@@ -22,16 +28,35 @@ export class OrdersService {
     let orders = this.repository.all();
 
     if (query.status !== undefined) {
-      orders = orders.filter((order) => order.status === query.status);
+      orders = orders.filter((order) => query.status!.includes(order.status));
     }
 
     if (query.area !== undefined) {
       orders = orders.filter((order) => order.area === query.area);
     }
 
-    orders = [...orders].sort((a, b) =>
-      a[query.sort].localeCompare(b[query.sort]),
-    );
+    const descending = query.sort.startsWith('-');
+
+    const sortField: 'customer' | 'area' | 'totalSantim' =
+      query.sort === '-customer'
+        ? 'customer'
+        : query.sort === '-area'
+          ? 'area'
+          : query.sort === '-totalSantim'
+            ? 'totalSantim'
+            : query.sort;
+
+    orders = [...orders].sort((a, b) => {
+      const first = a[sortField];
+      const second = b[sortField];
+
+      const result =
+        typeof first === 'number' && typeof second === 'number'
+          ? first - second
+          : String(first).localeCompare(String(second));
+
+      return descending ? -result : result;
+    });
 
     return this.toPage(orders, query.limit, query.offset);
   }
@@ -89,7 +114,6 @@ export class OrdersService {
   }
 
   remove(id: number): void {
-    this.findOne(id);
     this.repository.remove(id);
   }
 

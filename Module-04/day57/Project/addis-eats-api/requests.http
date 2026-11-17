@@ -172,3 +172,18 @@ Content-Type: application/json
   "totalSantim": 18000,
   "unknownField": "this should be removed"
 }
+
+### Create a restaurant and inspect the Location response header
+POST {{baseUrl}}/restaurants
+Content-Type: application/json
+
+{
+  "name": "Sishu",
+  "area": "Kazanchis"
+}
+
+### Select only some restaurant fields
+GET {{baseUrl}}/restaurants?fields=id,name
+
+### Sort restaurants by name descending
+GET {{baseUrl}}/restaurants?sort=-name

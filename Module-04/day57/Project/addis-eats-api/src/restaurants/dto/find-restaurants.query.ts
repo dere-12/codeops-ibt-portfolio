@@ -1,6 +1,18 @@
 import { Transform, Type } from 'class-transformer';
-import { IsBoolean, IsIn, IsInt, IsOptional, Max, Min } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsIn,
+  IsInt,
+  IsOptional,
+  Max,
+  Min,
+} from 'class-validator';
 import { AREAS, type Area } from '../restaurant.types';
+
+const RESTAURANT_FIELDS = ['id', 'name', 'area', 'isOpen'] as const;
+
+type RestaurantField = (typeof RESTAURANT_FIELDS)[number];
 
 export class FindRestaurantsQuery {
   @IsOptional()
@@ -30,6 +42,14 @@ export class FindRestaurantsQuery {
   offset = 0;
 
   @IsOptional()
-  @IsIn(['name', 'area'])
-  sort: 'name' | 'area' = 'name';
+  @IsIn(['name', 'area', '-name', '-area'])
+  sort: 'name' | 'area' | '-name' | '-area' = 'name';
+
+  @IsOptional()
+  @Transform(({ value }: { value: unknown }) =>
+    typeof value === 'string' ? value.split(',') : value,
+  )
+  @IsArray()
+  @IsIn([...RESTAURANT_FIELDS], { each: true })
+  fields?: RestaurantField[];
 }

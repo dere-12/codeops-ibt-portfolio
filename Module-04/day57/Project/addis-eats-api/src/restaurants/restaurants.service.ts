@@ -3,11 +3,7 @@ import { ResourceNotFoundError } from '../common/errors/resource-not-found.error
 import type { Page } from '../common/page';
 import { RESTAURANT_REPOSITORY } from './restaurant.tokens';
 import type { RestaurantRepository } from './restaurants.repository';
-import type {
-  Area,
-  CreateRestaurantInput,
-  Restaurant,
-} from './restaurant.types';
+import type { CreateRestaurantInput, Restaurant } from './restaurant.types';
 import type { FindRestaurantsQuery } from './dto/find-restaurants.query';
 
 @Injectable()
@@ -17,7 +13,7 @@ export class RestaurantsService {
     private readonly repository: RestaurantRepository,
   ) {}
 
-  findAll(query: FindRestaurantsQuery): Page<Restaurant> {
+  findAll(query: FindRestaurantsQuery): Page<Partial<Restaurant>> {
     let restaurants = this.repository.all();
 
     if (query.area) {
@@ -32,12 +28,35 @@ export class RestaurantsService {
       );
     }
 
-    restaurants = [...restaurants].sort((a, b) =>
-      a[query.sort].localeCompare(b[query.sort]),
-    );
+    const descending = query.sort.startsWith('-');
+
+    const sortField: 'name' | 'area' =
+      query.sort === '-name'
+        ? 'name'
+        : query.sort === '-area'
+          ? 'area'
+          : query.sort;
+
+    restaurants = [...restaurants].sort((a, b) => {
+      const result = a[sortField].localeCompare(b[sortField]);
+      return descending ? -result : result;
+    });
 
     const total = restaurants.length;
-    const items = restaurants.slice(query.offset, query.offset + query.limit);
+    const pagedRestaurants = restaurants.slice(
+      query.offset,
+      query.offset + query.limit,
+    );
+
+    const items = query.fields
+      ? pagedRestaurants.map((restaurant) => {
+          const selectedFields = Object.fromEntries(
+            query.fields!.map((field) => [field, restaurant[field]]),
+          );
+
+          return selectedFields as Partial<Restaurant>;
+        })
+      : pagedRestaurants;
 
     return {
       items,
