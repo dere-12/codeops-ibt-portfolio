@@ -7,6 +7,7 @@ import { OrderNotFoundError } from './order.errors';
 import { ORDER_REPOSITORY } from './order.tokens';
 import type { OrderRepository } from './order.repository';
 import type { Area, CreateOrderInput, Order, OrderStatus } from './order.types';
+import type { FindOrdersQuery } from './dto/find-orders.query';
 
 @Injectable()
 export class OrdersService {
@@ -17,17 +18,40 @@ export class OrdersService {
     private readonly restaurantRepository: RestaurantRepository,
   ) {}
 
-  findAll(): Page<Order> {
-    const orders = this.repository.all();
-    const limit = 20;
-    const offset = 0;
+  findAll(query: FindOrdersQuery): Page<Order> {
+    let orders = this.repository.all();
 
-    return {
-      items: orders.slice(offset, offset + limit),
-      total: orders.length,
-      limit,
-      offset,
-    };
+    if (query.status !== undefined) {
+      orders = orders.filter((order) => order.status === query.status);
+    }
+
+    if (query.area !== undefined) {
+      orders = orders.filter((order) => order.area === query.area);
+    }
+
+    orders = [...orders].sort((a, b) =>
+      a[query.sort].localeCompare(b[query.sort]),
+    );
+
+    return this.toPage(orders, query.limit, query.offset);
+  }
+
+  findPending(): Page<Order> {
+    const orders = this.repository
+      .all()
+      .filter((order) => order.status === 'PENDING')
+      .sort((a, b) => a.customer.localeCompare(b.customer));
+
+    return this.toPage(orders, 20, 0);
+  }
+
+  findByRestaurant(restaurantId: number): Page<Order> {
+    const orders = this.repository
+      .all()
+      .filter((order) => order.restaurantId === restaurantId)
+      .sort((a, b) => a.customer.localeCompare(b.customer));
+
+    return this.toPage(orders, 20, 0);
   }
 
   findOne(id: number): Order {
@@ -73,6 +97,11 @@ export class OrdersService {
     return updatedOrder;
   }
 
+  remove(id: number): void {
+    this.findOne(id);
+    this.repository.remove(id);
+  }
+
   feesByArea(): Record<Area, number> {
     return {
       Bole: 4000,
@@ -84,5 +113,16 @@ export class OrdersService {
 
   summarise<K extends keyof Order>(key: K): Order[K][] {
     return this.repository.all().map((order) => order[key]);
+  }
+
+  private toPage(orders: Order[], limit: number, offset: number): Page<Order> {
+    const total = orders.length;
+
+    return {
+      items: orders.slice(offset, offset + limit),
+      total,
+      limit,
+      offset,
+    };
   }
 }

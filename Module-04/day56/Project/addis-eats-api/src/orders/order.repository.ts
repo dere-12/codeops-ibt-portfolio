@@ -6,6 +6,7 @@ export interface OrderRepository {
   byId(id: number): Order | undefined;
   all(): Order[];
   add(order: Order): void;
+  remove(id: number): boolean;
 }
 
 @Injectable()
@@ -24,5 +25,9 @@ export class InMemoryOrderRepository implements OrderRepository {
 
   add(order: Order): void {
     this.orders.set(order.id, order);
+  }
+
+  remove(id: number): boolean {
+    return this.orders.delete(id);
   }
 }

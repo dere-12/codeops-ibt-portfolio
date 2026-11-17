@@ -1,15 +1,20 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Header,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseIntPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import type { Page } from '../common/page';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { FindOrdersQuery } from './dto/find-orders.query';
 import { UpdateStatusDto } from './dto/update-status.dto';
 import { OrdersService } from './orders.service';
 import type { Order } from './order.types';
@@ -20,8 +25,14 @@ export class OrdersController {
 
   @Get()
   @Header('Cache-Control', 'no-store')
-  findAll(): Page<Order> {
-    return this.ordersService.findAll();
+  findAll(@Query() query: FindOrdersQuery): Page<Order> {
+    return this.ordersService.findAll(query);
+  }
+
+  @Get('pending')
+  @Header('Cache-Control', 'no-store')
+  findPending(): Page<Order> {
+    return this.ordersService.findPending();
   }
 
   @Get(':id')
@@ -43,5 +54,12 @@ export class OrdersController {
     @Body() dto: UpdateStatusDto,
   ): Order {
     return this.ordersService.updateStatus(id, dto.status);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Header('Cache-Control', 'no-store')
+  remove(@Param('id', ParseIntPipe) id: number): void {
+    this.ordersService.remove(id);
   }
 }

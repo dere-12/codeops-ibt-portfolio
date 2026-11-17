@@ -83,7 +83,7 @@ export const ORDERS_SEED: Order[] = [
     10,
     'Liya Getachew',
     'Kazanchis',
-    'REFUNDED',
+    'DELIVERED',
     3,
     'Beg Alicha',
     28000,
@@ -98,4 +98,6 @@ export const ORDERS_SEED: Order[] = [
     'Misir Wat',
     22000,
   ),
+  createSeedOrder(13, 'Bereket Tadesse', 'Bole', 'CANCELLED', 1, 'Tibs', 38000),
+  createSeedOrder(14, 'Genet Alemu', 'Kazanchis', 'PENDING', 3, 'Gomen', 16000),
 ];
