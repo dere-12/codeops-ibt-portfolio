@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:3000/api
+
+### 1. Get all orders with default pagination
+GET {{baseUrl}}/orders
+
+### 2. Filter orders by status and area
+GET {{baseUrl}}/orders?status=PENDING&area=Bole
+
+### 3. Get the first page of five orders
+GET {{baseUrl}}/orders?limit=5&offset=0
+
+### 4. Get the second page of five orders, sorted by area
+GET {{baseUrl}}/orders?limit=5&offset=5&sort=area
+
+### 5. Invalid limit should return 400
+GET {{baseUrl}}/orders?limit=999
+
+### 6. Get pending orders (static route must be above :id)
+GET {{baseUrl}}/orders/pending
+
+### 7. Get orders belonging to restaurant 1
+GET {{baseUrl}}/restaurants/1/orders
+
+### 8. A missing parent restaurant should return 404, not an empty page
+GET {{baseUrl}}/restaurants/99/orders
+
+### 9. Update an order status
+PATCH {{baseUrl}}/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "PREPARING"
+}
+
+### 10. An invalid order status should return 400
+PATCH {{baseUrl}}/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "PLAYING"
+}
+
+### 11. Delete an existing order (expected 204 with an empty body)
+DELETE {{baseUrl}}/orders/14
+
+### 12. Delete a missing order (expected 404)
+DELETE {{baseUrl}}/orders/999
