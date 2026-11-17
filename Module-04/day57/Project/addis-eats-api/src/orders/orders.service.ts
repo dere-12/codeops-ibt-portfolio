@@ -36,15 +36,6 @@ export class OrdersService {
     return this.toPage(orders, query.limit, query.offset);
   }
 
-  findPending(): Page<Order> {
-    const orders = this.repository
-      .all()
-      .filter((order) => order.status === 'PENDING')
-      .sort((a, b) => a.customer.localeCompare(b.customer));
-
-    return this.toPage(orders, 20, 0);
-  }
-
   findByRestaurant(restaurantId: number): Page<Order> {
     const orders = this.repository
       .all()

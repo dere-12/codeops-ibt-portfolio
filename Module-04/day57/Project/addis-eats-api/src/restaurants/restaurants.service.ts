@@ -47,10 +47,6 @@ export class RestaurantsService {
     };
   }
 
-  findOpen(query: FindRestaurantsQuery): Page<Restaurant> {
-    return this.findAll({ ...query, isOpen: true });
-  }
-
   findOne(id: number): Restaurant {
     const restaurant = this.repository.byId(id);
 

@@ -18,12 +18,6 @@ import { RestaurantsService } from './restaurants.service';
 export class RestaurantsController {
   constructor(private readonly restaurantsService: RestaurantsService) {}
 
-  @Get('open')
-  @Header('Cache-Control', 'public, max-age=60')
-  findOpen(@Query() query: FindRestaurantsQuery): Page<Restaurant> {
-    return this.restaurantsService.findOpen(query);
-  }
-
   @Get()
   @Header('Cache-Control', 'public, max-age=60')
   findAll(@Query() query: FindRestaurantsQuery): Page<Restaurant> {

@@ -15,8 +15,8 @@ GET {{baseUrl}}/orders?limit=5&offset=5&sort=area
 ### 5. Invalid limit should return 400
 GET {{baseUrl}}/orders?limit=999
 
-### 6. Get pending orders (static route must be above :id)
-GET {{baseUrl}}/orders/pending
+### 6. Get pending orders using a query filter
+GET {{baseUrl}}/orders?status=PENDING
 
 ### 7. Get orders belonging to restaurant 1
 GET {{baseUrl}}/restaurants/1/orders

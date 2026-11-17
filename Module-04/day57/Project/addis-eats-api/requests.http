@@ -3,14 +3,11 @@
 ### Get all restaurants (Page<Restaurant>)
 GET {{baseUrl}}/restaurants
 
-### Get open restaurants (static route must be above :id)
-GET {{baseUrl}}/restaurants/open
+### Get open restaurants using a query filter
+GET {{baseUrl}}/restaurants?isOpen=true
 
 ### Filter restaurants by area
 GET {{baseUrl}}/restaurants?area=Bole
-
-### Filter open restaurants
-GET {{baseUrl}}/restaurants?isOpen=true
 
 ### Filter closed restaurants
 GET {{baseUrl}}/restaurants?isOpen=false

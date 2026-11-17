@@ -29,12 +29,6 @@ export class OrdersController {
     return this.ordersService.findAll(query);
   }
 
-  @Get('pending')
-  @Header('Cache-Control', 'no-store')
-  findPending(): Page<Order> {
-    return this.ordersService.findPending();
-  }
-
   @Get(':id')
   @Header('Cache-Control', 'no-store')
   findOne(@Param('id', ParseIntPipe) id: number): Order {
