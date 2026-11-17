@@ -1,6 +1,8 @@
-export class OrderNotFoundError extends Error {
-  constructor(public readonly id: string) {
-    super(`Order ${id} was not found.`);
+import { ResourceNotFoundError } from '../common/errors/resource-not-found.error';
+
+export class OrderNotFoundError extends ResourceNotFoundError {
+  constructor(id: number) {
+    super('Order', id);
     this.name = 'OrderNotFoundError';
   }
 }

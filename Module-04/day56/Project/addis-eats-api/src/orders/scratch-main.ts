@@ -3,27 +3,26 @@ import {
   OrderNotFoundError,
   OrdersService,
 } from './index';
+import { InMemoryRestaurantRepository } from '../restaurants/restaurants.repository';
 
 const repository = new InMemoryOrderRepository();
-const ordersService = new OrdersService(repository);
+const restaurantRepository = new InMemoryRestaurantRepository();
+const ordersService = new OrdersService(repository, restaurantRepository);
 
-const order = ordersService.find('ord_001');
+const order = ordersService.findOne(1);
 console.log('Found order:', order);
 
-const customerNames: string[] = ordersService.summarise('customerName');
-
+const customerNames: string[] = ordersService.summarise('customer');
 console.log('Customer names:', customerNames);
 
-const orderIds: string[] = ordersService.summarise('id');
-
+const orderIds: number[] = ordersService.summarise('id');
 console.log('Order IDs:', orderIds);
 
 const fees = ordersService.feesByArea();
-
 console.log('Delivery fee for Bole:', fees.Bole);
 
 try {
-  ordersService.find('ord_missing');
+  ordersService.findOne(999);
 } catch (error) {
   if (error instanceof OrderNotFoundError) {
     console.error(error.message);

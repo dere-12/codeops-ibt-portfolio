@@ -13,6 +13,6 @@ import { RESTAURANT_REPOSITORY } from './restaurant.tokens';
       useClass: InMemoryRestaurantRepository,
     },
   ],
-  exports: [RESTAURANT_REPOSITORY],
+  exports: [RESTAURANT_REPOSITORY, RestaurantsService],
 })
 export class RestaurantsModule {}

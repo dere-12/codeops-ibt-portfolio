@@ -1,21 +1,36 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { ResourceNotFoundError } from '../common/errors/resource-not-found.error';
+import type { Page } from '../common/page';
+import { RESTAURANT_REPOSITORY } from '../restaurants/restaurant.tokens';
+import type { RestaurantRepository } from '../restaurants/restaurants.repository';
 import { OrderNotFoundError } from './order.errors';
 import { ORDER_REPOSITORY } from './order.tokens';
 import type { OrderRepository } from './order.repository';
-import type { Area, CreateOrderInput, Order } from './order.types';
+import type { Area, CreateOrderInput, Order, OrderStatus } from './order.types';
 
 @Injectable()
 export class OrdersService {
   constructor(
     @Inject(ORDER_REPOSITORY)
     private readonly repository: OrderRepository,
+    @Inject(RESTAURANT_REPOSITORY)
+    private readonly restaurantRepository: RestaurantRepository,
   ) {}
 
-  findAll(): Order[] {
-    return this.repository.all();
+  findAll(): Page<Order> {
+    const orders = this.repository.all();
+    const limit = 20;
+    const offset = 0;
+
+    return {
+      items: orders.slice(offset, offset + limit),
+      total: orders.length,
+      limit,
+      offset,
+    };
   }
 
-  find(id: string): Order {
+  findOne(id: number): Order {
     const order = this.repository.byId(id);
 
     if (!order) {
@@ -26,13 +41,21 @@ export class OrdersService {
   }
 
   create(input: CreateOrderInput): Order {
-    const nextNumber = this.repository.all().length + 1;
+    const restaurant = this.restaurantRepository.byId(input.restaurantId);
+
+    if (!restaurant) {
+      throw new ResourceNotFoundError('Restaurant', input.restaurantId);
+    }
+
+    const nextId =
+      Math.max(0, ...this.repository.all().map((order) => order.id)) + 1;
 
     const order: Order = {
-      id: `ord_${String(nextNumber).padStart(3, '0')}`,
-      customerName: input.customer,
+      id: nextId,
+      customer: input.customer,
       area: input.area,
       status: 'PENDING',
+      restaurantId: input.restaurantId,
       dishes: [],
       totalSantim: input.totalSantim,
       ...(input.telebirrPhone ? { telebirrPhone: input.telebirrPhone } : {}),
@@ -40,6 +63,14 @@ export class OrdersService {
 
     this.repository.add(order);
     return order;
+  }
+
+  updateStatus(id: number, status: OrderStatus): Order {
+    const existingOrder = this.findOne(id);
+    const updatedOrder: Order = { ...existingOrder, status };
+
+    this.repository.add(updatedOrder);
+    return updatedOrder;
   }
 
   feesByArea(): Record<Area, number> {

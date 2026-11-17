@@ -3,18 +3,18 @@ import type { Order } from './order.types';
 import { ORDERS_SEED } from './seed-orders';
 
 export interface OrderRepository {
-  byId(id: string): Order | undefined;
+  byId(id: number): Order | undefined;
   all(): Order[];
   add(order: Order): void;
 }
 
 @Injectable()
 export class InMemoryOrderRepository implements OrderRepository {
-  private readonly orders = new Map<string, Order>(
+  private readonly orders = new Map<number, Order>(
     ORDERS_SEED.map((order) => [order.id, order] as const),
   );
 
-  byId(id: string): Order | undefined {
+  byId(id: number): Order | undefined {
     return this.orders.get(id);
   }
 

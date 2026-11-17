@@ -11,6 +11,7 @@ export class ResourceNotFoundFilter implements ExceptionFilter<ResourceNotFoundE
     response.status(HttpStatus.NOT_FOUND).json({
       statusCode: HttpStatus.NOT_FOUND,
       message: exception.message,
+      error: 'Not Found',
     });
   }
 }

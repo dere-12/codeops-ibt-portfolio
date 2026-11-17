@@ -1,19 +1,40 @@
 @baseUrl = http://localhost:3000/api
 
-### Get all restaurants
+### Get all restaurants (Page<Restaurant>)
 GET {{baseUrl}}/restaurants
+
+### Get open restaurants (static route must be above :id)
+GET {{baseUrl}}/restaurants/open
 
 ### Filter restaurants by area
 GET {{baseUrl}}/restaurants?area=Bole
+
+### Filter open restaurants
+GET {{baseUrl}}/restaurants?isOpen=true
+
+### Filter closed restaurants
+GET {{baseUrl}}/restaurants?isOpen=false
+
+### Sort restaurants by area
+GET {{baseUrl}}/restaurants?sort=area
+
+### First page of restaurants
+GET {{baseUrl}}/restaurants?limit=2&offset=0
+
+### Second page of restaurants
+GET {{baseUrl}}/restaurants?limit=2&offset=2
+
+### Invalid restaurant page limit (expected 400)
+GET {{baseUrl}}/restaurants?limit=999
+
+### Invalid restaurant area (expected 400)
+GET {{baseUrl}}/restaurants?area=Adama
 
 ### Get one restaurant
 GET {{baseUrl}}/restaurants/1
 
 ### A missing restaurant should return 404
 GET {{baseUrl}}/restaurants/99
-
-### An unsupported area should return 400
-GET {{baseUrl}}/restaurants?area=Adama
 
 ### Create a restaurant
 POST {{baseUrl}}/restaurants
@@ -34,14 +55,26 @@ Content-Type: application/json
   "hacked": true
 }
 
-### Get all seeded dishes
+### Get all seeded dishes (Page<Dish>)
 GET {{baseUrl}}/dishes
 
 ### Get one existing dish
 GET {{baseUrl}}/dishes/1
 
-### Filter dishes by restaurant
+### Filter dishes by restaurant (Page<Dish>)
 GET {{baseUrl}}/dishes?restaurantId=1
+
+### Get dishes belonging to restaurant 1
+GET {{baseUrl}}/restaurants/1/dishes
+
+### Get dish 7 belonging to restaurant 4
+GET {{baseUrl}}/restaurants/4/dishes/7
+
+### Requesting dishes for a missing restaurant should return 404
+GET {{baseUrl}}/restaurants/99/dishes
+
+### A dish belonging to another restaurant should return 404
+GET {{baseUrl}}/restaurants/1/dishes/7
 
 ### A missing dish should return 404
 GET {{baseUrl}}/dishes/99
@@ -75,21 +108,49 @@ Content-Type: application/json
   "priceSantim": 0
 }
 
-### Existing Day54 Orders checks
+### Get all seeded orders (Page<Order>)
 GET {{baseUrl}}/orders
 
 ### Get one existing order
-GET {{baseUrl}}/orders/ord_001
+GET {{baseUrl}}/orders/1
 
-### Create an order
+### Update an order status
+PATCH {{baseUrl}}/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "PREPARING"
+}
+
+### Invalid order status should return 400
+PATCH {{baseUrl}}/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "PLAYING"
+}
+
+### Create an order for an existing restaurant
 POST {{baseUrl}}/orders
 Content-Type: application/json
 
 {
   "customer": "Abel Kebede",
   "area": "Bole",
+  "restaurantId": 1,
   "totalSantim": 32000,
   "telebirrPhone": "0912345678"
+}
+
+### Reject an order linked to a restaurant that does not exist (expected 404)
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "restaurantId": 99,
+  "totalSantim": 32000
 }
 
 ### Invalid totalSantim should return 400
@@ -99,16 +160,18 @@ Content-Type: application/json
 {
   "customer": "Abel Kebede",
   "area": "Bole",
+  "restaurantId": 1,
   "totalSantim": -5
 }
 
-### unknownField should be stripped from the created order
+### Unknown fields should be removed from the created order
 POST {{baseUrl}}/orders
 Content-Type: application/json
 
 {
   "customer": "Hana Tesfaye",
   "area": "Kazanchis",
+  "restaurantId": 3,
   "totalSantim": 18000,
   "unknownField": "this should be removed"
 }

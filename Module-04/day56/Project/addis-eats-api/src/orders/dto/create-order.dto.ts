@@ -7,8 +7,7 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
-
-import { AREAS, type Area } from '../order.types';
+import { AREAS, type Area } from '../../restaurants/restaurant.types';
 import type { CreateOrderInput } from '../order.types';
 
 export class CreateOrderDto implements CreateOrderInput {
@@ -18,6 +17,10 @@ export class CreateOrderDto implements CreateOrderInput {
 
   @IsIn([...AREAS])
   area!: Area;
+
+  @IsInt()
+  @Min(1)
+  restaurantId!: number;
 
   @IsInt()
   @Min(1)
