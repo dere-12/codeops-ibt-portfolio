@@ -16,5 +16,6 @@ import { RestaurantDishesController } from './restaurant-dishes.controller';
       useClass: InMemoryDishRepository,
     },
   ],
+  exports: [DishesService],
 })
 export class DishesModule {}

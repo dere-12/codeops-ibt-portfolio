@@ -1,14 +1,28 @@
+import { Type } from 'class-transformer';
 import {
+  ArrayNotEmpty,
+  IsArray,
   IsIn,
   IsInt,
   IsOptional,
   IsString,
-  Matches,
   Min,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
+import { IsTeleBirrNumber } from '../../common/validators/is-telebirr-number.validator';
 import { AREAS, type Area } from '../../restaurants/restaurant.types';
-import type { CreateOrderInput } from '../order.types';
+import type { CreateOrderInput, CreateOrderLineInput } from '../order.types';
+
+export class OrderLineDto implements CreateOrderLineInput {
+  @IsInt()
+  @Min(1)
+  dishId!: number;
+
+  @IsInt()
+  @Min(1)
+  quantity!: number;
+}
 
 export class CreateOrderDto implements CreateOrderInput {
   @IsString()
@@ -22,14 +36,13 @@ export class CreateOrderDto implements CreateOrderInput {
   @Min(1)
   restaurantId!: number;
 
-  @IsInt()
-  @Min(1)
-  totalSantim!: number;
+  @IsArray()
+  @ArrayNotEmpty()
+  @ValidateNested({ each: true })
+  @Type(() => OrderLineDto)
+  lines!: OrderLineDto[];
 
   @IsOptional()
-  @IsString()
-  @Matches(/^(?:\+251|0)9\d{8}$/, {
-    message: 'telebirrPhone must be a valid Ethiopian mobile number',
-  })
+  @IsTeleBirrNumber()
   telebirrPhone?: string;
 }

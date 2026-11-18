@@ -16,7 +16,7 @@ function createSeedOrder(
     area,
     status,
     restaurantId,
-    dishes: [{ name: dishName, priceSantim }],
+    dishes: [{ name: dishName, priceSantim, quantity: 1 }],
     totalSantim: priceSantim,
   };
 }

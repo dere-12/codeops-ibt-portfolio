@@ -1,7 +1,8 @@
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ResourceNotFoundFilter } from './common/filters/resource-not-found.filter';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { RequestValidationPipe } from './common/pipes/request-validation.pipe';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -13,14 +14,8 @@ async function bootstrap(): Promise<void> {
     defaultVersion: '1',
   });
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      transform: true,
-    }),
-  );
-
-  app.useGlobalFilters(new ResourceNotFoundFilter());
+  app.useGlobalPipes(new RequestValidationPipe());
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   await app.listen(process.env.PORT ?? 3000);
 }

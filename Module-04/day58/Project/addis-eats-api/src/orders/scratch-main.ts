@@ -3,11 +3,23 @@ import {
   OrderNotFoundError,
   OrdersService,
 } from './index';
+import { InMemoryDishRepository } from '../dishes/dishes.repository';
+import { DishesService } from '../dishes/dishes.service';
 import { InMemoryRestaurantRepository } from '../restaurants/restaurants.repository';
+import { RestaurantsService } from '../restaurants/restaurants.service';
 
-const repository = new InMemoryOrderRepository();
+const orderRepository = new InMemoryOrderRepository();
 const restaurantRepository = new InMemoryRestaurantRepository();
-const ordersService = new OrdersService(repository, restaurantRepository);
+const restaurantsService = new RestaurantsService(restaurantRepository);
+const dishesService = new DishesService(
+  new InMemoryDishRepository(),
+  restaurantRepository,
+);
+const ordersService = new OrdersService(
+  orderRepository,
+  restaurantsService,
+  dishesService,
+);
 
 const order = ordersService.findOne(1);
 console.log('Found order:', order);

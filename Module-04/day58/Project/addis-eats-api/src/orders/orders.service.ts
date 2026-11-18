@@ -1,27 +1,39 @@
-
 import { Inject, Injectable } from '@nestjs/common';
 import { ResourceNotFoundError } from '../common/errors/resource-not-found.error';
 import type { Page } from '../common/page';
-import { RESTAURANT_REPOSITORY } from '../restaurants/restaurant.tokens';
-import type { RestaurantRepository } from '../restaurants/restaurants.repository';
-import { OrderNotFoundError } from './order.errors';
+import { DishNotOnMenuError } from '../dishes/dish.errors';
+import { DishesService } from '../dishes/dishes.service';
+import { RestaurantClosedError } from '../restaurants/restaurant.errors';
+import { RestaurantsService } from '../restaurants/restaurants.service';
+import { InvalidTransitionError, OrderNotFoundError } from './order.errors';
 import { ORDER_REPOSITORY } from './order.tokens';
 import type { OrderRepository } from './order.repository';
 import type {
   Area,
   CreateOrderInput,
   Order,
+  OrderDish,
   OrderStatus,
 } from './order.types';
 import type { FindOrdersQuery } from './dto/find-orders.query';
+
+const ALLOWED_TRANSITIONS: Record<OrderStatus, readonly OrderStatus[]> = {
+  PENDING: ['PREPARING', 'CANCELLED'],
+  PREPARING: ['ON_THE_WAY', 'CANCELLED'],
+  ON_THE_WAY: ['DELIVERED'],
+  DELIVERED: [],
+  CANCELLED: [],
+  // The existing project status has no outgoing transition in Day58's rules.
+  REFUNDED: [],
+};
 
 @Injectable()
 export class OrdersService {
   constructor(
     @Inject(ORDER_REPOSITORY)
     private readonly repository: OrderRepository,
-    @Inject(RESTAURANT_REPOSITORY)
-    private readonly restaurantRepository: RestaurantRepository,
+    private readonly restaurantsService: RestaurantsService,
+    private readonly dishesService: DishesService,
   ) {}
 
   findAll(query: FindOrdersQuery): Page<Order> {
@@ -81,12 +93,53 @@ export class OrdersService {
   }
 
   create(input: CreateOrderInput): Order {
-    const restaurant = this.restaurantRepository.byId(input.restaurantId);
+    // 1. Existence: resolve the restaurant first (404 if it does not exist).
+    const restaurant = this.restaurantsService.findOne(input.restaurantId);
 
-    if (!restaurant) {
-      throw new ResourceNotFoundError('Restaurant', input.restaurantId);
+    // 2. State: an order cannot be placed while the restaurant is closed.
+    if (!restaurant.isOpen) {
+      throw new RestaurantClosedError(restaurant.id);
     }
 
+    // 3. Existence and relationships: retrieve every requested dish.
+    const requestedDishIds = [
+      ...new Set(input.lines.map((line) => line.dishId)),
+    ];
+    const menuDishes = this.dishesService.findByIds(requestedDishIds);
+    const foundDishIds = new Set(menuDishes.map((dish) => dish.id));
+    const missingDishId = requestedDishIds.find(
+      (dishId) => !foundDishIds.has(dishId),
+    );
+
+    if (missingDishId !== undefined) {
+      throw new ResourceNotFoundError('Dish', missingDishId);
+    }
+
+    if (menuDishes.some((dish) => dish.restaurantId !== restaurant.id)) {
+      throw new DishNotOnMenuError(restaurant.id);
+    }
+
+    // 4. Only after all guards pass, create the order and calculate its total.
+    const dishesById = new Map(
+      menuDishes.map((dish) => [dish.id, dish] as const),
+    );
+
+    const orderDishes: OrderDish[] = input.lines.map((line) => {
+      const dish = dishesById.get(line.dishId);
+
+      // The missing-dish guard above guarantees that this lookup succeeds.
+      if (!dish) {
+        throw new ResourceNotFoundError('Dish', line.dishId);
+      }
+
+      return {
+        name: dish.name,
+        priceSantim: dish.priceSantim,
+        quantity: line.quantity,
+      };
+    });
+
+    const totalSantim = this.priceOrder(orderDishes);
     const nextId =
       Math.max(0, ...this.repository.all().map((order) => order.id)) + 1;
 
@@ -95,9 +148,9 @@ export class OrdersService {
       customer: input.customer,
       area: input.area,
       status: 'PENDING',
-      restaurantId: input.restaurantId,
-      dishes: [],
-      totalSantim: input.totalSantim,
+      restaurantId: restaurant.id,
+      dishes: orderDishes,
+      totalSantim,
       ...(input.telebirrPhone ? { telebirrPhone: input.telebirrPhone } : {}),
     };
 
@@ -105,11 +158,16 @@ export class OrdersService {
     return order;
   }
 
-  updateStatus(id: number, status: OrderStatus): Order {
-    const existingOrder = this.findOne(id);
-    const updatedOrder: Order = { ...existingOrder, status };
+  updateStatus(id: number, next: OrderStatus): Order {
+    const order = this.findOne(id);
 
+    if (!ALLOWED_TRANSITIONS[order.status].includes(next)) {
+      throw new InvalidTransitionError(order.status, next);
+    }
+
+    const updatedOrder: Order = { ...order, status: next };
     this.repository.add(updatedOrder);
+
     return updatedOrder;
   }
 
@@ -128,6 +186,13 @@ export class OrdersService {
 
   summarise<K extends keyof Order>(key: K): Order[K][] {
     return this.repository.all().map((order) => order[key]);
+  }
+
+  private priceOrder(dishes: OrderDish[]): number {
+    return dishes.reduce(
+      (total, dish) => total + dish.priceSantim * dish.quantity,
+      0,
+    );
   }
 
   private toPage(orders: Order[], limit: number, offset: number): Page<Order> {

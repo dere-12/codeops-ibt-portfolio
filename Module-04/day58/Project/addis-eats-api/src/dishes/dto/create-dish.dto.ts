@@ -11,6 +11,6 @@ export class CreateDishDto implements CreateDishInput {
   name!: string;
 
   @IsInt()
-  @Min(1)
+  @Min(0)
   priceSantim!: number;
 }

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { DishesModule } from '../dishes/dishes.module';
 import { RestaurantsModule } from '../restaurants/restaurants.module';
 import { OrdersController } from './orders.controller';
 import { RestaurantOrdersController } from './restaurant-orders.controller';
@@ -7,7 +8,7 @@ import { ORDER_REPOSITORY } from './order.tokens';
 import { InMemoryOrderRepository } from './order.repository';
 
 @Module({
-  imports: [RestaurantsModule],
+  imports: [RestaurantsModule, DishesModule],
   controllers: [OrdersController, RestaurantOrdersController],
   providers: [
     OrdersService,

@@ -12,9 +12,17 @@ export const ORDER_STATUSES = [
 
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 
-export interface Dish {
+export interface OrderDish {
   name: string;
   priceSantim: number;
+  quantity: number;
+}
+
+export type Dish = OrderDish;
+
+export interface CreateOrderLineInput {
+  dishId: number;
+  quantity: number;
 }
 
 export interface Order {
@@ -23,7 +31,7 @@ export interface Order {
   area: Area;
   status: OrderStatus;
   restaurantId: number;
-  dishes: Dish[];
+  dishes: OrderDish[];
   telebirrPhone?: string;
   totalSantim: number;
 }
@@ -32,6 +40,6 @@ export interface CreateOrderInput {
   customer: string;
   area: Area;
   restaurantId: number;
-  totalSantim: number;
+  lines: CreateOrderLineInput[];
   telebirrPhone?: string;
 }

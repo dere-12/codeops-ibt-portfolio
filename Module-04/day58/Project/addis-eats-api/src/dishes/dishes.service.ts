@@ -48,6 +48,14 @@ export class DishesService {
     return dish;
   }
 
+  findByIds(ids: number[]): Dish[] {
+    const requestedIds = new Set(ids);
+
+    return this.dishRepository
+      .all()
+      .filter((dish) => requestedIds.has(dish.id));
+  }
+
   create(input: CreateDishInput): Dish {
     const restaurant = this.restaurantRepository.byId(input.restaurantId);
 

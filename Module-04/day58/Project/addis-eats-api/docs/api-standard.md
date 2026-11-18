@@ -23,7 +23,7 @@
 - GET retrieves resources.
 - POST creates resources.
 - PATCH updates part of a resource.
-- DELETE removes a resource.
+- DELETE removes resources.
 - PUT is not used because clients do not submit complete resource representations.
 
 ## Responses
@@ -34,30 +34,16 @@
 - Successful deletion returns `204 No Content`.
 - Deleting an already deleted resource also returns `204 No Content`.
 
-## Query controls (reserved)
+## Error response body
 
-- `limit`: maximum number of items to return; maximum value is 50.
-- `offset`: number of items to skip.
-- `sort`: field to sort by; prefix with `-` for descending order.
-- `fields`: comma-separated list of fields to return.
-- `q`: reserved for free-text search.
-- `after`: reserved for cursor pagination.
+All error responses use the same five-field JSON shape:
 
-Comma-separated values can be used for multi-value filters, such as
-`?status=PENDING,PREPARING`.
-
-Reserved query parameter names must not be reused as resource field names.
-
-## Status codes
-
-- `200 OK`: successful retrieval or update.
-- `201 Created`: successful resource creation.
-- `204 No Content`: successful deletion.
-- `400 Bad Request`: invalid request or validation failure.
-- `401 Unauthorized`: authentication is required.
-- `403 Forbidden`: the request is not permitted.
-- `404 Not Found`: the requested resource does not exist.
-- `409 Conflict`: the request conflicts with the current resource state.
-- `422 Unprocessable Entity`: the request is understood but cannot be processed.
-- `429 Too Many Requests`: too many requests.
-- `500 Internal Server Error`: unexpected server error.
+```json
+{
+  "statusCode": 404,
+  "message": "Restaurant 99 was not found.",
+  "path": "/api/v1/restaurants/99",
+  "timestamp": "2026-11-18T06:00:00.000Z",
+  "requestId": null
+}
+```

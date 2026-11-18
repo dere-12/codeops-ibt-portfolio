@@ -1,38 +1,38 @@
-@baseUrl = http://localhost:3000/api
+@baseUrl = http://localhost:3000/api/v1
 
-### 1. Get all orders with default pagination
+### Get all orders with default pagination
 GET {{baseUrl}}/orders
 
-### 2. Filter orders by status and area
+### Filter orders by status and area
 GET {{baseUrl}}/orders?status=PENDING&area=Bole
 
-### 3. Get the first page of five orders
+### Get the first page of five orders
 GET {{baseUrl}}/orders?limit=5&offset=0
 
-### 4. Get the second page of five orders, sorted by area
+### Get the second page of five orders, sorted by area
 GET {{baseUrl}}/orders?limit=5&offset=5&sort=area
 
-### 5. Invalid limit should return 400
+### Invalid limit should return 400
 GET {{baseUrl}}/orders?limit=999
 
-### 6. Get pending orders using a query filter
+### Get pending orders
 GET {{baseUrl}}/orders?status=PENDING
 
-### 7. Get orders belonging to restaurant 1
+### Get orders belonging to restaurant 1
 GET {{baseUrl}}/restaurants/1/orders
 
-### 8. A missing parent restaurant should return 404, not an empty page
+### A missing parent restaurant should return 404
 GET {{baseUrl}}/restaurants/99/orders
 
-### 9. Update an order status
-PATCH {{baseUrl}}/orders/1/status
+### Valid transition: PENDING -> PREPARING (expected 200)
+PATCH {{baseUrl}}/orders/2/status
 Content-Type: application/json
 
 {
   "status": "PREPARING"
 }
 
-### 10. An invalid order status should return 400
+### Invalid status value should return 400
 PATCH {{baseUrl}}/orders/1/status
 Content-Type: application/json
 
@@ -40,10 +40,18 @@ Content-Type: application/json
   "status": "PLAYING"
 }
 
-### 11. Delete an existing order (expected 204 with an empty body)
+### Invalid transition: DELIVERED -> PENDING (expected 409)
+PATCH {{baseUrl}}/orders/4/status
+Content-Type: application/json
+
+{
+  "status": "PENDING"
+}
+
+### Delete an existing order (expected 204)
 DELETE {{baseUrl}}/orders/14
 
-### 12. Delete a missing order (expected 404)
+### Delete a missing order (expected 404)
 DELETE {{baseUrl}}/orders/999
 
 ### Filter by multiple statuses
@@ -55,13 +63,13 @@ GET {{baseUrl}}/orders?sort=-totalSantim
 ### Sort orders by customer ascending
 GET {{baseUrl}}/orders?sort=customer
 
-### Delete an order (expected 204)
+### Delete the same order twice (both expected 204)
 DELETE {{baseUrl}}/orders/14
 
-### Delete the same order again (expected 204)
+### Second delete of order 14 (expected 204)
 DELETE {{baseUrl}}/orders/14
 
-### Create an order and inspect the Location response header
+### Create an order; the server calculates totalSantim
 POST {{baseUrl}}/orders
 Content-Type: application/json
 
@@ -69,5 +77,32 @@ Content-Type: application/json
   "customer": "Abel Kebede",
   "area": "Bole",
   "restaurantId": 1,
-  "totalSantim": 32000
+  "lines": [{ "dishId": 1, "quantity": 1 }]
 }
+
+### Day58 final checkpoint: invalid TeleBirr phone (expected 400)
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "restaurantId": 1,
+  "lines": [{ "dishId": 1, "quantity": 1 }],
+  "telebirrPhone": "0812345678"
+}
+
+### Day58 final checkpoint: unknown isAdmin on a write (expected 400)
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "restaurantId": 1,
+  "lines": [{ "dishId": 1, "quantity": 1 }],
+  "isAdmin": true
+}
+
+### Unknown query property is stripped (expected 200)
+GET {{baseUrl}}/orders?unknownFilter=ignored
