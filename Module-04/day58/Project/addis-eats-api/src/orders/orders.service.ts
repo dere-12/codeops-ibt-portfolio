@@ -23,7 +23,6 @@ const ALLOWED_TRANSITIONS: Record<OrderStatus, readonly OrderStatus[]> = {
   ON_THE_WAY: ['DELIVERED'],
   DELIVERED: [],
   CANCELLED: [],
-  // The existing project status has no outgoing transition in Day58's rules.
   REFUNDED: [],
 };
 
@@ -93,15 +92,12 @@ export class OrdersService {
   }
 
   create(input: CreateOrderInput): Order {
-    // 1. Existence: resolve the restaurant first (404 if it does not exist).
     const restaurant = this.restaurantsService.findOne(input.restaurantId);
 
-    // 2. State: an order cannot be placed while the restaurant is closed.
     if (!restaurant.isOpen) {
       throw new RestaurantClosedError(restaurant.id);
     }
 
-    // 3. Existence and relationships: retrieve every requested dish.
     const requestedDishIds = [
       ...new Set(input.lines.map((line) => line.dishId)),
     ];
@@ -119,7 +115,6 @@ export class OrdersService {
       throw new DishNotOnMenuError(restaurant.id);
     }
 
-    // 4. Only after all guards pass, create the order and calculate its total.
     const dishesById = new Map(
       menuDishes.map((dish) => [dish.id, dish] as const),
     );
@@ -127,7 +122,6 @@ export class OrdersService {
     const orderDishes: OrderDish[] = input.lines.map((line) => {
       const dish = dishesById.get(line.dishId);
 
-      // The missing-dish guard above guarantees that this lookup succeeds.
       if (!dish) {
         throw new ResourceNotFoundError('Dish', line.dishId);
       }
@@ -150,6 +144,7 @@ export class OrdersService {
       status: 'PENDING',
       restaurantId: restaurant.id,
       dishes: orderDishes,
+      paymentMethod: input.paymentMethod ?? 'CASH',
       totalSantim,
       ...(input.telebirrPhone ? { telebirrPhone: input.telebirrPhone } : {}),
     };

@@ -17,6 +17,7 @@ function createSeedOrder(
     status,
     restaurantId,
     dishes: [{ name: dishName, priceSantim, quantity: 1 }],
+    paymentMethod: 'CASH',
     totalSantim: priceSantim,
   };
 }

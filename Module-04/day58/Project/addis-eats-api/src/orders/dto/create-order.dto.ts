@@ -8,11 +8,18 @@ import {
   IsString,
   Min,
   MinLength,
+  Validate,
   ValidateNested,
 } from 'class-validator';
 import { IsTeleBirrNumber } from '../../common/validators/is-telebirr-number.validator';
 import { AREAS, type Area } from '../../restaurants/restaurant.types';
-import type { CreateOrderInput, CreateOrderLineInput } from '../order.types';
+import { TelebirrPhoneRequiredConstraint } from '../validators/telebirr-phone-required.constraint';
+import {
+  PAYMENT_METHODS,
+  type CreateOrderInput,
+  type CreateOrderLineInput,
+  type PaymentMethod,
+} from '../order.types';
 
 export class OrderLineDto implements CreateOrderLineInput {
   @IsInt()
@@ -43,6 +50,10 @@ export class CreateOrderDto implements CreateOrderInput {
   lines!: OrderLineDto[];
 
   @IsOptional()
+  @IsIn([...PAYMENT_METHODS])
+  paymentMethod?: PaymentMethod;
+
+  @Validate(TelebirrPhoneRequiredConstraint)
   @IsTeleBirrNumber()
   telebirrPhone?: string;
 }

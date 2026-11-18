@@ -34,6 +34,14 @@
 - Successful deletion returns `204 No Content`.
 - Deleting an already deleted resource also returns `204 No Content`.
 
+## Order creation
+
+- The client sends selected dish IDs and quantities in `lines`.
+- The server retrieves dish prices and calculates `totalSantim`.
+- Clients must not submit `totalSantim` when creating an order.
+- `paymentMethod` may be `CASH` or `TELEBIRR`; if omitted, it defaults to `CASH`.
+- `telebirrPhone` is required when `paymentMethod` is `TELEBIRR` and must use `09xxxxxxxx` or `+2519xxxxxxxx` format.
+
 ## Error response body
 
 All error responses use the same five-field JSON shape:

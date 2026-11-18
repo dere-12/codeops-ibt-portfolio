@@ -13,9 +13,11 @@ export function IsTeleBirrNumber(
       options,
       validator: {
         validate: (value: unknown): boolean =>
-          typeof value === 'string' && TELEBIRR.test(value),
+          value === undefined ||
+          value === null ||
+          (typeof value === 'string' && TELEBIRR.test(value)),
         defaultMessage: () =>
-          'phone must be a TeleBirr number: 09xxxxxxxx or +2519xxxxxxxx',
+          'Enter a valid TeleBirr number using 09xxxxxxxx or +2519xxxxxxxx.',
       },
     });
   };

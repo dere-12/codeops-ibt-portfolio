@@ -12,6 +12,9 @@ export const ORDER_STATUSES = [
 
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 
+export const PAYMENT_METHODS = ['CASH', 'TELEBIRR'] as const;
+export type PaymentMethod = (typeof PAYMENT_METHODS)[number];
+
 export interface OrderDish {
   name: string;
   priceSantim: number;
@@ -32,6 +35,7 @@ export interface Order {
   status: OrderStatus;
   restaurantId: number;
   dishes: OrderDish[];
+  paymentMethod: PaymentMethod;
   telebirrPhone?: string;
   totalSantim: number;
 }
@@ -41,5 +45,6 @@ export interface CreateOrderInput {
   area: Area;
   restaurantId: number;
   lines: CreateOrderLineInput[];
+  paymentMethod?: PaymentMethod;
   telebirrPhone?: string;
 }
