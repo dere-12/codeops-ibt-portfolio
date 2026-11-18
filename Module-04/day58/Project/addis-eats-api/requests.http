@@ -1,0 +1,189 @@
+@baseUrl = http://localhost:3000/api
+
+### Get all restaurants (Page<Restaurant>)
+GET {{baseUrl}}/restaurants
+
+### Get open restaurants using a query filter
+GET {{baseUrl}}/restaurants?isOpen=true
+
+### Filter restaurants by area
+GET {{baseUrl}}/restaurants?area=Bole
+
+### Filter closed restaurants
+GET {{baseUrl}}/restaurants?isOpen=false
+
+### Sort restaurants by area
+GET {{baseUrl}}/restaurants?sort=area
+
+### First page of restaurants
+GET {{baseUrl}}/restaurants?limit=2&offset=0
+
+### Second page of restaurants
+GET {{baseUrl}}/restaurants?limit=2&offset=2
+
+### Invalid restaurant page limit (expected 400)
+GET {{baseUrl}}/restaurants?limit=999
+
+### Invalid restaurant area (expected 400)
+GET {{baseUrl}}/restaurants?area=Adama
+
+### Get one restaurant
+GET {{baseUrl}}/restaurants/1
+
+### A missing restaurant should return 404
+GET {{baseUrl}}/restaurants/99
+
+### Create a restaurant
+POST {{baseUrl}}/restaurants
+Content-Type: application/json
+
+{
+  "name": "Sishu",
+  "area": "Kazanchis"
+}
+
+### Unknown fields should be removed
+POST {{baseUrl}}/restaurants
+Content-Type: application/json
+
+{
+  "name": "Y",
+  "area": "Bole",
+  "hacked": true
+}
+
+### Get all seeded dishes (Page<Dish>)
+GET {{baseUrl}}/dishes
+
+### Get one existing dish
+GET {{baseUrl}}/dishes/1
+
+### Filter dishes by restaurant (Page<Dish>)
+GET {{baseUrl}}/dishes?restaurantId=1
+
+### Get dishes belonging to restaurant 1
+GET {{baseUrl}}/restaurants/1/dishes
+
+### Get dish 7 belonging to restaurant 4
+GET {{baseUrl}}/restaurants/4/dishes/7
+
+### Requesting dishes for a missing restaurant should return 404
+GET {{baseUrl}}/restaurants/99/dishes
+
+### A dish belonging to another restaurant should return 404
+GET {{baseUrl}}/restaurants/1/dishes/7
+
+### A missing dish should return 404
+GET {{baseUrl}}/dishes/99
+
+### Create a dish for an existing restaurant
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+
+{
+  "restaurantId": 1,
+  "name": "Kitfo Leb Leb",
+  "priceSantim": 55000
+}
+
+### Reject a dish linked to a restaurant that does not exist (expected 404)
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+
+{
+  "restaurantId": 99,
+  "name": "Special Tibs",
+  "priceSantim": 48000
+}
+
+### Invalid dish input should return 400
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+
+{
+  "name": "Invalid dish",
+  "priceSantim": 0
+}
+
+### Get all seeded orders (Page<Order>)
+GET {{baseUrl}}/orders
+
+### Get one existing order
+GET {{baseUrl}}/orders/1
+
+### Update an order status
+PATCH {{baseUrl}}/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "PREPARING"
+}
+
+### Invalid order status should return 400
+PATCH {{baseUrl}}/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "PLAYING"
+}
+
+### Create an order for an existing restaurant
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "restaurantId": 1,
+  "totalSantim": 32000,
+  "telebirrPhone": "0912345678"
+}
+
+### Reject an order linked to a restaurant that does not exist (expected 404)
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "restaurantId": 99,
+  "totalSantim": 32000
+}
+
+### Invalid totalSantim should return 400
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Abel Kebede",
+  "area": "Bole",
+  "restaurantId": 1,
+  "totalSantim": -5
+}
+
+### Unknown fields should be removed from the created order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Hana Tesfaye",
+  "area": "Kazanchis",
+  "restaurantId": 3,
+  "totalSantim": 18000,
+  "unknownField": "this should be removed"
+}
+
+### Create a restaurant and inspect the Location response header
+POST {{baseUrl}}/restaurants
+Content-Type: application/json
+
+{
+  "name": "Sishu",
+  "area": "Kazanchis"
+}
+
+### Select only some restaurant fields
+GET {{baseUrl}}/restaurants?fields=id,name
+
+### Sort restaurants by name descending
+GET {{baseUrl}}/restaurants?sort=-name

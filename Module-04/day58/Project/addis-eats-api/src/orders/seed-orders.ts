@@ -1,0 +1,103 @@
+import type { Area } from '../restaurants/restaurant.types';
+import type { Order, OrderStatus } from './order.types';
+
+function createSeedOrder(
+  id: number,
+  customer: string,
+  area: Area,
+  status: OrderStatus,
+  restaurantId: number,
+  dishName: string,
+  priceSantim: number,
+): Order {
+  return {
+    id,
+    customer,
+    area,
+    status,
+    restaurantId,
+    dishes: [{ name: dishName, priceSantim }],
+    totalSantim: priceSantim,
+  };
+}
+
+export const ORDERS_SEED: Order[] = [
+  createSeedOrder(1, 'Abel Kebede', 'Bole', 'PREPARING', 1, 'Doro Wat', 32000),
+  createSeedOrder(2, 'Hana Tesfaye', 'Kazanchis', 'PENDING', 2, 'Shiro', 18000),
+  createSeedOrder(
+    3,
+    'Dawit Bekele',
+    'Piassa',
+    'ON_THE_WAY',
+    4,
+    'Siga Wat',
+    45000,
+  ),
+  createSeedOrder(
+    4,
+    'Marta Alemu',
+    'Megenagna',
+    'DELIVERED',
+    3,
+    'Beg Alicha',
+    28000,
+  ),
+  createSeedOrder(5, 'Samuel Girma', 'Bole', 'PENDING', 1, 'Kitfo', 52000),
+  createSeedOrder(
+    6,
+    'Rahel Tadesse',
+    'Kazanchis',
+    'PREPARING',
+    3,
+    'Misir Wat',
+    22000,
+  ),
+  createSeedOrder(
+    7,
+    'Yonas Haile',
+    'Piassa',
+    'DELIVERED',
+    4,
+    'Doro Wat',
+    32000,
+  ),
+  createSeedOrder(
+    8,
+    'Selamawit Bekele',
+    'Megenagna',
+    'CANCELLED',
+    2,
+    'Shiro',
+    18000,
+  ),
+  createSeedOrder(
+    9,
+    'Mikias Worku',
+    'Bole',
+    'ON_THE_WAY',
+    1,
+    'Siga Wat',
+    45000,
+  ),
+  createSeedOrder(
+    10,
+    'Liya Getachew',
+    'Kazanchis',
+    'DELIVERED',
+    3,
+    'Beg Alicha',
+    28000,
+  ),
+  createSeedOrder(11, 'Nahom Fikru', 'Piassa', 'PREPARING', 4, 'Kitfo', 52000),
+  createSeedOrder(
+    12,
+    'Eden Solomon',
+    'Megenagna',
+    'PENDING',
+    2,
+    'Misir Wat',
+    22000,
+  ),
+  createSeedOrder(13, 'Bereket Tadesse', 'Bole', 'CANCELLED', 1, 'Tibs', 38000),
+  createSeedOrder(14, 'Genet Alemu', 'Kazanchis', 'PENDING', 3, 'Gomen', 16000),
+];
